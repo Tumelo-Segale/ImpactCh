@@ -1,20 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Impact Compass Holdings | Professional Academic & Consulting Platform</title>
     <meta name="description"
-        content="Impact Compass Holdings (PTY) LTD is a multi-disciplinary hub providing expert consulting, academic publishing, and peer-reviewed journals." />
-    <meta name="citation_publisher" content="Impact Compass Holdings" />
-    <link rel="canonical" href="https://impactch.com" />
+        content="Impact Compass Holdings (PTY) LTD is a multi-disciplinary hub providing expert consulting, academic publishing, and peer-reviewed journals.">
+    <meta name="citation_publisher" content="Impact Compass Holdings">
+    <link rel="canonical" href="https://impactch.com">
     <link rel="shortcut icon" href="icon.png" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Raleway:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet" />
+        rel="stylesheet">
 
     <!-- jsPDF for PDF generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -107,7 +107,6 @@
             margin-bottom: 1rem;
         }
 
-        /* ==================== LAYOUT ==================== */
         .container {
             max-width: 1280px;
             margin: 0 auto;
@@ -171,7 +170,6 @@
         #navbar.scrolled {
             background: rgba(10, 10, 12, 0.85);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             padding: 0.6rem 0;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
@@ -222,7 +220,6 @@
             padding-bottom: 4px;
             position: relative;
             transition: color var(--transition);
-            border: none;
             background: none;
             cursor: pointer;
         }
@@ -250,7 +247,6 @@
             width: 100%;
         }
 
-        /* Mobile Toggle */
         .mobile-toggle {
             display: none;
             color: #fff;
@@ -261,7 +257,6 @@
             display: block;
         }
 
-        /* Mobile Menu */
         #mobile-menu {
             display: none;
             position: absolute;
@@ -312,9 +307,7 @@
             display: flex;
             align-items: center;
             overflow: hidden;
-            background:
-                radial-gradient(circle at 80% 20%, rgba(193, 154, 107, 0.08) 0%, transparent 50%),
-                var(--brand-900);
+            background: radial-gradient(circle at 80% 20%, rgba(193, 154, 107, 0.08) 0%, transparent 50%), var(--brand-900);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
@@ -531,7 +524,6 @@
             background: rgba(10, 10, 12, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
             transition: all var(--transition);
         }
 
@@ -911,7 +903,6 @@
             white-space: nowrap;
         }
 
-        /* Workflow Tracker */
         .workflow-tracker {
             display: flex;
             justify-content: space-between;
@@ -1050,221 +1041,6 @@
 
         .btn-advance-status:hover {
             color: var(--accent);
-        }
-
-        /* ==================== SHOP PAGE ==================== */
-        .shop-header {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: flex-end;
-            gap: 2rem;
-            margin-bottom: 5rem;
-        }
-
-        .shop-filters {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 0.5rem 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 10px;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.3);
-            transition: all var(--transition);
-        }
-
-        .filter-btn.active {
-            color: var(--accent);
-            border-color: var(--accent);
-        }
-
-        .filter-btn:hover {
-            color: #fff;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 3rem 2rem;
-            padding-bottom: 6rem;
-        }
-
-        .product-card {
-            cursor: pointer;
-        }
-
-        .product-img-wrap {
-            aspect-ratio: 3 / 4;
-            background: var(--brand-800);
-            overflow: hidden;
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            margin-bottom: 1.5rem;
-        }
-
-        .product-img-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.6;
-            filter: grayscale(100%);
-            transition: all 1s ease;
-        }
-
-        .product-card:hover .product-img-wrap img {
-            opacity: 1;
-            filter: grayscale(0%);
-            transform: scale(1.05);
-        }
-
-        .product-cat-badge {
-            position: absolute;
-            top: 1.25rem;
-            left: 1.25rem;
-            background: var(--accent);
-            color: var(--brand-900);
-            padding: 0.25rem 0.75rem;
-            font-size: 8px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-        }
-
-        .product-name {
-            font-family: var(--font-serif);
-            font-size: 1.2rem;
-            color: #fff;
-            font-weight: 400;
-            margin-bottom: 0.75rem;
-            transition: color var(--transition);
-        }
-
-        .product-card:hover .product-name {
-            color: var(--accent);
-        }
-
-        .product-foot {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 1rem;
-        }
-
-        .product-price {
-            color: rgba(255, 255, 255, 0.6);
-            font-weight: 300;
-        }
-
-        .btn-bag {
-            font-size: 10px;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: var(--accent);
-            transition: color var(--transition);
-        }
-
-        .product-card:hover .btn-bag {
-            color: #fff;
-        }
-
-        /* ==================== CONTACT PAGE ==================== */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            padding-bottom: 6rem;
-        }
-
-        .contact-info-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .contact-card {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-            padding: 2rem 2.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(255, 255, 255, 0.03);
-            transition: background var(--transition);
-        }
-
-        .contact-card:hover {
-            background: rgba(255, 255, 255, 0.06);
-        }
-
-        .contact-card-icon {
-            color: var(--accent);
-            flex-shrink: 0;
-        }
-
-        .contact-card h4 {
-            font-family: var(--font-serif);
-            font-size: 1.2rem;
-            color: #fff;
-            font-weight: 400;
-            margin-bottom: 0.75rem;
-        }
-
-        .contact-card p {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.5);
-            font-weight: 300;
-            line-height: 1.7;
-        }
-
-        .contact-phone {
-            font-size: 1.2rem;
-            color: #fff;
-            font-weight: 300;
-            margin-bottom: 0.25rem;
-        }
-
-        .contact-hours {
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        .contact-form-wrap {
-            background: rgba(10, 10, 12, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 3rem;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        .contact-form-wrap h3 {
-            font-family: var(--font-serif);
-            font-size: 2rem;
-            color: #fff;
-            font-weight: 400;
-            margin-bottom: 3rem;
-        }
-
-        .contact-form-fields {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
         }
 
         /* ==================== ABOUT PAGE ==================== */
@@ -1425,31 +1201,98 @@
             color: #fff;
         }
 
-        .publishing-cta {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 5rem;
-            text-align: center;
-            margin-bottom: 6rem;
+        /* ==================== CONTACT PAGE ==================== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            padding-bottom: 6rem;
         }
 
-        .publishing-cta h2 {
+        .contact-info-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 2rem 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
+            transition: background var(--transition);
+        }
+
+        .contact-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .contact-card-icon {
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .contact-card h4 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            color: #fff;
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-card p {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .contact-phone {
+            font-size: 1.2rem;
+            color: #fff;
+            font-weight: 300;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-hours {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .contact-form-wrap {
+            background: rgba(10, 10, 12, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            backdrop-filter: blur(12px);
+        }
+
+        .contact-form-wrap h3 {
             font-family: var(--font-serif);
             font-size: 2rem;
             color: #fff;
             font-weight: 400;
-            margin-bottom: 1.5rem;
+            margin-bottom: 3rem;
         }
 
-        .publishing-cta p {
-            color: rgba(255, 255, 255, 0.4);
-            max-width: 36rem;
-            margin: 0 auto 3rem;
-            font-weight: 300;
+        .contact-form-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
         }
 
-        /* ==================== FOOTER ==================== */
-        footer {
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .footer {
             background: var(--brand-800);
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             padding: 4rem 0 3rem;
@@ -1488,7 +1331,6 @@
             color: rgba(255, 255, 255, 0.15);
         }
 
-        /* ==================== RESPONSIVE ==================== */
         @media (max-width: 900px) {
             .nav-links {
                 display: none;
@@ -1549,12 +1391,10 @@
             }
         }
 
-        /* Utility: hide/show */
         .hidden {
             display: none !important;
         }
 
-        /* SVG icons inline */
         svg {
             display: inline-block;
             vertical-align: middle;
@@ -1568,34 +1408,30 @@
     <nav id="navbar">
         <div class="container nav-inner">
             <div class="logo" onclick="navigate('home')">
-                <img src="Logo.png" alt="Impact Compass Holdings" class="logo-img" />
+                <img src="Logo.png" alt="Impact Compass Holdings" class="logo-img">
             </div>
-
             <div class="nav-links">
                 <button class="nav-link active" data-page="home" onclick="navigate('home')">Home</button>
                 <button class="nav-link" data-page="consulting" onclick="navigate('consulting')">Services</button>
                 <button class="nav-link" data-page="journals" onclick="navigate('journals')">Journals</button>
                 <button class="nav-link" data-page="publishing" onclick="navigate('publishing')">Publishing</button>
-                <button class="nav-link" data-page="shop" onclick="navigate('shop')">Shop</button>
                 <button class="nav-link" data-page="about" onclick="navigate('about')">About</button>
                 <button class="nav-link" data-page="contact" onclick="navigate('contact')">Contact</button>
             </div>
-
             <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
                 <svg id="icon-menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    stroke-width="2">
                     <line x1="3" y1="6" x2="21" y2="6" />
                     <line x1="3" y1="12" x2="21" y2="12" />
                     <line x1="3" y1="18" x2="21" y2="18" />
                 </svg>
                 <svg id="icon-x" class="hidden" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    stroke="currentColor" stroke-width="2">
                     <line x1="18" y1="6" x2="6" y2="18" />
                     <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
             </button>
         </div>
-
         <div id="mobile-menu">
             <button class="mobile-link active" data-page="home"
                 onclick="navigate('home');toggleMobileMenu()">Home</button>
@@ -1605,34 +1441,28 @@
                 onclick="navigate('journals');toggleMobileMenu()">Journals</button>
             <button class="mobile-link" data-page="publishing"
                 onclick="navigate('publishing');toggleMobileMenu()">Publishing</button>
-            <button class="mobile-link" data-page="shop" onclick="navigate('shop');toggleMobileMenu()">Shop</button>
             <button class="mobile-link" data-page="about" onclick="navigate('about');toggleMobileMenu()">About</button>
             <button class="mobile-link" data-page="contact"
                 onclick="navigate('contact');toggleMobileMenu()">Contact</button>
         </div>
     </nav>
 
-    <!-- ==================== HOME PAGE ==================== -->
+    <!-- HOME PAGE -->
     <div id="page-home" class="page active">
         <section id="hero">
             <div class="container">
                 <div class="hero-content animate-fade-up">
-                    <h1 class="hero-title">
-                        Driving Growth Through<br>
-                        <span class="text-accent">Knowledge &amp; Strategy.</span>
-                    </h1>
-                    <p class="hero-sub">
-                        Impact Compass Holdings (PTY) LTD is a multi-disciplinary South African hub providing expert
-                        consulting, academic publishing, and curated resources for a global audience.
+                    <h1 class="hero-title">Driving Growth Through<br><span class="text-accent">Knowledge &amp;
+                            Strategy.</span></h1>
+                    <p class="hero-sub">Impact Compass Holdings (PTY) LTD is a multi-disciplinary South African hub
+                        providing expert consulting, academic publishing, and curated resources for a global audience.
                     </p>
-                    <div class="hero-actions">
-                        <button class="btn-primary" onclick="navigate('consulting')">Our Services</button>
-                        <button class="btn-ghost" onclick="navigate('about')">Learn More</button>
+                    <div class="hero-actions"><button class="btn-primary" onclick="navigate('consulting')">Our
+                            Services</button><button class="btn-ghost" onclick="navigate('about')">Learn More</button>
                     </div>
                 </div>
             </div>
         </section>
-
         <section>
             <div class="container" style="padding:0;">
                 <div class="divisions-grid">
@@ -1672,22 +1502,9 @@
                             <li><span>Author Services</span><span class="division-arrow">→</span></li>
                         </ul>
                     </div>
-                    <div class="division-card" onclick="navigate('shop')">
-                        <div class="division-label">Division 04</div>
-                        <div class="division-title">Online Store</div>
-                        <div class="division-desc">Curated lifestyle goods, professional stationery, and academic
-                            literature for the modern scholar.</div>
-                        <ul class="division-links">
-                            <li><span>Academic Stationery</span><span class="division-arrow">→</span></li>
-                            <li><span>Essential Oils</span><span class="division-arrow">→</span></li>
-                            <li><span>Tech &amp; Lifestyle</span><span class="division-arrow">→</span></li>
-                            <li><span>Browse All Products</span><span class="division-arrow">→</span></li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </section>
-
         <section class="quote-section">
             <div class="container">
                 <blockquote class="quote-text">"Knowledge is our compass; Impact is our destination."</blockquote>
@@ -1696,12 +1513,11 @@
         </section>
     </div>
 
-    <!-- ==================== CONSULTING PAGE ==================== -->
+    <!-- CONSULTING PAGE -->
     <div id="page-consulting" class="page">
         <div style="background:var(--brand-900); min-height:100vh; padding-bottom:6rem;">
             <div class="container">
-                <div class="page-header">
-                    <span class="label-tag">Impact Consultants</span>
+                <div class="page-header"><span class="label-tag">Impact Consultants</span>
                     <h1 class="page-title">Strategic Advisory<br>&amp; <span class="text-accent">Expert Research</span>
                     </h1>
                     <p class="page-desc">We provide deep analytical insights and transformative organizational
@@ -1709,14 +1525,12 @@
                 </div>
                 <div class="services-grid">
                     <div class="glass-card service-card">
-                        <div class="service-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5">
+                        <div class="service-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5">
                                 <ellipse cx="12" cy="12" rx="10" ry="10" />
                                 <path d="M12 2v20M2 12h20" />
                                 <path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z" />
-                            </svg>
-                        </div>
+                            </svg></div>
                         <div class="service-category">Research</div>
                         <ul class="service-list">
                             <li><span class="dot"></span>Protocol &amp; Proposal Development</li>
@@ -1727,14 +1541,12 @@
                         </ul>
                     </div>
                     <div class="glass-card service-card">
-                        <div class="service-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5">
+                        <div class="service-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5">
                                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
                                 <circle cx="9" cy="7" r="4" />
                                 <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-                            </svg>
-                        </div>
+                            </svg></div>
                         <div class="service-category">Training &amp; Capacity Building</div>
                         <ul class="service-list">
                             <li><span class="dot"></span>Organizational Capacity Assessments</li>
@@ -1745,13 +1557,11 @@
                         </ul>
                     </div>
                     <div class="glass-card service-card">
-                        <div class="service-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5">
+                        <div class="service-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5">
                                 <rect x="2" y="7" width="20" height="14" rx="2" />
                                 <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M12 12v4M10 14h4" />
-                            </svg>
-                        </div>
+                            </svg></div>
                         <div class="service-category">Organizational Development</div>
                         <ul class="service-list">
                             <li><span class="dot"></span>Strategic Planning &amp; Execution</li>
@@ -1766,24 +1576,16 @@
         </div>
     </div>
 
-    <!-- ==================== JOURNALS PAGE ==================== -->
+    <!-- JOURNALS PAGE -->
     <div id="page-journals" class="page">
         <div style="background:var(--brand-900); min-height:100vh; padding-bottom:6rem;">
             <div class="container" style="padding-top:7rem;">
-
-                <!-- Sub-Nav -->
-                <div class="journals-subnav">
-                    <button class="subnav-btn active" id="tab-browse" onclick="switchJournalView('browse')">Browse
-                        Journals</button>
-                    <button class="subnav-btn" id="tab-dashboard" onclick="switchJournalView('dashboard')">Author
-                        Dashboard</button>
-                    <button class="btn-accent-sm" onclick="switchJournalView('submit')">Submit Manuscript</button>
-                </div>
-
-                <!-- Browse View -->
+                <div class="journals-subnav"><button class="subnav-btn active" id="tab-browse"
+                        onclick="switchJournalView('browse')">Browse Journals</button><button class="subnav-btn"
+                        id="tab-dashboard" onclick="switchJournalView('dashboard')">Author Dashboard</button><button
+                        class="btn-accent-sm" onclick="switchJournalView('submit')">Submit Manuscript</button></div>
                 <div id="view-browse">
-                    <div style="text-align:center; margin-bottom:5rem;">
-                        <span class="label-tag">Impact Journals</span>
+                    <div style="text-align:center; margin-bottom:5rem;"><span class="label-tag">Impact Journals</span>
                         <h1 class="page-title" style="font-size:clamp(2.4rem,6vw,4rem);">Academic Rigor. <span
                                 class="text-accent" style="font-style:italic;">Global Reach.</span></h1>
                         <p class="page-desc" style="margin:0 auto; text-align:center;">Contributing to the global body
@@ -1791,8 +1593,6 @@
                     </div>
                     <div class="journals-grid" id="journals-grid"></div>
                 </div>
-
-                <!-- Dashboard View -->
                 <div id="view-dashboard" class="hidden">
                     <div class="dashboard-wrapper">
                         <h2>Author Dashboard</h2>
@@ -1800,73 +1600,54 @@
                         <div id="dashboard-content"></div>
                     </div>
                 </div>
-
-                <!-- Submit View -->
                 <div id="view-submit" class="hidden">
                     <div class="submit-wrapper">
                         <h2>Manuscript Submission</h2>
                         <p class="sub-desc">Follow the OJS-standard protocol for scholarly submission.</p>
                         <div class="glass-card form-card">
                             <form id="submission-form" class="form-fields">
-                                <div class="field">
-                                    <label class="field-label">Target Journal</label>
-                                    <select name="journal" class="field-select" id="journal-select"></select>
-                                </div>
-                                <div class="field">
-                                    <label class="field-label">Title</label>
-                                    <input required name="title" type="text" class="field-input" />
-                                </div>
-                                <div class="field">
-                                    <label class="field-label">Authors (Full Names, comma separated)</label>
-                                    <input required name="authors" type="text" class="field-input" />
-                                </div>
-                                <div class="field">
-                                    <label class="field-label">Abstract</label>
-                                    <textarea required name="abstract" rows="6" class="field-textarea"></textarea>
-                                </div>
+                                <div class="field"><label class="field-label">Target Journal</label><select
+                                        name="journal" class="field-select" id="journal-select"></select></div>
+                                <div class="field"><label class="field-label">Title</label><input required name="title"
+                                        type="text" class="field-input"></div>
+                                <div class="field"><label class="field-label">Authors (Full Names, comma
+                                        separated)</label><input required name="authors" type="text"
+                                        class="field-input"></div>
+                                <div class="field"><label class="field-label">Abstract</label><textarea required
+                                        name="abstract" rows="6" class="field-textarea"></textarea></div>
                                 <div class="disclaimer">
-                                    <div class="disclaimer-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="1.5">
+                                    <div class="disclaimer-icon"><svg width="20" height="20" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="1.5">
                                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                                             <polyline points="9 12 11 14 15 10" />
-                                        </svg>
-                                    </div>
-                                    <p>
-                                        By submitting, you agree to the peer-review process and verify that this is an
-                                        original, unpublished work.
-                                        <span class="note">System will generate Google Scholar compatible metadata upon
-                                            publication.</span>
-                                    </p>
-                                </div>
-                                <button type="submit" class="btn-submit">Submit For Review</button>
+                                        </svg></div>
+                                    <p>By submitting, you agree to the peer-review process and verify that this is an
+                                        original, unpublished work.<span class="note">System will generate Google
+                                            Scholar compatible metadata upon publication.</span></p>
+                                </div><button type="submit" class="btn-submit">Submit For Review</button>
                             </form>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <!-- ==================== PUBLISHING PAGE ==================== -->
+    <!-- PUBLISHING PAGE -->
     <div id="page-publishing" class="page">
         <div style="min-height:100vh; padding-bottom:2rem;">
             <div class="container">
-                <div class="page-header">
-                    <span class="label-tag">Impact Publishing</span>
+                <div class="page-header"><span class="label-tag">Impact Publishing</span>
                     <h1 class="page-title">Bringing <span class="text-accent"
                             style="font-style:italic;">Stories</span><br>To Life.</h1>
                     <p class="page-desc">We partner with authors, organizations, and researchers to transform complex
                         ideas into beautifully crafted books and impactful digital content.</p>
                 </div>
                 <div class="publishing-split">
-                    <div class="publishing-icon-box">
-                        <svg width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="0.5">
+                    <div class="publishing-icon-box"><svg width="200" height="200" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="0.5">
                             <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" />
-                        </svg>
-                    </div>
+                        </svg></div>
                     <div class="publishing-services">
                         <h2>Our Publishing Services</h2>
                         <ul class="pub-service-list">
@@ -1874,82 +1655,48 @@
                                 <div class="pub-service-icon"><svg width="16" height="16" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="9 18 15 12 9 6" />
-                                    </svg></div>
-                                <span class="pub-service-text">Professional Book Layout &amp; Design</span>
+                                    </svg></div><span class="pub-service-text">Professional Book Layout &amp;
+                                    Design</span>
                             </li>
                             <li class="pub-service-item">
                                 <div class="pub-service-icon"><svg width="16" height="16" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="9 18 15 12 9 6" />
-                                    </svg></div>
-                                <span class="pub-service-text">Scholarly Report Publishing</span>
+                                    </svg></div><span class="pub-service-text">Scholarly Report Publishing</span>
                             </li>
                             <li class="pub-service-item">
                                 <div class="pub-service-icon"><svg width="16" height="16" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="9 18 15 12 9 6" />
-                                    </svg></div>
-                                <span class="pub-service-text">Digital Distribution &amp; E-book Formats</span>
+                                    </svg></div><span class="pub-service-text">Digital Distribution &amp; E-book
+                                    Formats</span>
                             </li>
                             <li class="pub-service-item">
                                 <div class="pub-service-icon"><svg width="16" height="16" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="9 18 15 12 9 6" />
-                                    </svg></div>
-                                <span class="pub-service-text">Author Identity &amp; Branding Strategy</span>
+                                    </svg></div><span class="pub-service-text">Author Identity &amp; Branding
+                                    Strategy</span>
                             </li>
                             <li class="pub-service-item">
                                 <div class="pub-service-icon"><svg width="16" height="16" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="9 18 15 12 9 6" />
-                                    </svg></div>
-                                <span class="pub-service-text">Technical &amp; Creative Editing Services</span>
+                                    </svg></div><span class="pub-service-text">Technical &amp; Creative Editing
+                                    Services</span>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="publishing-cta">
-                    <h2>Explore Our Library</h2>
-                    <p>Visit our online store to browse the latest publications from the Impact Publishing house,
-                        including the works of Dr. Jacob Segale.</p>
-                    <button class="btn-primary" onclick="navigate('shop')">Visit Online Store</button>
-                </div>
             </div>
         </div>
     </div>
 
-    <!-- ==================== SHOP PAGE ==================== -->
-    <div id="page-shop" class="page">
-        <div style="min-height:100vh; padding-top:7rem;">
-            <div class="container">
-                <div class="shop-header">
-                    <div>
-                        <span class="label-tag">Impact Online Store</span>
-                        <h1 class="page-title">Curated for<br><span class="text-accent"
-                                style="font-style:italic;">Excellence.</span></h1>
-                    </div>
-                    <div class="shop-filters">
-                        <button class="filter-btn active" data-filter="all"
-                            onclick="filterProducts('all',this)">All</button>
-                        <button class="filter-btn" data-filter="Books"
-                            onclick="filterProducts('Books',this)">Books</button>
-                        <button class="filter-btn" data-filter="Lifestyle"
-                            onclick="filterProducts('Lifestyle',this)">Lifestyle</button>
-                        <button class="filter-btn" data-filter="Stationery"
-                            onclick="filterProducts('Stationery',this)">Stationery</button>
-                    </div>
-                </div>
-                <div class="products-grid" id="products-grid"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ==================== ABOUT PAGE ==================== -->
+    <!-- ABOUT PAGE -->
     <div id="page-about" class="page">
         <div style="background:var(--brand-900); min-height:100vh; padding-bottom:2rem;">
             <div class="container">
-                <div class="page-header">
-                    <span class="label-tag">About Our Company</span>
+                <div class="page-header"><span class="label-tag">About Our Company</span>
                     <h1 class="page-title">Founded on <span style="font-style:italic;">Purpose.</span></h1>
                 </div>
                 <div class="about-grid">
@@ -1964,46 +1711,40 @@
                             journals, and quality products that foster growth, innovation, and positive societal change.
                         </p>
                     </div>
-                    <div class="about-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=1200"
-                            alt="Team Collaboration" referrerpolicy="no-referrer" />
+                    <div class="about-img-wrap"><img
+                            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=1200"
+                            alt="Team Collaboration" referrerpolicy="no-referrer">
                         <div class="about-overlay"></div>
                     </div>
                 </div>
                 <div class="values-grid">
                     <div class="value-card">
-                        <div class="value-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5">
+                        <div class="value-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5">
                                 <circle cx="12" cy="12" r="10" />
                                 <line x1="2" y1="12" x2="22" y2="12" />
                                 <path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10A15 15 0 0 1 12 2z" />
-                            </svg>
-                        </div>
+                            </svg></div>
                         <div class="value-title">Global Reach</div>
                         <p class="value-text">We connect African perspectives with global academic and professional
                             networks.</p>
                     </div>
                     <div class="value-card">
-                        <div class="value-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5">
+                        <div class="value-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5">
                                 <circle cx="12" cy="8" r="6" />
                                 <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
-                            </svg>
-                        </div>
+                            </svg></div>
                         <div class="value-title">Rigorous Quality</div>
                         <p class="value-text">From peer-reviewed research to professional consulting, quality is our
                             bedrock.</p>
                     </div>
                     <div class="value-card">
-                        <div class="value-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5">
+                        <div class="value-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5">
                                 <path
                                     d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                            </svg>
-                        </div>
+                            </svg></div>
                         <div class="value-title">Social Impact</div>
                         <p class="value-text">Every project we undertake is measured by its contribution to societal
                             well-being.</p>
@@ -2013,12 +1754,11 @@
         </div>
     </div>
 
-    <!-- ==================== CONTACT PAGE ==================== -->
+    <!-- CONTACT PAGE -->
     <div id="page-contact" class="page">
         <div style="min-height:100vh; padding-bottom:2rem;">
             <div class="container">
-                <div class="page-header">
-                    <span class="label-tag">Connect With Us</span>
+                <div class="page-header"><span class="label-tag">Connect With Us</span>
                     <h1 class="page-title">Let's start the <span style="font-style:italic;">conversation.</span></h1>
                     <p class="page-desc">Whether you have a consulting inquiry, a scholarly submission, or just want to
                         browse our collection, we're here to help.</p>
@@ -2027,105 +1767,73 @@
                     <div>
                         <div class="contact-info-cards">
                             <div class="contact-card">
-                                <div class="contact-card-icon">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="1.5">
+                                <div class="contact-card-icon"><svg width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="1.5">
                                         <path
                                             d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                                         <polyline points="22,6 12,13 2,6" />
-                                    </svg>
-                                </div>
+                                    </svg></div>
                                 <div>
                                     <h4>Email Inquiries</h4>
                                     <p>Consulting: consultencies@impactch.com</p>
                                     <p>Journals: journals@impactch.com</p>
-                                    <p>Shopping: shopping@impactch.com</p>
                                 </div>
                             </div>
                             <div class="contact-card">
-                                <div class="contact-card-icon">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="1.5">
+                                <div class="contact-card-icon"><svg width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="1.5">
                                         <path
                                             d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                                    </svg>
-                                </div>
+                                    </svg></div>
                                 <div>
                                     <h4>Phone &amp; WhatsApp</h4>
-                                    <p class="contact-phone">+27 650 731 450</p>
-                                    <span class="contact-hours">Mon–Fri: 8AM – 5PM (SAST)</span>
+                                    <p class="contact-phone">+27 650 731 450</p><span class="contact-hours">Mon–Fri: 8AM
+                                        – 5PM (SAST)</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div class="contact-form-wrap">
                         <h3>Send a Message</h3>
                         <form id="contact-form" class="contact-form-fields" onsubmit="handleContactSubmit(event)">
                             <div class="form-row">
-                                <div class="field">
-                                    <label class="field-label">Name</label>
-                                    <input type="text" class="field-input" required />
-                                </div>
-                                <div class="field">
-                                    <label class="field-label">Email</label>
-                                    <input type="email" class="field-input" required />
-                                </div>
+                                <div class="field"><label class="field-label">Name</label><input type="text"
+                                        class="field-input" required></div>
+                                <div class="field"><label class="field-label">Email</label><input type="email"
+                                        class="field-input" required></div>
                             </div>
-                            <div class="field">
-                                <label class="field-label">Subject</label>
-                                <select class="field-select">
+                            <div class="field"><label class="field-label">Subject</label><select class="field-select">
                                     <option>General Inquiry</option>
                                     <option>Consulting Request</option>
                                     <option>Journal Submission</option>
-                                    <option>Store Support</option>
-                                </select>
-                            </div>
-                            <div class="field">
-                                <label class="field-label">Message</label>
-                                <textarea rows="4" class="field-textarea" required></textarea>
-                            </div>
-                            <button type="submit" class="btn-submit">Submit Inquiry</button>
+                                </select></div>
+                            <div class="field"><label class="field-label">Message</label><textarea rows="4"
+                                    class="field-textarea" required></textarea></div><button type="submit"
+                                class="btn-submit">Submit Inquiry</button>
                         </form>
                         <div id="contact-success" class="hidden"
-                            style="text-align:center; padding:2rem 0; color:var(--accent); font-family:var(--font-serif); font-size:1.5rem; font-weight:400;">
-                            Thank you. We'll be in touch soon.
-                        </div>
+                            style="text-align:center; padding:2rem 0; color:var(--accent); font-family:var(--font-serif); font-size:1.5rem;">
+                            Thank you. We'll be in touch soon.</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ==================== FOOTER ==================== -->
-    <footer>
+    <!-- FOOTER -->
+    <footer class="footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col">
-                    <b>Headquarters</b>
-                    R556, Lekgalong, Rustenburg, 0299, South Africa
-                </div>
-                <div class="footer-col">
-                    <b>Contact</b>
-                    +27 650 731 450 | info@impactch.com
-                </div>
-                <div class="footer-col">
-                    <b>Operating Hours</b>
-                    Mon – Fri: 08:00 – 17:00 | Sat: 09:00 – 13:00
-                </div>
+                <div class="footer-col"><b>Headquarters</b> R556, Lekgalong, Rustenburg, 0299, South Africa</div>
+                <div class="footer-col"><b>Contact</b> +27 650 731 450 | info@impactch.com</div>
+                <div class="footer-col"><b>Operating Hours</b> Mon – Fri: 08:00 – 17:00 | Sat: 09:00 – 13:00</div>
             </div>
-            <div class="footer-bottom">
-                © 2026 Impact Compass Holdings (PTY) LTD. All Rights Reserved.
-            </div>
+            <div class="footer-bottom">© 2026 Impact Compass Holdings (PTY) LTD. All Rights Reserved.</div>
         </div>
     </footer>
 
-
-    <!-- ==================== JAVASCRIPT ==================== -->
     <script>
-        /* ============================================================
-           DATA
-        ============================================================ */
+        // ========== JOURNALS DATA ==========
         const JOURNALS = [
             { abbr: "AJIESS", name: "African Journal on Impact Economic and Social Studies", desc: "Focusing on transformative economic policies and social development across the continent." },
             { abbr: "IJHRGJS", name: "Int. Journal on Human Rights and Gender Justice Studies", desc: "A platform for critical research in justice, equity, and human rights frameworks globally." },
@@ -2134,56 +1842,20 @@
             { abbr: "AJGGPS", name: "African Journal on Good Governance and Geopolitical Science", desc: "Exploring political structures, governance models, and geopolitical strategies." },
             { abbr: "AJISAR", name: "African Journal of Implementation Science and Applied Research", desc: "Dedicated to the methodology of bridging theory and practice in various fields." }
         ];
-
-        const PRODUCTS = [
-            { title: "Echoes of the Ancestors", price: "R 249.00", category: "Books", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=400" },
-            { title: "Forgiveness from the Shadows", price: "R 249.00", category: "Books", img: "https://images.unsplash.com/photo-1543005187-9eb71dda8e81?auto=format&fit=crop&q=80&w=400" },
-            { title: "Premium Gel Pen Set", price: "R 189.00", category: "Stationery", img: "https://images.unsplash.com/photo-1583484963886-cfe2bef37d5b?auto=format&fit=crop&q=80&w=400" },
-            { title: "Luxury Slim Wallet", price: "R 599.00", category: "Lifestyle", img: "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&q=80&w=400" },
-            { title: "Glass Humidifier", price: "R 899.00", category: "Lifestyle", img: "https://images.unsplash.com/photo-1585771724684-2626ef7f4e9a?auto=format&fit=crop&q=80&w=400" },
-            { title: "Essential Oil Collection", price: "R 450.00", category: "Lifestyle", img: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&q=80&w=400" }
-        ];
-
         const STAGES = ['Submitted', 'Review', 'Copyediting', 'Production', 'Published'];
-
         const LS_KEY = 'ich_submissions';
 
-        /* ============================================================
-           NAVIGATION
-        ============================================================ */
         let currentPage = 'home';
-
         function navigate(page) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             const target = document.getElementById('page-' + page);
             if (target) { target.classList.add('active'); currentPage = page; }
-
-            // Update desktop nav links
-            document.querySelectorAll('.nav-link').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.page === page);
-            });
-            // Update mobile links
-            document.querySelectorAll('.mobile-link').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.page === page);
-            });
-
+            document.querySelectorAll('.nav-link').forEach(btn => { btn.classList.toggle('active', btn.dataset.page === page); });
+            document.querySelectorAll('.mobile-link').forEach(btn => { btn.classList.toggle('active', btn.dataset.page === page); });
             window.scrollTo({ top: 0 });
-
-            // On-demand rendering
-            if (page === 'shop') renderProducts('all');
             if (page === 'journals') renderJournalGrid();
         }
-
-        /* ============================================================
-           NAVBAR SCROLL BEHAVIOR
-        ============================================================ */
-        window.addEventListener('scroll', () => {
-            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
-        });
-
-        /* ============================================================
-           MOBILE MENU
-        ============================================================ */
+        window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20); });
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             const iconMenu = document.getElementById('icon-menu');
@@ -2192,290 +1864,56 @@
             iconMenu.classList.toggle('hidden', isOpen);
             iconX.classList.toggle('hidden', !isOpen);
         }
-
-        /* ============================================================
-           JOURNALS — render grid & populate select
-        ============================================================ */
         function renderJournalGrid() {
             const grid = document.getElementById('journals-grid');
-            grid.innerHTML = JOURNALS.map(j => `
-    <div class="glass-card journal-card">
-      <div class="journal-abbr">${j.abbr}</div>
-      <div class="journal-name">${j.name}</div>
-      <p class="journal-desc">${j.desc}</p>
-      <div class="journal-footer">
-        <span>Indexed in:</span>
-        <span class="journal-indexed">Google Scholar</span>
-      </div>
-    </div>
-  `).join('');
-
-            // Populate submission form select
+            grid.innerHTML = JOURNALS.map(j => `<div class="glass-card journal-card"><div class="journal-abbr">${j.abbr}</div><div class="journal-name">${j.name}</div><p class="journal-desc">${j.desc}</p><div class="journal-footer"><span>Indexed in:</span><span class="journal-indexed">Google Scholar</span></div></div>`).join('');
             const sel = document.getElementById('journal-select');
-            if (sel && sel.options.length === 0) {
-                JOURNALS.forEach(j => {
-                    const opt = document.createElement('option');
-                    opt.value = j.name;
-                    opt.textContent = j.name;
-                    sel.appendChild(opt);
-                });
-            }
+            if (sel && sel.options.length === 0) { JOURNALS.forEach(j => { const opt = document.createElement('option'); opt.value = j.name; opt.textContent = j.name; sel.appendChild(opt); }); }
         }
-
-        /* ============================================================
-           JOURNALS — sub-view switching
-        ============================================================ */
         function switchJournalView(view) {
-            ['browse', 'dashboard', 'submit'].forEach(v => {
-                document.getElementById('view-' + v).classList.toggle('hidden', v !== view);
-            });
-            document.querySelectorAll('.subnav-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.id === 'tab-' + view);
-            });
+            ['browse', 'dashboard', 'submit'].forEach(v => { document.getElementById('view-' + v).classList.toggle('hidden', v !== view); });
+            document.querySelectorAll('.subnav-btn').forEach(btn => { btn.classList.toggle('active', btn.id === 'tab-' + view); });
             if (view === 'dashboard') renderDashboard();
         }
-
-        /* ============================================================
-           LOCALSTORAGE — submissions
-        ============================================================ */
-        function loadSubmissions() {
-            try { return JSON.parse(localStorage.getItem(LS_KEY)) || []; }
-            catch { return []; }
-        }
-        function saveSubmissions(subs) {
-            localStorage.setItem(LS_KEY, JSON.stringify(subs));
-        }
-
-        /* ============================================================
-           JOURNALS — submission form
-        ============================================================ */
+        function loadSubmissions() { try { return JSON.parse(localStorage.getItem(LS_KEY)) || []; } catch { return []; } }
+        function saveSubmissions(subs) { localStorage.setItem(LS_KEY, JSON.stringify(subs)); }
         document.getElementById('submission-form').addEventListener('submit', function (e) {
             e.preventDefault();
             const fd = new FormData(this);
-            const newSub = {
-                id: Math.random().toString(36).substr(2, 9),
-                title: fd.get('title'),
-                abstract: fd.get('abstract'),
-                authors: fd.get('authors'),
-                journal: fd.get('journal'),
-                status: 'Submitted',
-                submittedAt: new Date().toISOString()
-            };
+            const newSub = { id: Math.random().toString(36).substr(2, 9), title: fd.get('title'), abstract: fd.get('abstract'), authors: fd.get('authors'), journal: fd.get('journal'), status: 'Submitted', submittedAt: new Date().toISOString() };
             const subs = loadSubmissions();
             subs.unshift(newSub);
             saveSubmissions(subs);
             this.reset();
             switchJournalView('dashboard');
         });
-
-        /* ============================================================
-           JOURNALS — dashboard
-        ============================================================ */
         function renderDashboard() {
             const subs = loadSubmissions();
             const el = document.getElementById('dashboard-content');
-
-            if (subs.length === 0) {
-                el.innerHTML = `
-      <div class="empty-state">
-        <svg class="empty-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-          <polyline points="14 2 14 8 20 8"/>
-          <line x1="16" y1="13" x2="8" y2="13"/>
-          <line x1="16" y1="17" x2="8" y2="17"/>
-          <polyline points="10 9 9 9 8 9"/>
-        </svg>
-        <p>No active submissions found.</p>
-        <button class="link-btn" onclick="switchJournalView('submit')">Submit your first manuscript</button>
-      </div>`;
-                return;
-            }
-
-            el.innerHTML = `
-    <div class="submissions-list">
-      ${subs.map((sub, idx) => `
-        <div class="glass-card submission-card">
-          <div class="submission-head">
-            <div>
-              <div class="submission-journal">${escHtml(sub.journal)}</div>
-              <div class="submission-title">${escHtml(sub.title)}</div>
-              <div class="submission-authors">Authors: ${escHtml(sub.authors)}</div>
-            </div>
-            <div class="submission-id">ID: ${sub.id}</div>
-          </div>
-          ${buildWorkflowTracker(sub.status)}
-          <div class="submission-actions">
-            <div class="action-links">
-              <button class="action-btn">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                Contact Editor
-              </button>
-              <button class="action-btn">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                View Reviews
-              </button>
-            </div>
-            ${(sub.status === 'Published' || sub.status === 'Production')
-                    ? `<button class="btn-primary" onclick="generateGalley(${idx})" style="font-size:10px; padding:0.75rem 1.5rem; gap:0.5rem;">
-                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                   Download Galley PDF
-                 </button>`
-                    : `<div class="galley-pending">
-                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                   Galley Generation: Pending Approval
-                 </div>`
-                }
-          </div>
-        </div>
-      `).join('')}
-    </div>
-    <button class="btn-advance-status" onclick="advanceAllStatuses()">
-      Simulation: Advance Status (Editorial Action)
-    </button>`;
+            if (subs.length === 0) { el.innerHTML = `<div class="empty-state"><svg class="empty-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg><p>No active submissions found.</p><button class="link-btn" onclick="switchJournalView('submit')">Submit your first manuscript</button></div>`; return; }
+            el.innerHTML = `<div class="submissions-list">${subs.map((sub, idx) => `<div class="glass-card submission-card"><div class="submission-head"><div><div class="submission-journal">${escapeHtml(sub.journal)}</div><div class="submission-title">${escapeHtml(sub.title)}</div><div class="submission-authors">Authors: ${escapeHtml(sub.authors)}</div></div><div class="submission-id">ID: ${sub.id}</div></div>${buildWorkflowTracker(sub.status)}<div class="submission-actions"><div class="action-links"><button class="action-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Contact Editor</button><button class="action-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View Reviews</button></div>${(sub.status === 'Published' || sub.status === 'Production') ? `<button class="btn-primary" onclick="generateGalley(${idx})" style="font-size:10px; padding:0.75rem 1.5rem; gap:0.5rem;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Galley PDF</button>` : `<div class="galley-pending"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Galley Generation: Pending Approval</div>`}</div></div>`).join('')}</div><button class="btn-advance-status" onclick="advanceAllStatuses()">Simulation: Advance Status (Editorial Action)</button>`;
         }
-
         function buildWorkflowTracker(status) {
             const curIdx = STAGES.indexOf(status);
-            const steps = STAGES.map((stage, i) => {
-                const cls = i < curIdx ? 'done' : i === curIdx ? 'current' : 'pending';
-                const icon = i < curIdx
-                    ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`
-                    : i === curIdx
-                        ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`
-                        : `<span>${i + 1}</span>`;
-                return `
-      <div class="workflow-step">
-        <div class="step-dot ${cls}">${icon}</div>
-        <span class="step-label ${cls}">${stage}</span>
-      </div>`;
-            }).join('');
+            const steps = STAGES.map((stage, i) => { const cls = i < curIdx ? 'done' : i === curIdx ? 'current' : 'pending'; const icon = i < curIdx ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>` : i === curIdx ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>` : `<span>${i + 1}</span>`; return `<div class="workflow-step"><div class="step-dot ${cls}">${icon}</div><span class="step-label ${cls}">${stage}</span></div>`; }).join('');
             return `<div class="workflow-tracker">${steps}</div>`;
         }
-
-        function advanceAllStatuses() {
-            let subs = loadSubmissions();
-            subs = subs.map(s => {
-                const nextIdx = STAGES.indexOf(s.status) + 1;
-                return nextIdx < STAGES.length ? { ...s, status: STAGES[nextIdx] } : s;
-            });
-            saveSubmissions(subs);
-            renderDashboard();
-        }
-
+        function advanceAllStatuses() { let subs = loadSubmissions(); subs = subs.map(s => { const nextIdx = STAGES.indexOf(s.status) + 1; return nextIdx < STAGES.length ? { ...s, status: STAGES[nextIdx] } : s; }); saveSubmissions(subs); renderDashboard(); }
         function generateGalley(idx) {
-            const subs = loadSubmissions();
-            const sub = subs[idx];
-            if (!sub) return;
-
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-
-            // Header bar
-            doc.setFillColor(193, 154, 107);
-            doc.rect(0, 0, 210, 12, 'F');
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(9);
-            doc.setTextColor(5, 5, 6);
-            doc.text('IMPACT COMPASS JOURNALS — GALLEY PROOF', 10, 8);
-
-            // Journal
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(14);
-            doc.setTextColor(193, 154, 107);
-            doc.text(sub.journal, 10, 28);
-
-            // Title
-            doc.setFont('helvetica', 'normal');
-            doc.setFontSize(20);
-            doc.setTextColor(20, 20, 20);
-            const titleLines = doc.splitTextToSize(sub.title, 180);
-            doc.text(titleLines, 10, 40);
-            const titleEnd = 40 + titleLines.length * 10;
-
-            // Authors & date
-            doc.setFontSize(12);
-            doc.setTextColor(80, 80, 80);
-            doc.text(`Authors: ${sub.authors}`, 10, titleEnd + 8);
-            doc.setFontSize(10);
-            const d = new Date();
-            doc.text(`Published On: ${d.toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' })}`, 10, titleEnd + 18);
-
-            // Divider
-            doc.setDrawColor(193, 154, 107);
-            doc.setLineWidth(0.5);
-            doc.line(10, titleEnd + 26, 200, titleEnd + 26);
-
-            // Abstract
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(13);
-            doc.setTextColor(20, 20, 20);
-            doc.text('Abstract', 10, titleEnd + 38);
-
-            doc.setFont('helvetica', 'normal');
-            doc.setFontSize(11);
-            doc.setTextColor(90, 90, 90);
-            const absLines = doc.splitTextToSize(sub.abstract, 180);
-            doc.text(absLines, 10, titleEnd + 50);
-
-            // Footer
-            doc.setFontSize(8);
-            doc.setTextColor(150, 150, 150);
-            doc.text('© 2026 Impact Compass Holdings. All articles indexed in Google Scholar.', 10, 280);
-
+            const subs = loadSubmissions(); const sub = subs[idx]; if (!sub) return;
+            const { jsPDF } = window.jspdf; const doc = new jsPDF();
+            doc.setFillColor(193, 154, 107); doc.rect(0, 0, 210, 12, 'F'); doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(5, 5, 6); doc.text('IMPACT COMPASS JOURNALS — GALLEY PROOF', 10, 8);
+            doc.setFont('helvetica', 'bold'); doc.setFontSize(14); doc.setTextColor(193, 154, 107); doc.text(sub.journal, 10, 28);
+            doc.setFont('helvetica', 'normal'); doc.setFontSize(20); doc.setTextColor(20, 20, 20); const titleLines = doc.splitTextToSize(sub.title, 180); doc.text(titleLines, 10, 40); const titleEnd = 40 + titleLines.length * 10;
+            doc.setFontSize(12); doc.setTextColor(80, 80, 80); doc.text(`Authors: ${sub.authors}`, 10, titleEnd + 8); doc.setFontSize(10); const d = new Date(); doc.text(`Published On: ${d.toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' })}`, 10, titleEnd + 18);
+            doc.setDrawColor(193, 154, 107); doc.setLineWidth(0.5); doc.line(10, titleEnd + 26, 200, titleEnd + 26);
+            doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.setTextColor(20, 20, 20); doc.text('Abstract', 10, titleEnd + 38);
+            doc.setFont('helvetica', 'normal'); doc.setFontSize(11); doc.setTextColor(90, 90, 90); const absLines = doc.splitTextToSize(sub.abstract, 180); doc.text(absLines, 10, titleEnd + 50);
+            doc.setFontSize(8); doc.setTextColor(150, 150, 150); doc.text('© 2026 Impact Compass Holdings. All articles indexed in Google Scholar.', 10, 280);
             doc.save(`${sub.title.replace(/\s+/g, '_').slice(0, 50)}_Galley.pdf`);
         }
-
-        /* ============================================================
-           SHOP
-        ============================================================ */
-        function renderProducts(filter) {
-            const grid = document.getElementById('products-grid');
-            const list = filter === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === filter);
-            grid.innerHTML = list.map(p => `
-    <div class="product-card">
-      <div class="product-img-wrap">
-        <img src="${p.img}" alt="${escHtml(p.title)}" referrerpolicy="no-referrer" loading="lazy" />
-        <div class="product-cat-badge">${p.category}</div>
-      </div>
-      <div class="product-name">${escHtml(p.title)}</div>
-      <div class="product-foot">
-        <span class="product-price">${p.price}</span>
-        <button class="btn-bag">Add to Bag</button>
-      </div>
-    </div>
-  `).join('');
-        }
-
-        function filterProducts(filter, btn) {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            renderProducts(filter);
-        }
-
-        /* ============================================================
-           CONTACT FORM
-        ============================================================ */
-        function handleContactSubmit(e) {
-            e.preventDefault();
-            document.getElementById('contact-form').classList.add('hidden');
-            document.getElementById('contact-success').classList.remove('hidden');
-        }
-
-        /* ============================================================
-           UTILITIES
-        ============================================================ */
-        function escHtml(str) {
-            return String(str)
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#039;');
-        }
-
-        /* ============================================================
-           INIT
-        ============================================================ */
+        function handleContactSubmit(e) { e.preventDefault(); document.getElementById('contact-form').classList.add('hidden'); document.getElementById('contact-success').classList.remove('hidden'); }
+        function escapeHtml(str) { return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
         renderJournalGrid();
     </script>
 </body>
