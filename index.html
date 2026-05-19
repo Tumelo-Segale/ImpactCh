@@ -1117,7 +1117,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 5rem;
             align-items: center;
-            margin-bottom: 8rem;
+            margin-bottom: 4rem;
         }
 
         .about-prose p {
@@ -1152,7 +1152,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 1.5rem;
-            padding-bottom: 6rem;
+            margin-bottom: 4rem;
         }
 
         .value-card {
@@ -1185,6 +1185,51 @@
             color: var(--text-muted);
             line-height: 1.6;
             font-weight: 300;
+        }
+
+        /* NEW: Partners Section */
+        .partners-section {
+            margin-bottom: 6rem;
+        }
+
+        .partner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 2rem;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .partner-logo {
+            filter: grayscale(100%) brightness(0.7);
+            transition: all var(--transition);
+            text-align: center;
+        }
+
+        .partner-logo:hover {
+            filter: grayscale(0%) brightness(1);
+        }
+
+        .partner-logo img {
+            max-width: 120px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .partner-logo .logo-placeholder {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .partner-name {
+            margin-top: 0.5rem;
+            font-size: 0.7rem;
+            color: var(--text-muted);
         }
 
         /* PUBLISHING */
@@ -1642,7 +1687,6 @@
                 grid-template-columns: 1fr;
             }
 
-            /* Journals subnav wraps gracefully */
             .journals-subnav {
                 gap: 1rem;
                 padding: 1.5rem 0 2rem;
@@ -1653,7 +1697,6 @@
                 font-size: 9px;
             }
 
-            /* Submit / dashboard wrappers */
             .submit-wrapper,
             .dashboard-wrapper {
                 max-width: 100%;
@@ -1663,22 +1706,18 @@
                 padding: 1.75rem;
             }
 
-            /* Submission card */
             .submission-card {
                 padding: 1.75rem;
             }
 
-            /* About grid */
             .about-img-wrap {
                 aspect-ratio: 16/9;
             }
 
-            /* Values grid */
             .values-grid {
                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             }
 
-            /* Hero */
             .hero-content {
                 padding: 7rem 0 3rem;
             }
@@ -1687,17 +1726,14 @@
                 gap: 1rem;
             }
 
-            /* Nav user area on tablet */
             #nav-user-area {
                 display: none !important;
             }
 
-            /* Page header tighter */
             .page-header {
                 padding: 6rem 0 2.5rem;
             }
 
-            /* Contact form */
             .contact-form-wrap {
                 padding: 2rem;
             }
@@ -1705,8 +1741,6 @@
 
         /* ===== RESPONSIVE — MOBILE (≤600px) ===== */
         @media (max-width: 600px) {
-
-            /* Typography */
             .hero-title {
                 font-size: 2rem;
             }
@@ -1719,7 +1753,6 @@
                 font-size: 0.95rem;
             }
 
-            /* Hero */
             .hero-content {
                 padding: 6rem 0 2.5rem;
             }
@@ -1736,17 +1769,14 @@
                 text-align: center;
             }
 
-            /* Division cards */
             .division-card {
                 padding: 1.75rem 1.25rem;
             }
 
-            /* Services */
             .service-card {
                 padding: 2rem 1.5rem;
             }
 
-            /* Journals grid */
             .journals-grid {
                 grid-template-columns: 1fr;
             }
@@ -1762,7 +1792,6 @@
                 align-self: flex-start;
             }
 
-            /* Submit form */
             .form-card {
                 padding: 1.25rem;
             }
@@ -1771,7 +1800,6 @@
                 font-size: 1.6rem;
             }
 
-            /* Author dashboard */
             .submission-head {
                 flex-direction: column;
                 gap: 0.75rem;
@@ -1803,12 +1831,10 @@
                 gap: 1rem;
             }
 
-            /* Dashboard card */
             .submission-card {
                 padding: 1.25rem;
             }
 
-            /* Contact */
             .contact-form-wrap {
                 padding: 1.5rem 1.25rem;
             }
@@ -1818,24 +1844,20 @@
                 margin-bottom: 2rem;
             }
 
-            /* Footer */
             .footer {
                 padding: 2.5rem 0 2rem;
             }
 
-            /* Auth modal */
             .confirm-modal {
                 max-width: 100% !important;
                 margin: 0 0.5rem;
             }
 
-            /* Modal overlay padding */
             .confirm-overlay,
             .modal-overlay {
                 padding: 0.75rem;
             }
 
-            /* Quote section */
             .quote-section {
                 padding: 4rem 0;
             }
@@ -1844,7 +1866,6 @@
                 font-size: 1.4rem;
             }
 
-            /* Values */
             .values-grid {
                 grid-template-columns: 1fr;
             }
@@ -1853,17 +1874,14 @@
                 padding: 2rem 1.5rem;
             }
 
-            /* Page header */
             .page-header {
                 padding: 5.5rem 0 2rem;
             }
 
-            /* Publishing */
             .pub-service-item {
                 gap: 1rem;
             }
 
-            /* Contact cards */
             .contact-card {
                 padding: 1.25rem;
                 gap: 1rem;
@@ -1890,7 +1908,6 @@
         }
 
         /* ===== EXTRA MOBILE FIXES — INDEX ===== */
-        /* Reviews modal on mobile */
         @media (max-width: 600px) {
             .modal-box {
                 max-width: 100% !important;
@@ -1914,7 +1931,6 @@
             }
         }
 
-        /* Auth modal on mobile */
         @media (max-width: 500px) {
             .confirm-modal {
                 max-width: 100% !important;
@@ -1927,7 +1943,6 @@
             }
         }
 
-        /* Submission form helper text */
         @media (max-width: 600px) {
             .submit-wrapper {
                 padding: 0 0.25rem;
@@ -1938,14 +1953,12 @@
             }
         }
 
-        /* Journal article cards */
         @media (max-width: 480px) {
             .journal-card {
                 padding: 1.25rem;
             }
         }
 
-        /* Footer compact */
         @media (max-width: 480px) {
             .footer-grid {
                 gap: 1.25rem;
@@ -1956,7 +1969,6 @@
             }
         }
 
-        /* Contact cards on very small */
         @media (max-width: 400px) {
             .hero-title {
                 font-size: 1.65rem;
@@ -1967,14 +1979,12 @@
             }
         }
 
-        /* Nav user area: hide on medium mobile, show in hamburger menu */
         @media (max-width: 768px) {
             #nav-user-area {
                 display: none !important;
             }
         }
 
-        /* Workflow tracker - horizontal scroll without overflow */
         .workflow-tracker {
             overflow-x: auto;
             flex-wrap: nowrap;
@@ -2000,7 +2010,6 @@
             vertical-align: middle;
         }
 
-        /* Touch + safe-area improvements */
         #navbar {
             padding-top: max(0.875rem, env(safe-area-inset-top));
         }
@@ -2028,15 +2037,11 @@
             display: none;
         }
 
-        /* File upload areas on mobile */
         .file-upload-area {
             min-height: 80px;
         }
 
-        /* ===== EXTRA MOBILE FIXES — INDEX ===== */
         @media (max-width: 600px) {
-
-            /* Reviews modal as bottom sheet */
             .modal-overlay {
                 padding: 0;
                 align-items: flex-end;
@@ -2049,7 +2054,6 @@
                 max-height: 88vh;
             }
 
-            /* Auth modal */
             .confirm-overlay {
                 padding: 0.75rem;
                 align-items: center;
@@ -2059,12 +2063,10 @@
                 max-width: calc(100% - 1.5rem) !important;
             }
 
-            /* Submission form */
             .form-card {
                 padding: 1.25rem;
             }
 
-            /* Hero buttons */
             .hero-actions {
                 flex-direction: column;
                 align-items: flex-start;
@@ -2111,14 +2113,12 @@
             }
         }
 
-        /* Workflow always scrollable */
         .workflow-tracker {
             overflow-x: auto;
             flex-wrap: nowrap;
             -webkit-overflow-scrolling: touch;
         }
 
-        /* Subnav always scrollable on mobile */
         @media (max-width: 700px) {
             .journals-subnav {
                 overflow-x: auto;
@@ -2629,6 +2629,37 @@
                             well-being.</p>
                     </div>
                 </div>
+
+                <!-- NEW: Client / Partner Logos -->
+                <div class="partners-section">
+                    <span class="label-tag">Trusted by</span>
+                    <div class="partner-grid">
+                        <div class="partner-logo">
+                            <div class="logo-placeholder">UNDP</div>
+                            <div class="partner-name">United Nations Development Programme</div>
+                        </div>
+                        <div class="partner-logo">
+                            <div class="logo-placeholder">African Union</div>
+                            <div class="partner-name">African Union</div>
+                        </div>
+                        <div class="partner-logo">
+                            <div class="logo-placeholder">WHO</div>
+                            <div class="partner-name">World Health Organization</div>
+                        </div>
+                        <div class="partner-logo">
+                            <div class="logo-placeholder">SA Government</div>
+                            <div class="partner-name">Department of Planning, Monitoring & Evaluation</div>
+                        </div>
+                        <div class="partner-logo">
+                            <div class="logo-placeholder">UJ</div>
+                            <div class="partner-name">University of Johannesburg</div>
+                        </div>
+                        <div class="partner-logo">
+                            <div class="logo-placeholder">Google Scholar</div>
+                            <div class="partner-name">Google Scholar Partner</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -2928,6 +2959,7 @@
             const canDownload = sub.status === 'Published' || sub.status === 'Production';
             const fileInfo = sub.manuscriptFiles && sub.manuscriptFiles.length > 0
                 ? `<div style="font-size:0.75rem;color:var(--text-muted);margin-top:0.4rem;">📎 ${sub.manuscriptFiles.map(f => f.name || f).join(', ')}</div>` : '';
+            const authorReviewCount = (sub.reviews || []).filter(r => !r.visibility || r.visibility === 'author').length;
             return `<div class="glass-card submission-card">
                 <div class="submission-head">
                     <div>
