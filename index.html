@@ -970,91 +970,13 @@
             white-space: nowrap;
         }
 
-        .workflow-tracker {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            position: relative;
-            margin-bottom: 2.5rem;
-            overflow-x: auto;
-            padding-bottom: 0.5rem;
-        }
-
-        .workflow-tracker::before {
-            content: '';
-            position: absolute;
-            top: 1rem;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.08);
-            z-index: 0;
-        }
-
-        .workflow-step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex: 1;
-            min-width: 80px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .step-dot {
-            width: 2rem;
-            height: 2rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 0.5rem;
-            font-size: 10px;
-            font-weight: 700;
-            transition: all 0.5s;
-        }
-
-        .step-dot.done {
-            background: var(--accent);
-            color: var(--brand-900);
-            box-shadow: 0 0 15px rgba(193, 154, 107, 0.4);
-        }
-
-        .step-dot.current {
-            background: var(--accent);
-            color: var(--brand-900);
-            box-shadow: 0 0 15px rgba(193, 154, 107, 0.4);
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        .step-dot.pending {
-            background: var(--brand-900);
-            color: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .step-label {
-            font-size: 9px;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            font-weight: 700;
-            text-align: center;
-        }
-
-        .step-label.done,
-        .step-label.current {
-            color: var(--accent);
-        }
-
-        .step-label.pending {
-            color: rgba(255, 255, 255, 0.2);
-        }
+        /* status badge removed */
 
         .submission-actions {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 2rem;
+            padding-top: 1.5rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             flex-wrap: wrap;
             gap: 1rem;
@@ -1094,21 +1016,6 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-        }
-
-        .btn-advance-status {
-            display: block;
-            margin: 2rem auto 0;
-            font-size: 9px;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.2);
-            transition: color var(--transition);
-        }
-
-        .btn-advance-status:hover {
-            color: var(--accent);
         }
 
         /* ABOUT */
@@ -1571,71 +1478,6 @@
             gap: 1rem;
         }
 
-        .reviews-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .review-item {
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-left: 3px solid var(--accent);
-        }
-
-        .review-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.75rem;
-        }
-
-        .review-reviewer {
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-        }
-
-        .review-date {
-            font-size: 0.72rem;
-            color: var(--text-muted);
-        }
-
-        .review-recommendation {
-            font-size: 9px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 0.75rem;
-        }
-
-        .review-rec-accept {
-            color: #22c55e;
-        }
-
-        .review-rec-minor {
-            color: #f59e0b;
-        }
-
-        .review-rec-major {
-            color: #ef4444;
-        }
-
-        .review-comments {
-            font-size: 0.82rem;
-            color: var(--text-dim);
-            line-height: 1.6;
-        }
-
-        .no-reviews {
-            text-align: center;
-            padding: 3rem;
-            color: var(--text-muted);
-            font-size: 0.875rem;
-        }
-
         /* ===== RESPONSIVE — TABLET (≤900px) ===== */
         @media (max-width: 900px) {
             .nav-links {
@@ -1801,19 +1643,6 @@
                 align-self: flex-start;
             }
 
-            .workflow-tracker {
-                gap: 0.25rem;
-            }
-
-            .workflow-step {
-                min-width: 52px;
-            }
-
-            .step-label {
-                font-size: 7px;
-                letter-spacing: 0;
-            }
-
             .submission-actions {
                 flex-direction: column;
                 align-items: flex-start;
@@ -1880,7 +1709,7 @@
             }
         }
 
-        /* ===== RESPONSIVE — VERY SMALL (≤380px) ===== */
+        /* ===== VERY SMALL (≤380px) ===== */
         @media (max-width: 380px) {
             .hero-title {
                 font-size: 1.75rem;
@@ -1888,14 +1717,6 @@
 
             .container {
                 padding: 0 1rem;
-            }
-
-            .step-label {
-                display: none;
-            }
-
-            .workflow-step {
-                min-width: 32px;
             }
         }
 
@@ -1977,22 +1798,6 @@
             }
         }
 
-        .workflow-tracker {
-            overflow-x: auto;
-            flex-wrap: nowrap;
-        }
-
-        @media (max-width: 480px) {
-            .workflow-tracker {
-                gap: 0.2rem;
-            }
-
-            .step-dot {
-                width: 28px;
-                height: 28px;
-            }
-        }
-
         .hidden {
             display: none !important;
         }
@@ -2017,15 +1822,6 @@
         }
 
         .journals-subnav::-webkit-scrollbar {
-            display: none;
-        }
-
-        .workflow-tracker {
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-
-        .workflow-tracker::-webkit-scrollbar {
             display: none;
         }
 
@@ -2099,16 +1895,6 @@
             .container {
                 padding: 0 1rem;
             }
-
-            .step-label {
-                display: none;
-            }
-        }
-
-        .workflow-tracker {
-            overflow-x: auto;
-            flex-wrap: nowrap;
-            -webkit-overflow-scrolling: touch;
         }
 
         @media (max-width: 700px) {
@@ -2175,24 +1961,7 @@
     </div>
 
     <!-- VIEW REVIEWS MODAL -->
-    <div class="modal-overlay" id="modal-reviews">
-        <div class="modal-box" style="max-width:640px;width:100%;">
-            <div class="modal-head">
-                <h3>Peer Review Reports</h3>
-                <button class="modal-close-btn" onclick="closeModal('modal-reviews')">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="18" y1="6" x2="6" y2="18" />
-                        <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                </button>
-            </div>
-            <div class="modal-body" id="reviews-body"
-                style="padding:0;max-height:65vh;overflow-y:auto;-webkit-overflow-scrolling:touch;"></div>
-            <div class="modal-footer">
-                <button class="btn-cancel" onclick="closeModal('modal-reviews')">Close</button>
-            </div>
-        </div>
-    </div>
+
 
     <!-- SUCCESS MODAL (sign up / contact etc.) -->
     <div class="confirm-overlay" id="success-overlay">
@@ -2413,7 +2182,7 @@
                 <div id="view-dashboard" class="hidden">
                     <div class="dashboard-wrapper">
                         <h2>Author Dashboard</h2>
-                        <p class="sub-desc">Track your active manuscripts and manage feedback.</p>
+                        <p class="sub-desc">Track your submitted manuscripts and view invoice notifications.</p>
                         <div id="dashboard-content"></div>
                     </div>
                 </div>
@@ -2422,7 +2191,8 @@
                 <div id="view-submit" class="hidden">
                     <div class="submit-wrapper">
                         <h2>Manuscript Submission</h2>
-                        <p class="sub-desc">Follow the OJS-standard protocol for scholarly submission.</p>
+                        <p class="sub-desc">Submit your manuscript for consideration. Once approved by our editorial
+                            team, an invoice will be sent to your registered email address.</p>
                         <div class="glass-card form-card">
                             <form id="submission-form" class="form-fields">
                                 <div class="field">
@@ -2491,11 +2261,12 @@
                                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                                             <polyline points="9 12 11 14 15 10" />
                                         </svg></div>
-                                    <p>By submitting, you agree to the peer-review process and verify that this is an
-                                        original, unpublished work.<span class="note">System will generate Google
-                                            Scholar compatible metadata upon publication.</span></p>
+                                    <p>By submitting, you confirm this is an original, unpublished work. Your manuscript
+                                        will be reviewed for publication. <span class="note">Upon approval, an invoice
+                                            will be sent to your email address. Payment must be made within 14 days or
+                                            your submission will be disregarded and invalid.</span></p>
                                 </div>
-                                <button type="submit" class="btn-submit">Submit For Review</button>
+                                <button type="submit" class="btn-submit">Submit Manuscript</button>
                             </form>
                         </div>
                     </div>
@@ -2743,7 +2514,7 @@
             { abbr: "AJGGPS", name: "African Journal on Good Governance and Geopolitical Science", desc: "Exploring political structures, governance models, and geopolitical strategies." },
             { abbr: "AJISAR", name: "African Journal of Implementation Science and Applied Research", desc: "Dedicated to the methodology of bridging theory and practice in various fields." }
         ];
-        const STAGES = ['Submitted', 'Review', 'Copyediting', 'Production', 'Published'];
+        const STAGES = ['Submitted', 'Published'];
         const LS_KEY = 'ich_submissions';
 
         // ========== CONFIRM DIALOG ==========
@@ -2866,7 +2637,13 @@
         }
 
         // ========== SUBMISSIONS ==========
-        function loadSubmissions() { try { return JSON.parse(localStorage.getItem(LS_KEY)) || []; } catch { return []; } }
+        function loadSubmissions() {
+            try {
+                const subs = JSON.parse(localStorage.getItem(LS_KEY)) || [];
+                const legacyToNew = { 'Review': 'Submitted', 'Copyediting': 'Submitted', 'Production': 'Published' };
+                return subs.map(s => legacyToNew[s.status] ? { ...s, status: legacyToNew[s.status] } : s);
+            } catch { return []; }
+        }
         function saveSubmissions(subs) { localStorage.setItem(LS_KEY, JSON.stringify(subs)); }
 
         document.getElementById('submission-form').addEventListener('submit', function (e) {
@@ -2922,7 +2699,7 @@
                     document.getElementById('submission-form').reset();
                     document.getElementById('manuscript-file-list').innerHTML = '';
                     document.getElementById('supp-file-list').innerHTML = '';
-                    showSuccess('Submission Received', `Your manuscript "${newSub.title}" has been successfully submitted. Track its progress in the Author Dashboard.`);
+                    showSuccess('Manuscript Sent', 'Your manuscript has been submitted successfully. An invoice will be sent to your email address once your submission is approved by our editorial team.');
                     switchJournalView('dashboard');
                 },
                 'Submit'
@@ -2943,15 +2720,34 @@
                 </div>`;
                 return;
             }
-            el.innerHTML = `<div class="submissions-list">${subs.map((sub, idx) => buildSubmissionCard(sub, idx)).join('')}</div>
-                <button class="btn-advance-status" onclick="advanceAllStatuses()">Simulation: Advance Status (Editorial Action)</button>`;
+            el.innerHTML = `<div class="submissions-list">${subs.map((sub, idx) => buildSubmissionCard(sub, idx)).join('')}</div>`;
         }
 
         function buildSubmissionCard(sub, idx) {
-            const canDownload = sub.status === 'Published' || sub.status === 'Production';
+            const canDownload = sub.status === 'Published';
             const fileInfo = sub.manuscriptFiles && sub.manuscriptFiles.length > 0
                 ? `<div style="font-size:0.75rem;color:var(--text-muted);margin-top:0.4rem;">📎 ${sub.manuscriptFiles.map(f => f.name || f).join(', ')}</div>` : '';
-            const authorReviewCount = (sub.reviews || []).filter(r => !r.visibility || r.visibility === 'author').length;
+
+            const invoiceNotice = (() => {
+                if (sub.status !== 'Published') return '';
+                try {
+                    const invs = JSON.parse(localStorage.getItem('ich_invoices') || '[]');
+                    const inv = invs.find(i => i.subId === sub.id);
+                    if (!inv) return `<div style="margin-top:0.75rem;padding:0.75rem 0.875rem;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);font-size:0.78rem;color:#4ade80;line-height:1.6;">
+                        ✓ Your manuscript has been approved. An invoice has been sent to your email address. Please check your inbox and ensure payment is made within <strong>14 days</strong>.
+                    </div>`;
+                    const fmtInvAmt = 'R ' + (inv.amount || 1950).toLocaleString('en-ZA', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                    return `<div style="margin-top:0.75rem;">
+                        <div style="padding:0.75rem 0.875rem;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);font-size:0.78rem;color:#4ade80;line-height:1.6;margin-bottom:0.5rem;">
+                            ✓ Your manuscript has been approved. Invoice <strong>${escapeHtml(inv.invoiceNum)}</strong> (${fmtInvAmt}) has been sent to your email address.
+                        </div>
+                        <div style="padding:0.75rem 0.875rem;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);font-size:0.78rem;color:#fca5a5;line-height:1.6;">
+                            ⚠ <strong>Important:</strong> Payment must be made within <strong>14 days</strong> of the invoice date. Failure to pay will result in your manuscript being disregarded and invalid. Use your email address as the payment reference.
+                        </div>
+                    </div>`;
+                } catch { return ''; }
+            })();
+
             return `<div class="glass-card submission-card">
                 <div class="submission-head">
                     <div>
@@ -2962,16 +2758,12 @@
                     </div>
                     <div class="submission-id">ID: ${sub.id}</div>
                 </div>
-                ${buildWorkflowTracker(sub.status)}
+                ${invoiceNotice}
                 <div class="submission-actions">
                     <div class="action-links">
                         <button class="action-btn" onclick="openContactEditor(${idx})">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                             Contact Editor
-                        </button>
-                        <button class="action-btn" onclick="openReviews('${sub.id}')" style="${authorReviewCount > 0 ? 'color:var(--accent);' : ''}">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                            View Reviews${authorReviewCount > 0 ? ` <span style="background:var(--accent);color:#0a0a0a;font-size:8px;font-weight:800;padding:0.1rem 0.4rem;border-radius:20px;letter-spacing:0;">${authorReviewCount}</span>` : ''}
                         </button>
                     </div>
                     ${canDownload
@@ -2981,41 +2773,10 @@
                         </button>`
                     : `<div class="galley-pending">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                            Galley Generation: Pending Approval
+                            Awaiting Approval — Invoice will be emailed upon approval
                         </div>`}
                 </div>
             </div>`;
-        }
-
-        function buildWorkflowTracker(status) {
-            const curIdx = STAGES.indexOf(status);
-            const steps = STAGES.map((stage, i) => {
-                const cls = i < curIdx ? 'done' : i === curIdx ? 'current' : 'pending';
-                const icon = i < curIdx
-                    ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`
-                    : i === curIdx
-                        ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`
-                        : `<span>${i + 1}</span>`;
-                return `<div class="workflow-step"><div class="step-dot ${cls}">${icon}</div><span class="step-label ${cls}">${stage}</span></div>`;
-            }).join('');
-            return `<div class="workflow-tracker">${steps}</div>`;
-        }
-
-        function advanceAllStatuses() {
-            showConfirm(
-                'Advance All Statuses',
-                'This will advance all submissions one stage forward in the editorial workflow. This is a simulation action.',
-                () => {
-                    let subs = loadSubmissions();
-                    subs = subs.map(s => {
-                        const nextIdx = STAGES.indexOf(s.status) + 1;
-                        return nextIdx < STAGES.length ? { ...s, status: STAGES[nextIdx] } : s;
-                    });
-                    saveSubmissions(subs);
-                    renderDashboard();
-                },
-                'Advance All'
-            );
         }
 
         // ========== CONTACT EDITOR ==========
@@ -3041,57 +2802,7 @@
             showSuccess('Message Sent', `Your message has been sent to the editor. You can expect a response within 2–5 business days.`);
         }
 
-        // ========== VIEW REVIEWS ==========
-        function openReviews(subId) {
-            // subId can be an id string or legacy array index
-            const subs = loadSubmissions();
-            let sub;
-            if (typeof subId === 'number' || /^\d+$/.test(String(subId))) {
-                sub = subs[parseInt(subId)];
-            } else {
-                sub = subs.find(s => s.id === subId);
-            }
-            if (!sub) return;
-
-            const reviewsBody = document.getElementById('reviews-body');
-            // Only show reviews marked visible to author (or no visibility field = legacy)
-            const reviews = (sub.reviews || []).filter(r => !r.visibility || r.visibility === 'author');
-
-            if (!reviews.length) {
-                if (['Review', 'Copyediting', 'Production', 'Published'].includes(sub.status)) {
-                    reviewsBody.innerHTML = `<div class="no-reviews" style="padding:2.5rem;text-align:center;">
-                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="margin:0 auto 1rem;color:rgba(255,255,255,0.12);display:block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                        <p style="color:var(--text-muted);">Your manuscript is currently under review.</p>
-                        <p style="color:rgba(255,255,255,0.25);font-size:0.78rem;margin-top:0.5rem;">Review reports will appear here once the editorial team completes assessment.</p>
-                    </div>`;
-                } else {
-                    reviewsBody.innerHTML = `<div class="no-reviews" style="padding:2.5rem;text-align:center;">
-                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="margin:0 auto 1rem;color:rgba(255,255,255,0.1);display:block;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        <p style="color:var(--text-muted);">Review reports will appear here once your manuscript enters the peer review stage.</p>
-                    </div>`;
-                }
-            } else {
-                const recColors = { 'Accept': '#22c55e', 'Minor Revisions': '#f59e0b', 'Major Revisions': '#f97316', 'Reject': '#ef4444', 'Revise and Resubmit': '#8b5cf6' };
-                reviewsBody.innerHTML = `<div class="reviews-list" style="padding:0;">
-                    <div style="padding:0.875rem 1.5rem;background:rgba(255,255,255,0.03);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;">
-                        <span style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;color:var(--text-muted);">${reviews.length} Review Report${reviews.length !== 1 ? 's' : ''}</span>
-                        <span style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;color:var(--accent);">${sub.status}</span>
-                    </div>
-                    ${reviews.map((r, i) => `
-                    <div class="review-item" style="padding:1.5rem;${i < reviews.length - 1 ? 'border-bottom:1px solid rgba(255,255,255,0.06);' : ''}">
-                        <div class="review-header" style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;">
-                            <div>
-                                <span class="review-reviewer" style="display:block;font-size:0.88rem;font-weight:700;color:#fff;letter-spacing:0.02em;">${escapeHtml(r.reviewer)}</span>
-                                <span style="font-size:0.72rem;color:var(--text-muted);">${new Date(r.date).toLocaleDateString('en-ZA', { day: '2-digit', month: 'short', year: 'numeric' })}</span>
-                            </div>
-                            <span style="font-size:8px;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;padding:0.3rem 0.75rem;background:${(recColors[r.recommendation] || '#6b7280')}18;color:${recColors[r.recommendation] || '#6b7280'};border:1px solid ${(recColors[r.recommendation] || '#6b7280')}40;white-space:nowrap;">${escapeHtml(r.recommendation)}</span>
-                        </div>
-                        <div class="review-comments" style="font-size:0.85rem;color:var(--text-dim);line-height:1.75;white-space:pre-wrap;">${escapeHtml(r.comments)}</div>
-                    </div>`).join('')}
-                </div>`;
-            }
-            openModal('modal-reviews');
-        }
+        // Reviews feature removed
 
 
         // ========== GALLEY PDF ==========
