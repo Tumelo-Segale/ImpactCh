@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Impact Compass Holdings | Professional Academic &amp; Consulting Platform</title>
-    <meta name="description" content="Impact Compass Holdings (PTY) LTD is a multi-disciplinary South African hub providing expert consulting, academic publishing, and peer-reviewed journals for a global audience.">
-    <meta name="keywords" content="Impact Compass Holdings, academic publishing, peer-reviewed journals, consulting, South Africa, research, AJIESS, IJHRGJS, IJPAHS, IJTMLS, AJGGPS, AJISAR">
+    <title>Impact Compass Holdings | Professional Academic & Consulting Platform</title>
+    <meta name="description"
+        content="Impact Compass Holdings (PTY) LTD is a multi-disciplinary South African hub providing expert consulting, academic publishing, and peer-reviewed journals for a global audience.">
+    <meta name="keywords"
+        content="Impact Compass Holdings, academic publishing, peer-reviewed journals, consulting, South Africa, research, AJIESS, IJHRGJS, IJPAHS, IJTMLS, AJGGPS, AJISAR">
     <meta name="author" content="Impact Compass Holdings (PTY) LTD">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Impact Compass Holdings | Academic &amp; Consulting Platform">
-    <meta property="og:description" content="Expert consulting, academic publishing, and peer-reviewed journals for a global audience.">
+    <meta property="og:title" content="Impact Compass Holdings | Academic & Consulting Platform">
+    <meta property="og:description"
+        content="Expert consulting, academic publishing, and peer-reviewed journals for a global audience.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://impactch.com">
     <meta property="og:image" content="https://impactch.com/assets/Logo.png">
@@ -34,11 +38,14 @@
     <link rel="shortcut icon" href="assets/icon.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Raleway:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/auth.css">
 </head>
+
 <body>
 
     <!-- CONFIRMATION MODAL -->
@@ -59,7 +66,8 @@
             <h3 id="success-title">Success</h3>
             <p id="success-message"></p>
             <div class="confirm-actions">
-                <button class="btn-confirm" onclick="document.getElementById('success-overlay').classList.remove('open')">OK</button>
+                <button class="btn-confirm"
+                    onclick="document.getElementById('success-overlay').classList.remove('open')">OK</button>
             </div>
         </div>
     </div>
@@ -70,14 +78,21 @@
             <div class="modal-head">
                 <h3>Contact Editor</h3>
                 <button class="modal-close-btn" onclick="closeModal('modal-contact-editor')">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
                 </button>
             </div>
             <div class="modal-body">
-                <p style="font-size:0.875rem;color:var(--text-muted);margin-bottom:1.5rem;">Send a message to the editor regarding your submission <strong id="ce-title" style="color:#fff;"></strong>.</p>
+                <p style="font-size:0.875rem;color:var(--text-muted);margin-bottom:1.5rem;">Send a message to the editor
+                    regarding your submission <strong id="ce-title" style="color:#fff;"></strong>.</p>
                 <div class="form-fields">
-                    <div class="field"><label class="field-label">Subject</label><input type="text" class="field-input" id="ce-subject" placeholder="e.g. Query about review status"></div>
-                    <div class="field"><label class="field-label">Message</label><textarea rows="5" class="field-textarea" id="ce-message" placeholder="Your message to the editor…"></textarea></div>
+                    <div class="field"><label class="field-label">Subject</label><input type="text" class="field-input"
+                            id="ce-subject" placeholder="e.g. Query about review status"></div>
+                    <div class="field"><label class="field-label">Message</label><textarea rows="5"
+                            class="field-textarea" id="ce-message" placeholder="Your message to the editor…"></textarea>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -89,38 +104,54 @@
 
     <!-- USER AUTH MODAL -->
     <div class="confirm-overlay" id="auth-modal-overlay">
-        <div class="confirm-modal" style="max-width:480px;width:100%;padding:0;max-height:90vh;overflow-y:auto;margin:auto;">
+        <div class="confirm-modal"
+            style="max-width:480px;width:100%;padding:0;max-height:90vh;overflow-y:auto;margin:auto;">
             <div class="auth-tabs">
-                <button id="user-tab-signin" class="auth-tab-btn active" onclick="switchUserAuthTab('signin')">Sign In</button>
+                <button id="user-tab-signin" class="auth-tab-btn active" onclick="switchUserAuthTab('signin')">Sign
+                    In</button>
                 <button id="user-tab-signup" class="auth-tab-btn" onclick="switchUserAuthTab('signup')">Sign Up</button>
             </div>
             <div class="auth-body">
                 <!-- Sign In -->
                 <div id="user-form-signin">
-                    <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:1.5rem;">Sign in to submit manuscripts for publication.</p>
+                    <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:1.5rem;">Sign in to submit
+                        manuscripts for publication.</p>
                     <div class="form-fields">
-                        <div class="field"><label class="field-label">Email</label><input type="email" id="u-login-email" class="field-input" placeholder="your@email.com"></div>
-                        <div class="field"><label class="field-label">Password</label><input type="password" id="u-login-password" class="field-input" placeholder="••••••••"></div>
+                        <div class="field"><label class="field-label">Email</label><input type="email"
+                                id="u-login-email" class="field-input" placeholder="your@email.com"></div>
+                        <div class="field"><label class="field-label">Password</label><input type="password"
+                                id="u-login-password" class="field-input" placeholder="••••••••"></div>
                     </div>
                     <p id="u-login-error" class="auth-error"></p>
                     <button class="btn-submit" onclick="attemptUserLogin()" style="margin-top:1.5rem;">Sign In</button>
-                    <p class="auth-switch-text">Don't have an account? <button class="auth-switch-btn" onclick="switchUserAuthTab('signup')">Sign Up</button></p>
+                    <p class="auth-switch-text">Don't have an account? <button class="auth-switch-btn"
+                            onclick="switchUserAuthTab('signup')">Sign Up</button></p>
                 </div>
                 <!-- Sign Up -->
                 <div id="user-form-signup" style="display:none;">
-                    <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:1.5rem;">Create an account to submit your manuscript for publication.</p>
+                    <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:1.5rem;">Create an account to
+                        submit your manuscript for publication.</p>
                     <div class="form-fields">
                         <div class="auth-name-row">
-                            <div class="field"><label class="field-label">First Name</label><input type="text" id="u-reg-first" class="field-input" placeholder="First"></div>
-                            <div class="field"><label class="field-label">Last Name</label><input type="text" id="u-reg-last" class="field-input" placeholder="Last"></div>
+                            <div class="field"><label class="field-label">First Name</label><input type="text"
+                                    id="u-reg-first" class="field-input" placeholder="First"></div>
+                            <div class="field"><label class="field-label">Last Name</label><input type="text"
+                                    id="u-reg-last" class="field-input" placeholder="Last"></div>
                         </div>
-                        <div class="field"><label class="field-label">Email</label><input type="email" id="u-reg-email" class="field-input" placeholder="your@email.com"></div>
-                        <div class="field"><label class="field-label">Password <span style="font-weight:400;text-transform:none;letter-spacing:0;">(min. 8 chars)</span></label><input type="password" id="u-reg-password" class="field-input" placeholder="••••••••"></div>
-                        <div class="field"><label class="field-label">Confirm Password</label><input type="password" id="u-reg-confirm" class="field-input" placeholder="••••••••"></div>
+                        <div class="field"><label class="field-label">Email</label><input type="email" id="u-reg-email"
+                                class="field-input" placeholder="your@email.com"></div>
+                        <div class="field"><label class="field-label">Password <span
+                                    style="font-weight:400;text-transform:none;letter-spacing:0;">(min. 8
+                                    chars)</span></label><input type="password" id="u-reg-password" class="field-input"
+                                placeholder="••••••••"></div>
+                        <div class="field"><label class="field-label">Confirm Password</label><input type="password"
+                                id="u-reg-confirm" class="field-input" placeholder="••••••••"></div>
                     </div>
                     <p id="u-reg-error" class="auth-error"></p>
-                    <button class="btn-submit" onclick="attemptUserRegister()" style="margin-top:1.5rem;">Create Account</button>
-                    <p class="auth-switch-text">Already have an account? <button class="auth-switch-btn" onclick="switchUserAuthTab('signin')">Sign In</button></p>
+                    <button class="btn-submit" onclick="attemptUserRegister()" style="margin-top:1.5rem;">Create
+                        Account</button>
+                    <p class="auth-switch-text">Already have an account? <button class="auth-switch-btn"
+                            onclick="switchUserAuthTab('signin')">Sign In</button></p>
                 </div>
             </div>
             <div class="auth-footer">
@@ -142,23 +173,39 @@
                 <button class="nav-link" data-page="publishing" onclick="navigate('publishing')">Publishing</button>
                 <button class="nav-link" data-page="about" onclick="navigate('about')">About</button>
                 <button class="nav-link" data-page="contact" onclick="navigate('contact')">Contact</button>
-                <a href="admin/index.html" class="nav-link" style="border:1px solid rgba(193,154,107,0.3);padding:0.4rem 1rem;color:var(--accent);">Admin</a>
+                <a href="admin/index.html" class="nav-link"
+                    style="border:1px solid rgba(193,154,107,0.3);padding:0.4rem 1rem;color:var(--accent);">Admin</a>
                 <div id="nav-user-area" style="display:flex;align-items:center;gap:0.75rem;"></div>
             </div>
             <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
-                <svg id="icon-menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-                <svg id="icon-x" class="hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <svg id="icon-menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
+                <svg id="icon-x" class="hidden" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
             </button>
         </div>
         <div id="mobile-menu">
-            <button class="mobile-link active" data-page="home" onclick="navigate('home');toggleMobileMenu()">Home</button>
-            <button class="mobile-link" data-page="consulting" onclick="navigate('consulting');toggleMobileMenu()">Services</button>
-            <button class="mobile-link" data-page="journals" onclick="navigate('journals');toggleMobileMenu()">Journals</button>
-            <button class="mobile-link" data-page="publishing" onclick="navigate('publishing');toggleMobileMenu()">Publishing</button>
+            <button class="mobile-link active" data-page="home"
+                onclick="navigate('home');toggleMobileMenu()">Home</button>
+            <button class="mobile-link" data-page="consulting"
+                onclick="navigate('consulting');toggleMobileMenu()">Services</button>
+            <button class="mobile-link" data-page="journals"
+                onclick="navigate('journals');toggleMobileMenu()">Journals</button>
+            <button class="mobile-link" data-page="publishing"
+                onclick="navigate('publishing');toggleMobileMenu()">Publishing</button>
             <button class="mobile-link" data-page="about" onclick="navigate('about');toggleMobileMenu()">About</button>
-            <button class="mobile-link" data-page="contact" onclick="navigate('contact');toggleMobileMenu()">Contact</button>
+            <button class="mobile-link" data-page="contact"
+                onclick="navigate('contact');toggleMobileMenu()">Contact</button>
             <a href="admin/index.html" class="mobile-link" style="color:var(--accent);">Admin Portal</a>
-            <div id="mobile-user-area" style="padding-top:0.5rem;border-top:1px solid rgba(255,255,255,0.06);margin-top:0.25rem;"></div>
+            <div id="mobile-user-area"
+                style="padding-top:0.5rem;border-top:1px solid rgba(255,255,255,0.06);margin-top:0.25rem;"></div>
         </div>
     </nav>
 
@@ -167,8 +214,11 @@
         <section id="hero">
             <div class="container">
                 <div class="hero-content animate-fade-up">
-                    <h1 class="hero-title">Driving Growth Through<br><span class="text-accent">Knowledge &amp; Strategy.</span></h1>
-                    <p class="hero-sub">Impact Compass Holdings (PTY) LTD is a multi-disciplinary South African hub providing expert consulting, academic publishing, and curated resources for a global audience.</p>
+                    <h1 class="hero-title">Driving Growth Through<br><span class="text-accent">Knowledge &
+                            Strategy.</span></h1>
+                    <p class="hero-sub">Impact Compass Holdings (PTY) LTD is a multi-disciplinary South African hub
+                        providing expert consulting, academic publishing, and curated resources for a global audience.
+                    </p>
                     <div class="hero-actions">
                         <button class="btn-primary" onclick="navigate('consulting')">Our Services</button>
                         <button class="btn-ghost" onclick="navigate('about')">Learn More</button>
@@ -182,18 +232,20 @@
                     <div class="division-card" onclick="navigate('consulting')">
                         <div class="division-label">Division 01</div>
                         <div class="division-title">Impact Consultants</div>
-                        <div class="division-desc">Specialized research protocols, organizational development, and capacity building for institutions.</div>
+                        <div class="division-desc">Specialized research protocols, organizational development, and
+                            capacity building for institutions.</div>
                         <ul class="division-links">
                             <li><span>Research Services</span><span class="division-arrow">→</span></li>
-                            <li><span>Strategy &amp; Planning</span><span class="division-arrow">→</span></li>
-                            <li><span>M&amp;E Frameworks</span><span class="division-arrow">→</span></li>
+                            <li><span>Strategy & Planning</span><span class="division-arrow">→</span></li>
+                            <li><span>M&E Frameworks</span><span class="division-arrow">→</span></li>
                             <li><span>Data Analysis</span><span class="division-arrow">→</span></li>
                         </ul>
                     </div>
                     <div class="division-card" onclick="navigate('journals')">
                         <div class="division-label">Division 02</div>
                         <div class="division-title">Academic Journals</div>
-                        <div class="division-desc">6 Peer-reviewed journals covering African impact, human rights, and implementation science.</div>
+                        <div class="division-desc">6 Peer-reviewed journals covering African impact, human rights, and
+                            implementation science.</div>
                         <ul class="division-links">
                             <li><span>AJIESS (Economics)</span><span class="division-arrow">→</span></li>
                             <li><span>IJHRGJS (Rights)</span><span class="division-arrow">→</span></li>
@@ -204,7 +256,8 @@
                     <div class="division-card" onclick="navigate('publishing')">
                         <div class="division-label">Division 03</div>
                         <div class="division-title">Impact Publishing</div>
-                        <div class="division-desc">Bringing powerful stories to life through academic books, technical reports, and digital content.</div>
+                        <div class="division-desc">Bringing powerful stories to life through academic books, technical
+                            reports, and digital content.</div>
                         <ul class="division-links">
                             <li><span>Echoes of Ancestors</span><span class="division-arrow">→</span></li>
                             <li><span>Technical Reporting</span><span class="division-arrow">→</span></li>
@@ -229,41 +282,56 @@
             <div class="container">
                 <div class="page-header">
                     <span class="label-tag">Impact Consultants</span>
-                    <h1 class="page-title">Strategic Advisory<br>&amp; <span class="text-accent">Expert Research</span></h1>
-                    <p class="page-desc">We provide deep analytical insights and transformative organizational strategies to help governments, NGOs, and corporations achieve sustainable excellence.</p>
+                    <h1 class="page-title">Strategic Advisory<br>& <span class="text-accent">Expert Research</span></h1>
+                    <p class="page-desc">We provide deep analytical insights and transformative organizational
+                        strategies to help governments, NGOs, and corporations achieve sustainable excellence.</p>
                 </div>
                 <div class="services-grid">
                     <div class="glass-card service-card">
-                        <div class="service-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="12" rx="10" ry="10"/><path d="M12 2v20M2 12h20"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg></div>
+                        <div class="service-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5">
+                                <ellipse cx="12" cy="12" rx="10" ry="10" />
+                                <path d="M12 2v20M2 12h20" />
+                                <path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z" />
+                            </svg></div>
                         <div class="service-category">Research</div>
                         <ul class="service-list">
-                            <li><span class="dot"></span>Protocol &amp; Proposal Development</li>
-                            <li><span class="dot"></span>Fieldwork &amp; Data Collection</li>
+                            <li><span class="dot"></span>Protocol & Proposal Development</li>
+                            <li><span class="dot"></span>Fieldwork & Data Collection</li>
                             <li><span class="dot"></span>Data Analysis (STATA, SPSS, Tableau)</li>
                             <li><span class="dot"></span>Statistical Analysis Training</li>
-                            <li><span class="dot"></span>Academic Mentoring &amp; Report Writing</li>
+                            <li><span class="dot"></span>Academic Mentoring & Report Writing</li>
                         </ul>
                     </div>
                     <div class="glass-card service-card">
-                        <div class="service-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-                        <div class="service-category">Training &amp; Capacity Building</div>
+                        <div class="service-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg></div>
+                        <div class="service-category">Training & Capacity Building</div>
                         <ul class="service-list">
                             <li><span class="dot"></span>Organizational Capacity Assessments</li>
                             <li><span class="dot"></span>Training Needs Assessments</li>
                             <li><span class="dot"></span>Project Management Training</li>
-                            <li><span class="dot"></span>Monitoring &amp; Evaluation (M&amp;E) Plans</li>
+                            <li><span class="dot"></span>Monitoring & Evaluation (M&E) Plans</li>
                             <li><span class="dot"></span>Report Writing Workshops</li>
                         </ul>
                     </div>
                     <div class="glass-card service-card">
-                        <div class="service-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M12 12v4M10 14h4"/></svg></div>
+                        <div class="service-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="7" width="20" height="14" rx="2" />
+                                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M12 12v4M10 14h4" />
+                            </svg></div>
                         <div class="service-category">Organizational Development</div>
                         <ul class="service-list">
-                            <li><span class="dot"></span>Strategic Planning &amp; Execution</li>
+                            <li><span class="dot"></span>Strategic Planning & Execution</li>
                             <li><span class="dot"></span>Change Management Strategy</li>
                             <li><span class="dot"></span>Performance Improvement Plans</li>
-                            <li><span class="dot"></span>Risk Assessment &amp; Management</li>
-                            <li><span class="dot"></span>Business Planning &amp; Projections</li>
+                            <li><span class="dot"></span>Risk Assessment & Management</li>
+                            <li><span class="dot"></span>Business Planning & Projections</li>
                         </ul>
                     </div>
                 </div>
@@ -276,16 +344,20 @@
         <div style="background:var(--brand-900);min-height:100vh;padding-bottom:6rem;">
             <div class="container" style="padding-top:7rem;">
                 <div class="journals-subnav">
-                    <button class="subnav-btn active" id="tab-browse" onclick="switchJournalView('browse')">Browse Journals</button>
-                    <button class="subnav-btn" id="tab-dashboard" onclick="switchJournalView('dashboard')">Author Dashboard</button>
+                    <button class="subnav-btn active" id="tab-browse" onclick="switchJournalView('browse')">Browse
+                        Journals</button>
+                    <button class="subnav-btn" id="tab-dashboard" onclick="switchJournalView('dashboard')">Author
+                        Dashboard</button>
                     <button class="btn-accent-sm" onclick="switchJournalView('submit')">Submit Manuscript</button>
                 </div>
                 <!-- BROWSE -->
                 <div id="view-browse">
                     <div style="text-align:center;margin-bottom:5rem;">
                         <span class="label-tag">Impact Journals</span>
-                        <h1 class="page-title" style="font-size:clamp(2.4rem,6vw,4rem);">Academic Rigor. <span class="text-accent" style="font-style:italic;">Global Reach.</span></h1>
-                        <p class="page-desc" style="margin:0 auto;text-align:center;">Contributing to the global body of knowledge through high-impact, peer-reviewed research.</p>
+                        <h1 class="page-title" style="font-size:clamp(2.4rem,6vw,4rem);">Academic Rigor. <span
+                                class="text-accent" style="font-style:italic;">Global Reach.</span></h1>
+                        <p class="page-desc" style="margin:0 auto;text-align:center;">Contributing to the global body of
+                            knowledge through high-impact, peer-reviewed research.</p>
                     </div>
                     <div class="journals-grid" id="journals-grid"></div>
                 </div>
@@ -308,30 +380,61 @@
                                     <label class="field-label">Target Journal</label>
                                     <select name="journal" class="field-select" id="journal-select"></select>
                                 </div>
-                                <div class="field"><label class="field-label">Title</label><input required name="title" type="text" class="field-input" placeholder="Full manuscript title"></div>
-                                <div class="field"><label class="field-label">Authors (Full Names, comma separated)</label><input required name="authors" type="text" class="field-input" placeholder="e.g. Dr. John Smith, Prof. Jane Doe"></div>
-                                <div class="field"><label class="field-label">Abstract</label><textarea required name="abstract" rows="6" class="field-textarea" placeholder="Provide a structured abstract (max 300 words)…"></textarea></div>
+                                <div class="field"><label class="field-label">Title</label><input required name="title"
+                                        type="text" class="field-input" placeholder="Full manuscript title"></div>
+                                <div class="field"><label class="field-label">Authors (Full Names, comma
+                                        separated)</label><input required name="authors" type="text" class="field-input"
+                                        placeholder="e.g. Dr. John Smith, Prof. Jane Doe"></div>
+                                <div class="field"><label class="field-label">Abstract</label><textarea required
+                                        name="abstract" rows="6" class="field-textarea"
+                                        placeholder="Provide a structured abstract (max 300 words)…"></textarea></div>
                                 <div class="field">
                                     <label class="field-label">Manuscript Document</label>
                                     <div class="file-upload-area" id="manuscript-upload-area">
-                                        <input type="file" id="manuscript-file" name="manuscriptFile" accept=".pdf,.doc,.docx,.odt,.rtf" onchange="handleFileChange('manuscript-file','manuscript-file-list')">
-                                        <div class="file-upload-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div>
-                                        <div class="file-upload-text"><strong>Click to upload</strong> or drag &amp; drop<br><span style="font-size:0.72rem;">PDF, DOC, DOCX, ODT, RTF — max 20 MB</span></div>
+                                        <input type="file" id="manuscript-file" name="manuscriptFile"
+                                            accept=".pdf,.doc,.docx,.odt,.rtf"
+                                            onchange="handleFileChange('manuscript-file','manuscript-file-list')">
+                                        <div class="file-upload-icon"><svg width="32" height="32" viewBox="0 0 24 24"
+                                                fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                                <polyline points="14 2 14 8 20 8" />
+                                                <line x1="12" y1="18" x2="12" y2="12" />
+                                                <line x1="9" y1="15" x2="15" y2="15" />
+                                            </svg></div>
+                                        <div class="file-upload-text"><strong>Click to upload</strong> or drag &
+                                            drop<br><span style="font-size:0.72rem;">PDF, DOC, DOCX, ODT, RTF - max 20
+                                                MB</span></div>
                                         <div class="file-list" id="manuscript-file-list"></div>
                                     </div>
                                 </div>
                                 <div class="field">
-                                    <label class="field-label">Supplementary Files <span style="color:var(--text-muted);font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></label>
+                                    <label class="field-label">Supplementary Files <span
+                                            style="color:var(--text-muted);font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></label>
                                     <div class="file-upload-area">
-                                        <input type="file" id="supp-files" name="suppFiles" accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.png,.jpg,.zip" multiple onchange="handleFileChange('supp-files','supp-file-list')">
-                                        <div class="file-upload-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
-                                        <div class="file-upload-text"><strong>Click to upload supplementary files</strong><br><span style="font-size:0.72rem;">Multiple files supported</span></div>
+                                        <input type="file" id="supp-files" name="suppFiles"
+                                            accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.png,.jpg,.zip" multiple
+                                            onchange="handleFileChange('supp-files','supp-file-list')">
+                                        <div class="file-upload-icon"><svg width="28" height="28" viewBox="0 0 24 24"
+                                                fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                                <polyline points="17 8 12 3 7 8" />
+                                                <line x1="12" y1="3" x2="12" y2="15" />
+                                            </svg></div>
+                                        <div class="file-upload-text"><strong>Click to upload supplementary
+                                                files</strong><br><span style="font-size:0.72rem;">Multiple files
+                                                supported</span></div>
                                         <div class="file-list" id="supp-file-list"></div>
                                     </div>
                                 </div>
                                 <div class="disclaimer">
-                                    <div class="disclaimer-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
-                                    <p>By submitting, you agree to the peer-review process and verify that this is an original, unpublished work.<span class="note">System will generate Google Scholar compatible metadata upon publication.</span></p>
+                                    <div class="disclaimer-icon"><svg width="20" height="20" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                            <polyline points="9 12 11 14 15 10" />
+                                        </svg></div>
+                                    <p>By submitting, you agree to the peer-review process and verify that this is an
+                                        original, unpublished work.<span class="note">System will generate Google
+                                            Scholar compatible metadata upon publication.</span></p>
                                 </div>
                                 <button type="submit" class="btn-submit">Submit Manuscript</button>
                             </form>
@@ -348,19 +451,52 @@
             <div class="container">
                 <div class="page-header">
                     <span class="label-tag">Impact Publishing</span>
-                    <h1 class="page-title">Bringing <span class="text-accent" style="font-style:italic;">Stories</span><br>To Life.</h1>
-                    <p class="page-desc">We partner with authors, organizations, and researchers to transform complex ideas into beautifully crafted books and impactful digital content.</p>
+                    <h1 class="page-title">Bringing <span class="text-accent"
+                            style="font-style:italic;">Stories</span><br>To Life.</h1>
+                    <p class="page-desc">We partner with authors, organizations, and researchers to transform complex
+                        ideas into beautifully crafted books and impactful digital content.</p>
                 </div>
                 <div class="publishing-split">
-                    <div class="publishing-icon-box"><svg width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg></div>
+                    <div class="publishing-icon-box"><svg width="200" height="200" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="0.5">
+                            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" />
+                        </svg></div>
                     <div class="publishing-services">
                         <h2>Our Publishing Services</h2>
                         <ul class="pub-service-list">
-                            <li class="pub-service-item"><div class="pub-service-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div><span class="pub-service-text">Professional Book Layout &amp; Design</span></li>
-                            <li class="pub-service-item"><div class="pub-service-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div><span class="pub-service-text">Scholarly Report Publishing</span></li>
-                            <li class="pub-service-item"><div class="pub-service-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div><span class="pub-service-text">Digital Distribution &amp; E-book Formats</span></li>
-                            <li class="pub-service-item"><div class="pub-service-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div><span class="pub-service-text">Author Identity &amp; Branding Strategy</span></li>
-                            <li class="pub-service-item"><div class="pub-service-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div><span class="pub-service-text">Technical &amp; Creative Editing Services</span></li>
+                            <li class="pub-service-item">
+                                <div class="pub-service-icon"><svg width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="9 18 15 12 9 6" />
+                                    </svg></div><span class="pub-service-text">Professional Book Layout & Design</span>
+                            </li>
+                            <li class="pub-service-item">
+                                <div class="pub-service-icon"><svg width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="9 18 15 12 9 6" />
+                                    </svg></div><span class="pub-service-text">Scholarly Report Publishing</span>
+                            </li>
+                            <li class="pub-service-item">
+                                <div class="pub-service-icon"><svg width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="9 18 15 12 9 6" />
+                                    </svg></div><span class="pub-service-text">Digital Distribution & E-book
+                                    Formats</span>
+                            </li>
+                            <li class="pub-service-item">
+                                <div class="pub-service-icon"><svg width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="9 18 15 12 9 6" />
+                                    </svg></div><span class="pub-service-text">Author Identity & Branding
+                                    Strategy</span>
+                            </li>
+                            <li class="pub-service-item">
+                                <div class="pub-service-icon"><svg width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="9 18 15 12 9 6" />
+                                    </svg></div><span class="pub-service-text">Technical & Creative Editing
+                                    Services</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -378,41 +514,82 @@
                 </div>
                 <div class="about-grid">
                     <div class="about-prose">
-                        <p>Impact Compass Holdings (PTY) LTD, established as Segale Incorporated and later rebranded, was founded with a singular vision: to create a multifaceted platform that addresses the complex needs of modern development in Africa and beyond.</p>
-                        <p>Under the leadership of Dr. Jacob Segale, we have expanded from a boutique consultancy into a comprehensive powerhouse of knowledge and trade, operating through four specialized divisions.</p>
-                        <p>Our mission is to provide expert consulting, influential publishing, high-impact academic journals, and quality products that foster growth, innovation, and positive societal change.</p>
+                        <p>Impact Compass Holdings (PTY) LTD, established as Segale Incorporated and later rebranded,
+                            was founded with a singular vision: to create a multifaceted platform that addresses the
+                            complex needs of modern development in Africa and beyond.</p>
+                        <p>Under the leadership of Dr. Jacob Segale, we have expanded from a boutique consultancy into a
+                            comprehensive powerhouse of knowledge and trade, operating through four specialized
+                            divisions.</p>
+                        <p>Our mission is to provide expert consulting, influential publishing, high-impact academic
+                            journals, and quality products that foster growth, innovation, and positive societal change.
+                        </p>
                     </div>
                     <div class="about-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=1200" alt="Team Collaboration" referrerpolicy="no-referrer">
+                        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=1200"
+                            alt="Team Collaboration" referrerpolicy="no-referrer">
                         <div class="about-overlay"></div>
                     </div>
                 </div>
                 <div class="values-grid">
                     <div class="value-card">
-                        <div class="value-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10A15 15 0 0 1 12 2z"/></svg></div>
+                        <div class="value-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="2" y1="12" x2="22" y2="12" />
+                                <path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10A15 15 0 0 1 12 2z" />
+                            </svg></div>
                         <div class="value-title">Global Reach</div>
-                        <p class="value-text">We connect African perspectives with global academic and professional networks.</p>
+                        <p class="value-text">We connect African perspectives with global academic and professional
+                            networks.</p>
                     </div>
                     <div class="value-card">
-                        <div class="value-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+                        <div class="value-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="8" r="6" />
+                                <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+                            </svg></div>
                         <div class="value-title">Rigorous Quality</div>
-                        <p class="value-text">From peer-reviewed research to professional consulting, quality is our bedrock.</p>
+                        <p class="value-text">From peer-reviewed research to professional consulting, quality is our
+                            bedrock.</p>
                     </div>
                     <div class="value-card">
-                        <div class="value-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                        <div class="value-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                            </svg></div>
                         <div class="value-title">Social Impact</div>
-                        <p class="value-text">Every project we undertake is measured by its contribution to societal well-being.</p>
+                        <p class="value-text">Every project we undertake is measured by its contribution to societal
+                            well-being.</p>
                     </div>
                 </div>
                 <div class="partners-section">
                     <span class="label-tag">Trusted by</span>
                     <div class="partner-grid">
-                        <div class="partner-logo"><div class="logo-placeholder"><img src="assets/UNDP.jpg" alt="UNDP"></div><div class="partner-name">United Nations Development Programme</div></div>
-                        <div class="partner-logo"><div class="logo-placeholder"><img src="assets/AU.jpg" alt="AU"></div><div class="partner-name">African Union</div></div>
-                        <div class="partner-logo"><div class="logo-placeholder"><img src="assets/WHO.jpg" alt="WHO"></div><div class="partner-name">World Health Organization</div></div>
-                        <div class="partner-logo"><div class="logo-placeholder"><img src="assets/DPME.jpg" alt="DPME"></div><div class="partner-name">Department of Planning, Monitoring &amp; Evaluation</div></div>
-                        <div class="partner-logo"><div class="logo-placeholder"><img src="assets/UJ.png" alt="UJ"></div><div class="partner-name">University of Johannesburg</div></div>
-                        <div class="partner-logo"><div class="logo-placeholder"><img src="assets/GS.png" alt="Google Scholar"></div><div class="partner-name">Google Scholar Partner</div></div>
+                        <div class="partner-logo">
+                            <div class="logo-placeholder"><img src="assets/UNDP.jpg" alt="UNDP"></div>
+                            <div class="partner-name">United Nations Development Programme</div>
+                        </div>
+                        <div class="partner-logo">
+                            <div class="logo-placeholder"><img src="assets/AU.jpg" alt="AU"></div>
+                            <div class="partner-name">African Union</div>
+                        </div>
+                        <div class="partner-logo">
+                            <div class="logo-placeholder"><img src="assets/WHO.jpg" alt="WHO"></div>
+                            <div class="partner-name">World Health Organization</div>
+                        </div>
+                        <div class="partner-logo">
+                            <div class="logo-placeholder"><img src="assets/DPME.jpg" alt="DPME"></div>
+                            <div class="partner-name">Department of Planning, Monitoring & Evaluation</div>
+                        </div>
+                        <div class="partner-logo">
+                            <div class="logo-placeholder"><img src="assets/UJ.png" alt="UJ"></div>
+                            <div class="partner-name">University of Johannesburg</div>
+                        </div>
+                        <div class="partner-logo">
+                            <div class="logo-placeholder"><img src="assets/GS.png" alt="Google Scholar"></div>
+                            <div class="partner-name">Google Scholar Partner</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -426,13 +603,19 @@
                 <div class="page-header">
                     <span class="label-tag">Connect With Us</span>
                     <h1 class="page-title">Let's start the <span style="font-style:italic;">conversation.</span></h1>
-                    <p class="page-desc">Whether you have a consulting inquiry, a scholarly submission, or just want to browse our collection, we're here to help.</p>
+                    <p class="page-desc">Whether you have a consulting inquiry, a scholarly submission, or just want to
+                        browse our collection, we're here to help.</p>
                 </div>
                 <div class="contact-grid">
                     <div>
                         <div class="contact-info-cards">
                             <div class="contact-card">
-                                <div class="contact-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+                                <div class="contact-card-icon"><svg width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path
+                                            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                        <polyline points="22,6 12,13 2,6" />
+                                    </svg></div>
                                 <div>
                                     <h4>Email Inquiries</h4>
                                     <p>Consulting: consultencies@impactch.com</p>
@@ -440,9 +623,13 @@
                                 </div>
                             </div>
                             <div class="contact-card">
-                                <div class="contact-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                                <div class="contact-card-icon"><svg width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path
+                                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                                    </svg></div>
                                 <div>
-                                    <h4>Phone &amp; WhatsApp</h4>
+                                    <h4>Phone & WhatsApp</h4>
                                     <p class="contact-phone">+27 650 731 450</p>
                                     <span class="contact-hours">Mon–Fri: 8AM – 5PM (SAST)</span>
                                 </div>
@@ -453,8 +640,10 @@
                         <h3>Send a Message</h3>
                         <form id="contact-form" class="contact-form-fields" onsubmit="handleContactSubmit(event)">
                             <div class="form-row">
-                                <div class="field"><label class="field-label">Name</label><input type="text" name="name" class="field-input" required></div>
-                                <div class="field"><label class="field-label">Email</label><input type="email" name="email" class="field-input" required></div>
+                                <div class="field"><label class="field-label">Name</label><input type="text" name="name"
+                                        class="field-input" required></div>
+                                <div class="field"><label class="field-label">Email</label><input type="email"
+                                        name="email" class="field-input" required></div>
                             </div>
                             <div class="field"><label class="field-label">Subject</label>
                                 <select name="subject" class="field-select">
@@ -463,7 +652,8 @@
                                     <option>Journal Submission</option>
                                 </select>
                             </div>
-                            <div class="field"><label class="field-label">Message</label><textarea rows="4" name="message" class="field-textarea" required></textarea></div>
+                            <div class="field"><label class="field-label">Message</label><textarea rows="4"
+                                    name="message" class="field-textarea" required></textarea></div>
                             <button type="submit" class="btn-submit">Submit Inquiry</button>
                         </form>
                     </div>
@@ -484,9 +674,10 @@
         </div>
     </footer>
 
-    <!-- JS: load order matters — app.js must load before auth and submissions -->
+    <!-- JS: load order matters - app.js must load before auth and submissions -->
     <script src="js/app.js"></script>
     <script src="js/user-auth.js"></script>
     <script src="js/submissions.js"></script>
 </body>
+
 </html>
