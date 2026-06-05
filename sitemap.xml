@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Main site pages -->
+  <url>
+    <loc>https://impactch.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://impactch.com/admin/index.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!--
+    Article landing pages live at:
+      https://impactch.com/articles/<SafeTitle>.html
+    Add one <url> entry per published article when you upload its HTML file.
+    Example:
+
+  <url>
+    <loc>https://impactch.com/articles/My_Article_Title.html</loc>
+    <lastmod>2026-01-15</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  -->
+
+</urlset>

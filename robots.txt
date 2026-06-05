@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Google Scholar crawler
+User-agent: Googlebot
+Allow: /
+Allow: /articles/
+
+Sitemap: https://impactch.com/sitemap.xml
