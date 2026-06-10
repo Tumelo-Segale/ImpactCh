@@ -151,7 +151,7 @@ function doApproveAndInvoice(subId, amount) {
         "). " +
         "Failure to pay will result in the manuscript being automatically disregarded and deemed invalid.\r\n\r\n" +
         "Please attach the PDF invoice to this email before sending.\r\n\r\n" +
-        "Kind regards,\r\nImpact Compass Holdings\r\nimpact@impactcompass.co.za | www.impactcompass.co.za"
+        "Kind regards,\r\nImpact Compass Holdings\r\n www.impactch.com"
     );
     if (toEmail)
       window.open(
@@ -268,7 +268,7 @@ function buildInvoiceHTML(inv, forModal) {
     forModal ? "0" : "2rem"
   }">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:1.5rem;border-bottom:3px solid #c19a6b;margin-bottom:1.25rem;">
-    <div>${logo}<div style="font-size:0.7rem;color:#666;margin-top:0.5rem;line-height:1.6;">impact@impactcompass.co.za | www.impactcompass.co.za<br>R556 Lekgalong, Rustenburg, 0299, South Africa</div></div>
+    <div>${logo}<div style="font-size:0.7rem;color:#666;margin-top:0.5rem;line-height:1.6;">www.impactch.com<br>R556 Lekgalong, Rustenburg, 0299, South Africa</div></div>
     <div style="text-align:right;">
       <div style="font-size:1.8rem;font-weight:800;letter-spacing:0.1em;color:#c19a6b;">INVOICE</div>
       <div style="font-size:0.85rem;font-weight:700;color:#333;margin-top:4px;">${escHtml(
@@ -364,7 +364,7 @@ function buildInvoiceHTML(inv, forModal) {
           }<tr><td style="padding:3px 1.25rem 3px 0;color:#888;">Reference:</td><td style="font-weight:800;color:#c19a6b;">${escHtml(
             ref
           )}</td></tr></table></div>`
-        : `<div style="font-size:0.78rem;color:#999;">Banking details not configured. Contact: impact@impactcompass.co.za</div>`
+        : `<div style="font-size:0.78rem;color:#999;">Banking details not configured. Contact: impact@impactch.com</div>`
     }
   </div>
   <div style="background:#fef2f2;border:1px solid #fca5a5;padding:0.75rem 1rem;margin-bottom:0.75rem;font-size:0.76rem;color:#991b1b;line-height:1.6;text-align:center;font-weight:600;">
@@ -437,7 +437,7 @@ function downloadInvoicePDF(invId) {
   doc.setFont("helvetica", "normal");
   doc.setFontSize(7);
   doc.setTextColor(...mid);
-  doc.text("impact@impactcompass.co.za  |  www.impactcompass.co.za", M, y + 20);
+  doc.text("www.impactch.com", M, y + 20);
   doc.text("R556 Lekgalong, Rustenburg, 0299, South Africa", M, y + 25);
   doc.setFont("helvetica", "bold");
   doc.setFontSize(22);
