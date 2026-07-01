@@ -43,7 +43,7 @@ function updateNavUserArea() {
       el.innerHTML = `<span style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;color:var(--accent);">${escapeHtml(
         user.firstName
       )}</span>
-                <button onclick="userLogout()" style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,0.35);border:1px solid rgba(255,255,255,0.1);padding:0.3rem 0.75rem;transition:all 0.25s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">Sign Out</button>`;
+                   <button onclick="userLogout()" style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,0.35);border:1px solid rgba(255,255,255,0.1);padding:0.3rem 0.75rem;transition:all 0.25s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">Sign Out</button>`;
     } else {
       el.innerHTML = `<button onclick="openUserAuthModal()" style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;color:var(--accent);border:1px solid rgba(193,154,107,0.3);padding:0.4rem 1rem;transition:all 0.25s;" onmouseover="this.style.background='rgba(193,154,107,0.1)'" onmouseout="this.style.background='transparent'">Sign In</button>`;
     }
@@ -53,7 +53,7 @@ function updateNavUserArea() {
       mEl.innerHTML = `<span style="font-family:var(--font-serif);font-size:1rem;color:var(--accent);">Signed in as ${escapeHtml(
         user.firstName
       )} ${escapeHtml(user.lastName)}</span>
-                <button onclick="userLogout();toggleMobileMenu();" class="mobile-link" style="color:rgba(255,255,255,0.4);">Sign Out</button>`;
+                   <button onclick="userLogout();toggleMobileMenu();" class="mobile-link" style="color:rgba(255,255,255,0.4);">Sign Out</button>`;
     } else {
       mEl.innerHTML = `<button onclick="openUserAuthModal();toggleMobileMenu();" class="mobile-link" style="color:var(--accent);">Sign In / Sign Up</button>`;
     }

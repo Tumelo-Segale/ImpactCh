@@ -30,6 +30,9 @@ function renderJournalsAdmin() {
             <div style="padding:0.875rem 1.25rem;border-top:1px solid var(--border);display:flex;gap:1.5rem;">
                 <span style="font-size:0.78rem;color:var(--text-muted);">Submissions: <strong style="color:#fff;">${count}</strong></span>
                 <span style="font-size:0.78rem;color:var(--green);">● Google Scholar</span>
+                <span style="font-size:0.78rem;color:var(--green);">● Crossref</span>
+                <span style="font-size:0.78rem;color:var(--green);">● ResearchBib</span>
+                <span style="font-size:0.78rem;color:var(--green);">● Neliti</span>
             </div>
         </div>`;
   }).join("");
@@ -460,7 +463,7 @@ function _generateGalleyDoc(sub) {
   doc.setFontSize(8);
   doc.setTextColor(150, 150, 150);
   doc.text(
-    "© 2026 Impact Compass Holdings. All articles indexed in Google Scholar.",
+    "© 2026 Impact Compass Holdings. Indexed in Google Scholar, Crossref, ResearchBib & Neliti.",
     10,
     280
   );

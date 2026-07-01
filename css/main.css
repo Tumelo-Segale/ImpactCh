@@ -938,38 +938,6 @@ svg {
   font-weight: 300;
 }
 
-/* ===== PARTNERS ===== */
-.partners-section {
-  margin-bottom: 6rem;
-}
-.partner-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 2rem;
-  align-items: center;
-  justify-items: center;
-}
-.partner-logo {
-  text-align: center;
-}
-.partner-logo img {
-  max-width: 190px;
-  height: auto;
-  border-radius: 2px;
-  margin: 0 auto;
-}
-.partner-logo .logo-placeholder {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-.partner-name {
-  margin-top: 0.5rem;
-  font-size: 0.7rem;
-  color: var(--text-muted);
-}
-
 /* ===== PUBLISHING ===== */
 .publishing-split {
   display: grid;

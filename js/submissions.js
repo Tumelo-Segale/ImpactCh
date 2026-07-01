@@ -369,7 +369,7 @@ function generateGalley(idx) {
   doc.setFontSize(8);
   doc.setTextColor(150, 150, 150);
   doc.text(
-    "© 2026 Impact Compass Holdings. All articles indexed in Google Scholar.",
+    "© 2026 Impact Compass Holdings. Indexed in Google Scholar, Crossref, ResearchBib & Neliti.",
     10,
     280
   );

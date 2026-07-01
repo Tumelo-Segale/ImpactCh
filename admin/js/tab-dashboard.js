@@ -25,19 +25,19 @@ function renderDashRecent(subs) {
     .slice(0, 6)
     .map(
       (s) => `
-        <tr>
-            <td><div class="td-title">${escHtml(
-              s.title.length > 40 ? s.title.slice(0, 40) + "…" : s.title
-            )}</div><div class="td-journal">${escHtml(
+          <tr>
+              <td><div class="td-title">${escHtml(
+                s.title.length > 40 ? s.title.slice(0, 40) + "…" : s.title
+              )}</div><div class="td-journal">${escHtml(
         getJournalAbbr(s.journal)
       )}</div></td>
-            <td style="color:var(--text-muted);font-size:0.78rem;">${escHtml(
-              s.authors
-            )}</td>
-            <td style="color:var(--text-muted);font-size:0.75rem;">${fmtDate(
-              s.submittedAt
-            )}</td>
-        </tr>`
+              <td style="color:var(--text-muted);font-size:0.78rem;">${escHtml(
+                s.authors
+              )}</td>
+              <td style="color:var(--text-muted);font-size:0.75rem;">${fmtDate(
+                s.submittedAt
+              )}</td>
+          </tr>`
     )
     .join("");
 }
@@ -54,13 +54,13 @@ function renderJournalBars(subs, containerId) {
   const max = Math.max(1, ...Object.values(counts));
   el.innerHTML = JOURNALS.map(
     (j) => `
-        <div class="journal-row">
-            <div class="journal-abbr-mini">${j.abbr}</div>
-            <div class="journal-bar-wrap"><div class="journal-bar-fill" style="width:${
-              (counts[j.abbr] / max) * 100
-            }%"></div></div>
-            <div class="journal-count">${counts[j.abbr]}</div>
-        </div>`
+          <div class="journal-row">
+              <div class="journal-abbr-mini">${j.abbr}</div>
+              <div class="journal-bar-wrap"><div class="journal-bar-fill" style="width:${
+                (counts[j.abbr] / max) * 100
+              }%"></div></div>
+              <div class="journal-count">${counts[j.abbr]}</div>
+          </div>`
   ).join("");
 }
 
@@ -75,23 +75,25 @@ function renderActivityFeed(subs) {
     .slice(0, 8)
     .map(
       (s) => `
-        <div class="activity-item">
-            <div class="activity-icon" style="background:${
-              s.status === "Published"
-                ? "var(--green-light)"
-                : "var(--blue-light)"
-            };color:${s.status === "Published" ? "var(--green)" : "#7ba3ff"};">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
-            </div>
-            <div>
-                <div class="activity-text"><strong>${escHtml(
-                  s.title.length > 50 ? s.title.slice(0, 50) + "…" : s.title
-                )}</strong> - ${escHtml(s.status)}</div>
-                <div class="activity-time">${escHtml(
-                  getJournalAbbr(s.journal)
-                )} · ${fmtDate(s.submittedAt)}</div>
-            </div>
-        </div>`
+          <div class="activity-item">
+              <div class="activity-icon" style="background:${
+                s.status === "Published"
+                  ? "var(--green-light)"
+                  : "var(--blue-light)"
+              };color:${
+        s.status === "Published" ? "var(--green)" : "#7ba3ff"
+      };">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+              </div>
+              <div>
+                  <div class="activity-text"><strong>${escHtml(
+                    s.title.length > 50 ? s.title.slice(0, 50) + "…" : s.title
+                  )}</strong> - ${escHtml(s.status)}</div>
+                  <div class="activity-time">${escHtml(
+                    getJournalAbbr(s.journal)
+                  )} · ${fmtDate(s.submittedAt)}</div>
+              </div>
+          </div>`
     )
     .join("");
 }

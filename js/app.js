@@ -129,7 +129,7 @@ function renderJournalGrid() {
             <div class="journal-abbr">${j.abbr}</div>
             <div class="journal-name">${j.name}</div>
             <p class="journal-desc">${j.desc}</p>
-            <div class="journal-footer"><span>Indexed in:</span><span class="journal-indexed">Google Scholar</span></div>
+            <div class="journal-footer"><span>Indexed in:</span><span class="journal-indexed">Google Scholar · Crossref · ResearchBib · Neliti</span></div>
         </div>`
   ).join("");
   const sel = document.getElementById("journal-select");
