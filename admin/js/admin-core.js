@@ -9,7 +9,7 @@ const LS_INVOICES = "ich_invoices";
 const LS_ADMINS = "ich_admins";
 const LS_USERS = "ich_users";
 const LS_PAY = "ich_payment_settings";
-const SUPER_ADMIN_EMAIL = "admin@impactch.com";
+const SUPER_ADMIN_EMAIL = "admin@impact.com";
 
 const PAGE_TITLES = {
   dashboard: "Dashboard",
