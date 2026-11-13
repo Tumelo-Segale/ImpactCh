@@ -1,0 +1,255 @@
+/* ============================================================
+   Impact Compass Holdings - OJS (public side)
+   ============================================================ */
+.journals-subnav {
+  overflow-x: auto;
+}
+.subnav-btn {
+  white-space: nowrap;
+}
+.ojs-journal-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0 0.25rem;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+.ojs-muted {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.ojs-text {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--text-dim);
+  white-space: pre-wrap;
+  margin-top: 0.4rem;
+}
+.ojs-panel {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+.ojs-stepper {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+.ojs-step {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex: 1;
+}
+.ojs-step:not(:last-child)::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  min-width: 14px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 0.6rem;
+}
+.ojs-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+.ojs-step.current {
+  color: var(--accent);
+}
+.ojs-step.current .ojs-dot {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+.ojs-step.done {
+  color: #4ade80;
+}
+.ojs-step.done .ojs-dot {
+  border-color: #4ade80;
+  background: rgba(34, 197, 94, 0.12);
+}
+.ojs-banner {
+  margin-top: 0.875rem;
+  padding: 0.875rem 1rem;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-light);
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+.ojs-banner b {
+  color: #fff;
+}
+.ojs-banner.good {
+  border-left-color: #22c55e;
+  background: rgba(34, 197, 94, 0.07);
+}
+.ojs-banner.warn {
+  border-left-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.07);
+}
+.ojs-banner.bad {
+  border-left-color: #ef4444;
+  background: rgba(239, 68, 68, 0.07);
+}
+.ojs-details {
+  margin-top: 0.75rem;
+  font-size: 0.82rem;
+}
+.ojs-details summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+}
+.ojs-review {
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.ojs-files {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+}
+.ojs-file {
+  font-size: 0.8rem;
+  color: var(--accent);
+  word-break: break-all;
+}
+.ojs-file.muted {
+  color: var(--text-muted);
+}
+.ojs-btn-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.ojs-chip {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 4px 10px;
+  border: 1px solid rgba(193, 154, 107, 0.35);
+  color: var(--accent);
+  white-space: nowrap;
+  height: fit-content;
+}
+.ojs-chip.completed {
+  color: #4ade80;
+  border-color: rgba(74, 222, 128, 0.35);
+}
+.ojs-chip.declined {
+  color: #f87171;
+  border-color: rgba(248, 113, 113, 0.35);
+}
+.archive-filters {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1.5rem;
+  margin: 1.5rem 0 2.5rem;
+}
+.archive-issue {
+  margin-bottom: 3rem;
+}
+.archive-issue-head {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+.archive-issue-head h3 {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #fff;
+}
+.archive-abbr {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--accent);
+}
+.article-card {
+  padding: 1.75rem 2rem;
+  margin-bottom: 1rem;
+}
+.article-meta {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+.article-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 0.4rem;
+}
+.article-authors {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+.article-doi {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+@media (max-width: 640px) {
+  .archive-filters {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .ojs-step-label {
+    display: none;
+  }
+  .ojs-step.current .ojs-step-label {
+    display: inline;
+  }
+  .article-card {
+    padding: 1.25rem;
+  }
+}
+
+.ojs-journal-links .link-btn {
+  color: var(--accent);
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.ojs-journal-links .link-btn:hover {
+  opacity: 0.75;
+}

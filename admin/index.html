@@ -15,7 +15,6 @@
         rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <link rel="stylesheet" href="css/admin.css">
-    <link rel="stylesheet" href="css/login.css">
 </head>
 
 <body>
@@ -38,42 +37,6 @@
             <div class="confirm-actions">
                 <button class="btn-confirm-dlg"
                     onclick="document.getElementById('success-overlay').classList.remove('open')">OK</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== LOGIN ===== -->
-    <div id="login-overlay">
-        <div class="login-wrap">
-            <div class="login-logo">
-                <img src="../assets/Logo.png" alt="Impact Compass Holdings">
-            </div>
-            <div class="login-card">
-                <h2>Admin Portal</h2>
-                <p>Sign in with your administrator credentials.</p>
-                <div class="login-field">
-                    <label class="login-label">Email Address</label>
-                    <input type="email" id="login-email" class="login-input" placeholder="admin@impact.com"
-                        autocomplete="email">
-                </div>
-                <div class="login-field">
-                    <label class="login-label">Password</label>
-                    <input type="password" id="login-password" class="login-input" placeholder="••••••••"
-                        autocomplete="current-password">
-                </div>
-                <button class="login-btn" onclick="attemptLogin()">Sign In</button>
-                <div class="login-error" id="login-error">Invalid credentials. Please try again.</div>
-                <div
-                    style="text-align:center;margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,0.06);">
-                    <a href="../index.html" class="login-back-link">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                            <polyline points="9 22 9 12 15 12 15 22" />
-                        </svg>
-                        Back to Public Site
-                    </a>
-                </div>
             </div>
         </div>
     </div>
@@ -111,7 +74,7 @@
                     Manuscripts
                     <span class="nav-badge" id="badge-submissions">0</span>
                 </button>
-                <button class="nav-item" onclick="showPage('invoices')">
+                <button class="nav-item" data-super-only onclick="showPage('invoices')">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="1.8">
                         <rect x="2" y="5" width="20" height="14" rx="2" />
@@ -119,6 +82,23 @@
                     </svg>
                     Invoices
                     <span class="nav-badge" id="badge-invoices">0</span>
+                </button>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-section-label">Editorial (OJS)</div>
+                <button class="nav-item" onclick="showPage('reviewers')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+                    Reviewers
+                    <span class="nav-badge" id="badge-reviewers">0</span>
+                </button>
+                <button class="nav-item" id="nav-my-reviews" style="display:none;" onclick="openMyReviews()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="9" y1="15" x2="15" y2="15" /></svg>
+                    My Reviews
+                </button>
+                <button class="nav-item" onclick="showPage('issues')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
+                    Issues
+                    <span class="nav-badge" id="badge-issues">0</span>
                 </button>
             </div>
             <div class="sidebar-section">
@@ -235,7 +215,7 @@
                         <div class="stat-value" id="stat-total">0</div>
                         <div class="stat-change change-neutral">All time manuscripts</div>
                     </div>
-                    <div class="stat-card">
+                    <div class="stat-card" data-super-only>
                         <div class="stat-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="2">
                                 <rect x="2" y="5" width="20" height="14" rx="2" />
@@ -244,7 +224,7 @@
                         <div class="stat-value" id="stat-review">0</div>
                         <div class="stat-change change-neutral">Publication fee invoices</div>
                     </div>
-                    <div class="stat-card">
+                    <div class="stat-card" data-super-only>
                         <div class="stat-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="2">
                                 <polyline points="20 6 9 17 4 12" />
@@ -317,11 +297,12 @@
             <div class="page" id="page-submissions">
                 <div class="page-head">
                     <h2>All Manuscripts</h2>
-                    <p>Manage submitted manuscripts. Approve to publish and generate an invoice.</p>
+                    <p>Open a manuscript's workflow to review, accept, copyedit and publish it. Use Import Published Articles to add articles that were already published.</p>
                 </div>
                 <div class="toolbar">
                     <input type="text" class="toolbar-search" placeholder="Search by title, author or email…"
                         oninput="filterSubmissions(this.value)">
+                    <button class="btn-sm btn-accent" onclick="openImportModal()">Import Published Articles</button>
                     <button class="btn-sm btn-ghost" onclick="exportCSV()">Export CSV</button>
                 </div>
                 <div class="panel" style="overflow-x:auto;">
@@ -365,11 +346,66 @@
                 </div>
             </div>
 
+            <!-- PAGE: REVIEWERS -->
+            <div class="page" id="page-reviewers">
+                <div class="page-head">
+                    <h2>Reviewers</h2>
+                    <p>Peer reviewers who can be assigned to manuscripts, including sub-admins. Reviewers sign in on the public site with their email; sub-admins use the "My Reviews" link in the sidebar.</p>
+                </div>
+                <div class="toolbar">
+                    <button class="btn-sm btn-accent" onclick="openReviewerModal()">+ Add Reviewer</button>
+                </div>
+                <div class="panel" style="overflow-x:auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Reviewer</th>
+                                <th>Affiliation</th>
+                                <th>Interests</th>
+                                <th>Journals</th>
+                                <th>Workload</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reviewers-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PAGE: ISSUES -->
+            <div class="page" id="page-issues">
+                <div class="page-head">
+                    <h2>Issues</h2>
+                    <p>Volumes and issues. Schedule accepted articles from their Production tab, then publish the issue.</p>
+                </div>
+                <div class="toolbar">
+                    <button class="btn-sm btn-accent" onclick="openIssueModal()">+ New Issue</button>
+                </div>
+                <div class="panel" style="overflow-x:auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Journal</th>
+                                <th>Issue</th>
+                                <th>Articles</th>
+                                <th>Status</th>
+                                <th>Published</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="issues-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+
             <!-- PAGE: JOURNALS -->
             <div class="page" id="page-journals">
                 <div class="page-head">
                     <h2>Journal Management</h2>
-                    <p>Overview of all 6 peer-reviewed journals in the Impact Compass portfolio.</p>
+                    <p>Overview of all <span id="journals-count">5</span> peer-reviewed journals in the Impact Compass portfolio.</p>
+                </div>
+                <div class="toolbar" data-super-only>
+                    <button class="btn-sm btn-accent" onclick="openJournalModal()">+ Add Journal</button>
                 </div>
                 <div id="journals-grid-admin"
                     style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;"></div>
@@ -511,7 +547,8 @@
                         <div class="settings-nav-item active" onclick="switchSetting(this,'s-profile')">Profile</div>
                         <div class="settings-nav-item" onclick="switchSetting(this,'s-security')">Security</div>
                         <div class="settings-nav-item" onclick="switchSetting(this,'s-platform')">Platform</div>
-                        <div class="settings-nav-item" onclick="switchSetting(this,'s-payment')">Payment</div>
+                        <div class="settings-nav-item" data-super-only onclick="switchSetting(this,'s-payment')">Payment</div>
+                        <div class="settings-nav-item" data-super-only onclick="switchSetting(this,'s-site')">Site Publishing</div>
                     </div>
                     <div>
                         <!-- Profile -->
@@ -571,28 +608,32 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Site publishing -->
+                        <div class="settings-section" id="s-site" data-super-only>
+                            <h3>Site Publishing</h3>
+                            <p>Published articles are committed to your GitHub repo (<code>/articles/</code> + <code>sitemap.xml</code>) so Google Scholar can index them. Use a fine-grained token limited to this repository with "Contents: Read and write".</p>
+                            <div class="settings-card">
+                                <div class="form-field"><label class="form-label">GitHub Token</label><input class="form-input" type="password" id="site-token" placeholder="github_pat_…" autocomplete="off"></div>
+                                <div class="form-row">
+                                    <div class="form-field"><label class="form-label">Repository</label><input class="form-input" id="site-repo" placeholder="owner/repo"></div>
+                                    <div class="form-field"><label class="form-label">Branch</label><input class="form-input" id="site-branch" placeholder="main"></div>
+                                </div>
+                                <div class="form-field"><label class="form-label">Public Site URL</label><input class="form-input" id="site-base" placeholder="https://impactch.com"></div>
+                                <div class="wf-actions"><button class="btn-sm btn-accent" onclick="saveSiteSettings()">Save</button><button class="btn-sm btn-ghost" onclick="testSiteConnection()">Test Connection</button></div>
+                            </div>
+                        </div>
                         <!-- Payment -->
-                        <div class="settings-section" id="s-payment">
+                        <div class="settings-section" id="s-payment" data-super-only>
                             <h3>Payment Settings</h3>
-                            <p>Configure the payment link and bank account details included on invoices.</p>
+                            <p>Configure the bank account details included on invoices.</p>
                             <div class="settings-card">
                                 <h4>Publication Fee</h4>
                                 <p>The publication fee is set per-invoice at approval time.</p>
                                 <div
                                     style="padding:0.875rem 1rem;background:rgba(193,154,107,0.08);border-left:3px solid var(--accent);font-size:0.82rem;color:var(--text-dim);line-height:1.6;">
                                     When admin approves a manuscript, the system generates a PDF invoice recorded under
-                                    <strong style="color:#fff;">Invoices</strong>. The invoice includes the payment link
-                                    and bank details below.
-                                </div>
-                            </div>
-                            <div class="settings-card">
-                                <h4>Online Payment Link</h4>
-                                <p>A clickable payment URL included on the invoice.</p>
-                                <div class="form-field"><label class="form-label">Payment URL</label><input
-                                        class="form-input" id="setting-pay-link"
-                                        placeholder="https://paystack.com/pay/your-link"></div>
-                                <div class="form-field"><label class="form-label">Button / Link Label</label><input
-                                        class="form-input" id="setting-pay-label" placeholder="Pay Online via Paystack">
+                                    <strong style="color:#fff;">Invoices</strong>. The invoice includes the bank
+                                    details below.
                                 </div>
                             </div>
                             <div class="settings-card">
@@ -653,7 +694,7 @@
     <div class="modal-overlay" id="modal-approve">
         <div class="modal" style="max-width:460px;">
             <div class="modal-head">
-                <h3>Approve Manuscript</h3><button class="modal-close" onclick="closeModal('modal-approve')"><svg
+                <h3 id="approve-modal-title">Accept Manuscript</h3><button class="modal-close" onclick="closeModal('modal-approve')"><svg
                         width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="18" y1="6" x2="6" y2="18" />
                         <line x1="6" y1="6" x2="18" y2="18" />
@@ -666,22 +707,134 @@
                         style="font-size:0.85rem;color:#fff;font-weight:600;margin-bottom:0.25rem;"></div>
                     <div id="approve-sub-author" style="font-size:0.75rem;color:var(--text-muted);"></div>
                 </div>
-                <div class="form-field">
+                <div class="form-field" id="approve-fee-field">
                     <label class="form-label">Publication Fee Amount (ZAR)</label>
                     <input type="number" class="form-input" id="approve-amount" min="1" step="0.01"
                         placeholder="e.g. 1950.00" onkeydown="if(event.key==='Enter')confirmApproveModal()">
                     <p id="approve-amount-error"
                         style="display:none;color:var(--red);font-size:0.78rem;margin-top:0.4rem;"></p>
                 </div>
-                <div
+                <div class="form-field" id="approve-note-field">
+                    <label class="form-label">Note to Author (optional)</label>
+                    <textarea class="form-textarea" id="approve-note" rows="3"
+                        placeholder="Acceptance message shown on the author's dashboard…"></textarea>
+                </div>
+                <label class="wf-check" id="approve-share-row" style="margin-bottom:1.25rem;"><input type="checkbox" id="approve-share" checked>
+                    Share completed reviewer comments with the author</label>
+                <div id="approve-fee-warning"
                     style="padding:0.75rem 1rem;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);font-size:0.78rem;color:#fca5a5;line-height:1.6;">
-                    ⚠ An invoice will be generated. <strong style="color:#fff;">If payment is not received within 14
+                    ⚠ An invoice will be generated and the manuscript moves to Copyediting. <strong style="color:#fff;">If payment is not received within 14
                         days the manuscript will be disregarded and invalid.</strong>
                 </div>
             </div>
             <div class="modal-footer"><button class="btn-sm btn-ghost"
                     onclick="closeModal('modal-approve')">Cancel</button><button class="btn-sm btn-accent"
-                    onclick="confirmApproveModal()">Set Amount &amp; Approve</button></div>
+                    id="approve-confirm-btn" onclick="confirmApproveModal()">Set Fee &amp; Accept</button></div>
+        </div>
+    </div>
+
+    <!-- Editorial Workflow Modal -->
+    <div class="modal-overlay" id="modal-workflow">
+        <div class="modal" style="max-width:940px;">
+            <div class="modal-head"><h3>Editorial Workflow</h3><button class="modal-close" onclick="closeWorkflow()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg></button></div>
+            <div class="modal-body" id="wf-body" style="padding:0;"></div>
+        </div>
+    </div>
+
+    <!-- Decision Modal -->
+    <div class="modal-overlay" id="modal-decision">
+        <div class="modal" style="max-width:480px;">
+            <div class="modal-head"><h3><span id="dec-title">Decision</span></h3><button class="modal-close" onclick="closeModal('modal-decision')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg></button></div>
+            <div class="modal-body">
+                <p id="dec-hint" style="font-size:0.82rem;color:var(--text-dim);line-height:1.6;margin-bottom:1.25rem;"></p>
+                <div class="form-field">
+                    <label class="form-label">Note to Author</label>
+                    <textarea class="form-textarea" id="dec-note" rows="4" placeholder="Explain the decision / what the author should do next…"></textarea>
+                </div>
+                <label class="wf-check" id="dec-share-row"><input type="checkbox" id="dec-share" checked> Share completed reviewer comments with the author</label>
+            </div>
+            <div class="modal-footer"><button class="btn-sm btn-ghost" onclick="closeModal('modal-decision')">Cancel</button><button class="btn-sm btn-accent" onclick="confirmDecision()">Record Decision</button></div>
+        </div>
+    </div>
+
+    <!-- Record Review Modal -->
+    <div class="modal-overlay" id="modal-record-review">
+        <div class="modal" style="max-width:520px;">
+            <div class="modal-head"><h3>Record Review</h3><button class="modal-close" onclick="closeModal('modal-record-review')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg></button></div>
+            <div class="modal-body">
+                <div class="form-field"><label class="form-label">Recommendation</label>
+                    <select class="form-select" id="rr-recommendation">
+                        <option value="">Select…</option>
+                        <option value="accept">Accept Submission</option>
+                        <option value="minor">Revisions Required (Minor)</option>
+                        <option value="major">Revisions Required (Major)</option>
+                        <option value="resubmit">Resubmit for Review</option>
+                        <option value="decline">Decline Submission</option>
+                    </select></div>
+                <div class="form-field"><label class="form-label">Comments to Author</label><textarea class="form-textarea" id="rr-author" rows="5"></textarea></div>
+                <div class="form-field"><label class="form-label">Comments to Editor (confidential)</label><textarea class="form-textarea" id="rr-editor" rows="3"></textarea></div>
+            </div>
+            <div class="modal-footer"><button class="btn-sm btn-ghost" onclick="closeModal('modal-record-review')">Cancel</button><button class="btn-sm btn-accent" onclick="wfSaveRecordedReview()">Save Review</button></div>
+        </div>
+    </div>
+
+    <!-- Reviewer Modal -->
+    <div class="modal-overlay" id="modal-reviewer">
+        <div class="modal" style="max-width:520px;">
+            <div class="modal-head"><h3><span id="reviewer-modal-title">Add Reviewer</span></h3><button class="modal-close" onclick="closeModal('modal-reviewer')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg></button></div>
+            <div class="modal-body">
+                <div class="form-field"><select class="form-select" id="rv-prefill" onchange="prefillReviewer(this)"></select></div>
+                <div class="form-field"><label class="form-label">Full Name</label><input class="form-input" id="rv-name"></div>
+                <div class="form-field"><label class="form-label">Email (used to sign in)</label><input type="email" class="form-input" id="rv-email"></div>
+                <div class="form-field"><label class="form-label">Affiliation</label><input class="form-input" id="rv-affil"></div>
+                <div class="form-field"><label class="form-label">Review Interests</label><input class="form-input" id="rv-interests" placeholder="e.g. public health, econometrics"></div>
+                <div class="form-field"><label class="form-label">Journals</label><div id="rv-journals" class="wf-checks"></div></div>
+                <p id="rv-error" style="display:none;color:var(--red);font-size:0.78rem;"></p>
+            </div>
+            <div class="modal-footer"><button class="btn-sm btn-ghost" onclick="closeModal('modal-reviewer')">Cancel</button><button class="btn-sm btn-accent" onclick="saveReviewer()">Save Reviewer</button></div>
+        </div>
+    </div>
+
+    <!-- Issue Modal -->
+    <div class="modal-overlay" id="modal-issue">
+        <div class="modal" style="max-width:520px;">
+            <div class="modal-head"><h3><span id="issue-modal-title">New Issue</span></h3><button class="modal-close" onclick="closeModal('modal-issue')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg></button></div>
+            <div class="modal-body">
+                <div class="form-field"><label class="form-label">Journal</label><select class="form-select" id="is-journal"></select></div>
+                <div class="wf-form-grid">
+                    <div><label class="form-label">Volume</label><input type="number" min="1" class="form-input" id="is-volume"></div>
+                    <div><label class="form-label">Number</label><input type="number" min="1" class="form-input" id="is-number"></div>
+                    <div><label class="form-label">Year</label><input type="number" min="1900" class="form-input" id="is-year"></div>
+                </div>
+                <div class="form-field" style="margin-top:1rem;"><label class="form-label">Title (optional)</label><input class="form-input" id="is-title" placeholder="e.g. Special Issue on Health Systems"></div>
+                <p id="is-error" style="display:none;color:var(--red);font-size:0.78rem;"></p>
+            </div>
+            <div class="modal-footer"><button class="btn-sm btn-ghost" onclick="closeModal('modal-issue')">Cancel</button><button class="btn-sm btn-accent" onclick="saveIssue()">Save Issue</button></div>
+        </div>
+    </div>
+
+    <!-- Issue Manage Modal -->
+    <div class="modal-overlay" id="modal-issue-manage">
+        <div class="modal" style="max-width:720px;">
+            <div class="modal-head"><h3>Manage Issue</h3><button class="modal-close" onclick="closeModal('modal-issue-manage')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg></button></div>
+            <div class="modal-body" id="issue-manage-body"></div>
+        </div>
+    </div>
+
+    <!-- Journal Modal (Super Admin) -->
+    <div class="modal-overlay" id="modal-journal">
+        <div class="modal" style="max-width:560px;">
+            <div class="modal-head"><h3 id="journal-modal-title">Add Journal</h3><button class="modal-close" onclick="closeModal('modal-journal')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg></button></div>
+            <div class="modal-body">
+                <div class="wf-form-grid" style="margin-bottom:1rem;">
+                    <div><label class="form-label">Abbreviation</label><input class="form-input" id="jn-abbr" placeholder="e.g. AJIESS" maxlength="10"></div>
+                    <div><label class="form-label">ISSN</label><input class="form-input" id="jn-issn" placeholder="1234-5678"></div>
+                </div>
+                <div class="form-field"><label class="form-label">Journal Name</label><input class="form-input" id="jn-name"></div>
+                <div class="form-field"><label class="form-label">Description</label><textarea class="form-textarea" id="jn-desc" rows="3"></textarea></div>
+                <p id="jn-error" style="display:none;color:var(--red);font-size:0.78rem;"></p>
+            </div>
+            <div class="modal-footer"><button class="btn-sm btn-ghost" onclick="closeModal('modal-journal')">Cancel</button><button class="btn-sm btn-accent" onclick="saveJournal()">Save Journal</button></div>
         </div>
     </div>
 
@@ -767,10 +920,16 @@
     <div id="toast"></div>
 
     <!-- JS: load order - core first, then tabs -->
+    <script src="../js/journals.js"></script>
     <script src="js/admin-core.js"></script>
+    <script src="js/ojs-core.js"></script>
     <script src="js/tab-dashboard.js"></script>
     <script src="js/tab-submissions.js"></script>
     <script src="js/tab-invoices.js"></script>
+    <script src="js/tab-workflow.js"></script>
+    <script src="js/tab-issues.js"></script>
+    <script src="js/site-sync.js"></script>
+    <script src="js/tab-import.js"></script>
     <script src="js/tab-management.js"></script>
 
     <!-- Inline: set the logo data URI for invoice PDFs -->

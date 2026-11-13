@@ -8,34 +8,116 @@
 function renderJournalsAdmin() {
   const el = document.getElementById("journals-grid-admin");
   const subs = loadSubs();
+  const sa = ojsIsSuper();
+  const cnt = document.getElementById("journals-count");
+  if (cnt) cnt.textContent = JOURNALS.length;
   el.innerHTML = JOURNALS.map((j) => {
     const count = subs.filter(
       (s) => s.journal === j.name || getJournalAbbr(s.journal) === j.abbr
     ).length;
+    const issues = loadIssues().filter((i) => i.journal === j.abbr).length;
     return `<div class="panel" style="padding:0;">
-            <div style="padding:1.5rem;border-bottom:1px solid var(--border);">
-                <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:0.5rem;">${
-                  j.abbr
-                }</div>
-                <div style="font-family:var(--font-serif);font-size:1.1rem;color:#fff;font-weight:400;line-height:1.3;">${
-                  j.name
-                }</div>
-            </div>
-            <div style="padding:1.25rem;display:flex;justify-content:space-between;align-items:center;">
-                <span style="font-size:0.78rem;color:var(--text-muted);">${j.desc.slice(
-                  0,
-                  60
-                )}…</span>
-            </div>
-            <div style="padding:0.875rem 1.25rem;border-top:1px solid var(--border);display:flex;gap:1.5rem;">
-                <span style="font-size:0.78rem;color:var(--text-muted);">Submissions: <strong style="color:#fff;">${count}</strong></span>
-                <span style="font-size:0.78rem;color:var(--green);">● Google Scholar</span>
-                <span style="font-size:0.78rem;color:var(--green);">● Crossref</span>
-                <span style="font-size:0.78rem;color:var(--green);">● ResearchBib</span>
-                <span style="font-size:0.78rem;color:var(--green);">● Neliti</span>
-            </div>
-        </div>`;
+      <div style="padding:1.5rem;border-bottom:1px solid var(--border);">
+        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:0.5rem;">${escHtml(j.abbr)}${j.issn ? " · ISSN " + escHtml(j.issn) : ""}</div>
+        <div style="font-family:var(--font-serif);font-size:1.1rem;color:#fff;font-weight:400;line-height:1.3;">${escHtml(j.name)}</div>
+      </div>
+      <div style="padding:1.25rem;font-size:0.78rem;color:var(--text-muted);line-height:1.6;">${escHtml((j.desc || "").slice(0, 110))}${(j.desc || "").length > 110 ? "…" : ""}</div>
+      <div style="padding:0.875rem 1.25rem;border-top:1px solid var(--border);display:flex;gap:1.25rem;flex-wrap:wrap;align-items:center;">
+        <span style="font-size:0.78rem;color:var(--text-muted);">Submissions: <strong style="color:#fff;">${count}</strong></span>
+        <span style="font-size:0.78rem;color:var(--text-muted);">Issues: <strong style="color:#fff;">${issues}</strong></span>
+        ${sa ? `<span style="margin-left:auto;display:flex;gap:0.4rem;">
+          <button class="btn-sm btn-ghost" style="padding:0.35rem 0.75rem;font-size:8px;" onclick="openJournalModal('${escHtml(j.abbr)}')">Edit</button>
+          <button class="btn-sm btn-danger" style="padding:0.35rem 0.75rem;font-size:8px;" onclick="confirmDeleteJournal('${escHtml(j.abbr)}')">Delete</button></span>` : ""}
+      </div>
+    </div>`;
   }).join("");
+}
+
+let _editJournalAbbr = null;
+function openJournalModal(abbr) {
+  if (!ojsIsSuper()) return;
+  _editJournalAbbr = abbr || null;
+  const j = abbr ? JOURNALS.find((x) => x.abbr === abbr) : null;
+  document.getElementById("journal-modal-title").textContent = j ? "Edit Journal" : "Add Journal";
+  document.getElementById("jn-abbr").value = j ? j.abbr : "";
+  document.getElementById("jn-name").value = j ? j.name : "";
+  document.getElementById("jn-issn").value = j ? j.issn || "" : "";
+  document.getElementById("jn-desc").value = j ? j.desc || "" : "";
+  document.getElementById("jn-error").style.display = "none";
+  document.getElementById("modal-journal").classList.add("open");
+}
+
+function saveJournal() {
+  if (!ojsIsSuper()) return;
+  const abbr = document.getElementById("jn-abbr").value.trim().toUpperCase();
+  const name = document.getElementById("jn-name").value.trim();
+  const issn = document.getElementById("jn-issn").value.trim();
+  const desc = document.getElementById("jn-desc").value.trim();
+  const err = document.getElementById("jn-error");
+  const fail = (m) => {
+    err.textContent = m;
+    err.style.display = "block";
+  };
+  if (!/^[A-Z0-9]{2,10}$/.test(abbr)) return fail("Abbreviation must be 2-10 letters/numbers.");
+  if (!name) return fail("Journal name is required.");
+  if (issn && !/^\d{4}-\d{3}[\dXx]$/.test(issn)) return fail("ISSN must look like 1234-5678.");
+  const others = JOURNALS.filter((j) => j.abbr !== _editJournalAbbr);
+  if (others.some((j) => j.abbr === abbr)) return fail("That abbreviation is already used.");
+  if (others.some((j) => j.name.toLowerCase() === name.toLowerCase())) return fail("A journal with that name already exists.");
+
+  const list = JOURNALS.map((j) => ({ ...j }));
+  if (_editJournalAbbr) {
+    const old = list.find((j) => j.abbr === _editJournalAbbr);
+    const oldName = old.name;
+    Object.assign(old, { abbr, name, issn, desc });
+    // keep existing records pointing at this journal
+    if (oldName !== name) {
+      const subs = loadSubs().map((s) => (s.journal === oldName ? { ...s, journal: name } : s));
+      saveSubs(subs);
+    }
+    if (_editJournalAbbr !== abbr) {
+      saveIssues(loadIssues().map((i) => (i.journal === _editJournalAbbr ? { ...i, journal: abbr } : i)));
+      saveReviewers(
+        loadReviewers().map((r) => ({
+          ...r,
+          journals: (r.journals || []).map((a) => (a === _editJournalAbbr ? abbr : a)),
+        }))
+      );
+    }
+  } else {
+    list.push({ abbr, name, issn, desc });
+  }
+  saveJournals(list);
+  closeModal("modal-journal");
+  renderJournalsAdmin();
+  showToast("Journal saved");
+}
+
+function confirmDeleteJournal(abbr) {
+  if (!ojsIsSuper()) return;
+  const j = JOURNALS.find((x) => x.abbr === abbr);
+  if (!j) return;
+  const subs = loadSubs().filter((s) => s.journal === j.name).length;
+  const issues = loadIssues().filter((i) => i.journal === abbr).length;
+  if (subs || issues) {
+    showToast("Can't delete: " + subs + " submission(s) and " + issues + " issue(s) use this journal.");
+    return;
+  }
+  if (JOURNALS.length <= 1) {
+    showToast("At least one journal must remain.");
+    return;
+  }
+  showConfirm(
+    "Delete Journal",
+    "Delete " + j.name + "? It will disappear from the public site and submission form.",
+    () => {
+      saveJournals(JOURNALS.filter((x) => x.abbr !== abbr));
+      renderJournalsAdmin();
+      showToast("Journal deleted");
+    },
+    "Delete",
+    true
+  );
 }
 
 // ===========================
@@ -217,12 +299,51 @@ function renderAdmins() {
         )}</td>
         <td><span style="font-size:8px;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;padding:0.25rem 0.6rem;background:rgba(193,154,107,0.1);color:var(--accent);border:1px solid rgba(193,154,107,0.25);">Sub-Admin</span></td>
         <td style="display:flex;gap:0.4rem;flex-wrap:wrap;">
+            <button class="btn-sm btn-ghost"  style="padding:0.35rem 0.75rem;font-size:8px;" onclick="toggleAdminReviewer(${i})">${
+              isReviewerEmail(a.email) ? "✓ Reviewer" : "Make Reviewer"
+            }</button>
             <button class="btn-sm btn-ghost"  style="padding:0.35rem 0.75rem;font-size:8px;" onclick="openEditAdmin(${i})">Edit</button>
             <button class="btn-sm btn-danger" style="padding:0.35rem 0.75rem;font-size:8px;" onclick="confirmDeleteAdmin(${i})">Remove</button>
         </td>
     </tr>`
     )
     .join("");
+}
+
+function isReviewerEmail(email) {
+  const e = String(email || "").toLowerCase();
+  return loadReviewers().some((r) => String(r.email).toLowerCase() === e);
+}
+
+// Sub-admins can also act as peer reviewers. This adds/removes them in the
+// reviewer registry (so they can be assigned to manuscripts).
+function toggleAdminReviewer(idx) {
+  if (!_currentAdmin || !_currentAdmin.isSuperAdmin) return;
+  const a = loadAdmins()[idx];
+  if (!a) return;
+  const list = loadReviewers();
+  const at = list.findIndex(
+    (r) => String(r.email).toLowerCase() === a.email.toLowerCase()
+  );
+  if (at >= 0) {
+    list.splice(at, 1);
+    saveReviewers(list);
+    showToast(a.name + " removed from reviewers");
+  } else {
+    list.push({
+      id: ojsId("rv"),
+      createdAt: ojsNow(),
+      name: a.name,
+      email: a.email.toLowerCase(),
+      affiliation: "Impact Compass Holdings",
+      interests: "",
+      journals: [],
+    });
+    saveReviewers(list);
+    showToast(a.name + " added as a reviewer");
+  }
+  renderAdmins();
+  renderReviewers();
 }
 
 function openAddAdminModal() {
@@ -374,10 +495,13 @@ function confirmDeleteAdmin(idx) {
 // ===========================
 function renderReports(subs) {
   const pub = subs.filter((s) => s.status === "Published").length;
+  const accepted = subs.filter(
+    (s) => s.status === "Published" || s.status === "Accepted"
+  ).length;
   const total = subs.length;
   document.getElementById("rpt-avg").textContent = total ? pub : "-";
   document.getElementById("rpt-acceptance").textContent = total
-    ? Math.round((pub / total) * 100) + "%"
+    ? Math.round((accepted / total) * 100) + "%"
     : "-";
   const journalCounts = {};
   JOURNALS.forEach((j) => (journalCounts[j.abbr] = 0));
@@ -416,6 +540,11 @@ function generateGalley(id) {
 }
 
 function _generateGalleyDoc(sub) {
+  const doc = _buildGalleyDoc(sub);
+  doc.save(`${ojsSafeName(sub.title)}.pdf`);
+}
+
+function _buildGalleyDoc(sub) {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
   doc.setFillColor(193, 154, 107);
@@ -438,7 +567,23 @@ function _generateGalleyDoc(sub) {
   doc.setTextColor(80, 80, 80);
   doc.text(`Authors: ${sub.authors}`, 10, titleEnd + 8);
   doc.setFontSize(10);
-  const d = sub.approvedAt ? new Date(sub.approvedAt) : new Date();
+  const d = sub.publishedAt
+    ? new Date(sub.publishedAt)
+    : sub.approvedAt
+    ? new Date(sub.approvedAt)
+    : new Date();
+  const issue = loadIssues().find((i) => i.id === sub.issueId);
+  if (issue) {
+    doc.setFontSize(10);
+    doc.setTextColor(80, 80, 80);
+    doc.text(
+      `Vol. ${issue.volume}, No. ${issue.number} (${issue.year})` +
+        (sub.pages ? ` · pp. ${sub.pages}` : "") +
+        (sub.doi ? ` · DOI: ${sub.doi}` : ""),
+      10,
+      titleEnd + 23
+    );
+  }
   doc.text(
     `Published: ${d.toLocaleDateString("en-GB", {
       day: "2-digit",
@@ -467,11 +612,7 @@ function _generateGalleyDoc(sub) {
     10,
     280
   );
-  const safeTitle = sub.title
-    .replace(/[^a-zA-Z0-9\s_-]/g, "")
-    .replace(/\s+/g, "_")
-    .slice(0, 60);
-  doc.save(`${safeTitle}.pdf`);
+  return doc;
 }
 
 // ===========================
@@ -531,6 +672,7 @@ function saveProfile() {
         admins[idx].email = email;
         _currentAdmin.email = email;
         _adminEmail = email;
+        sessionStorage.setItem("ich_admin_session", JSON.stringify({ email }));
       }
       admins[idx].name = name;
       saveAdmins(admins);
@@ -587,8 +729,6 @@ function initPaymentSettingsForm() {
     const el = document.getElementById(id);
     if (el) el.value = val || "";
   };
-  f("setting-pay-link", ps.payLink);
-  f("setting-pay-label", ps.payLabel);
   f("setting-bank-name", ps.bankName);
   f("setting-acc-name", ps.accName);
   f("setting-acc-num", ps.accNum);
@@ -600,11 +740,6 @@ function initPaymentSettingsForm() {
 
 function savePaymentSettings() {
   const ps = {
-    payLink:
-      (document.getElementById("setting-pay-link") || {}).value?.trim() || "",
-    payLabel:
-      (document.getElementById("setting-pay-label") || {}).value?.trim() ||
-      "Pay Online",
     bankName:
       (document.getElementById("setting-bank-name") || {}).value?.trim() || "",
     accName:
@@ -623,6 +758,6 @@ function savePaymentSettings() {
   localStorage.setItem(LS_PAY, JSON.stringify(ps));
   showSuccess(
     "Payment Settings Saved",
-    "Your payment link and bank details will appear on all future invoices."
+    "Your bank details will appear on all future invoices."
   );
 }

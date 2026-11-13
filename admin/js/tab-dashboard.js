@@ -8,7 +8,7 @@ function updateStats(subs, contacts) {
   document.getElementById("stat-published").textContent = loadInvoices().filter(
     (i) => {
       const due = new Date(i.issuedAt).getTime() + 14 * 86400000;
-      return Date.now() <= due;
+      return !i.paid && Date.now() <= due;
     }
   ).length;
   document.getElementById("stat-inquiries").textContent = contacts.length;
@@ -88,7 +88,7 @@ function renderActivityFeed(subs) {
               <div>
                   <div class="activity-text"><strong>${escHtml(
                     s.title.length > 50 ? s.title.slice(0, 50) + "…" : s.title
-                  )}</strong> - ${escHtml(s.status)}</div>
+                  )}</strong> - ${escHtml(ojsStageLabel(ojsNorm(s)))}</div>
                   <div class="activity-time">${escHtml(
                     getJournalAbbr(s.journal)
                   )} · ${fmtDate(s.submittedAt)}</div>

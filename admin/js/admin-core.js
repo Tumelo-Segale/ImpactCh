@@ -10,45 +10,13 @@ const LS_ADMINS = "ich_admins";
 const LS_USERS = "ich_users";
 const LS_PAY = "ich_payment_settings";
 const SUPER_ADMIN_EMAIL = "admin@impact.com";
-const SUPER_ADMIN_PWD = "password";
-
-const JOURNALS = [
-  {
-    abbr: "AJIESS",
-    name: "African Journal on Impact Economic and Social Studies",
-    desc: "Transformative economic policies and social development across the continent.",
-  },
-  {
-    abbr: "IJHRGJS",
-    name: "Int. Journal on Human Rights and Gender Justice Studies",
-    desc: "Critical research in justice, equity, and human rights frameworks globally.",
-  },
-  {
-    abbr: "IJPAHS",
-    name: "Int. Journal of Public and Allied Health Sciences",
-    desc: "Advancing public health research and innovative healthcare practices.",
-  },
-  {
-    abbr: "IJTMLS",
-    name: "Int. Journal of Technology and Managerial Leadership Studies",
-    desc: "Bridging technological innovation and effective leadership.",
-  },
-  {
-    abbr: "AJGGPS",
-    name: "African Journal on Good Governance and Geopolitical Science",
-    desc: "Political structures, governance models, and geopolitical strategies.",
-  },
-  {
-    abbr: "AJISAR",
-    name: "African Journal of Implementation Science and Applied Research",
-    desc: "Bridging theory and practice in various research fields.",
-  },
-];
 
 const PAGE_TITLES = {
   dashboard: "Dashboard",
   submissions: "Manuscripts",
   invoices: "Invoices",
+  reviewers: "Reviewers",
+  issues: "Issues",
   journals: "Journal Management",
   contacts: "Inquiries",
   users: "Registered Users",
@@ -202,42 +170,34 @@ function closeModal(id) {
 }
 
 // ===== AUTH =====
-function attemptLogin() {
-  const email = document
-    .getElementById("login-email")
-    .value.trim()
-    .toLowerCase();
-  const pwd = document.getElementById("login-password").value;
-  const err = document.getElementById("login-error");
-  err.style.display = "none";
-  if (email === SUPER_ADMIN_EMAIL && pwd === SUPER_ADMIN_PWD) {
-    _currentAdmin = {
-      email: SUPER_ADMIN_EMAIL,
-      name: "Super Admin",
-      isSuperAdmin: true,
-    };
-    _adminEmail = email;
-    doLoginSuccess();
-    return;
-  }
-  const admins = loadAdmins();
-  const match = admins.find((a) => a.email === email && a.password === pwd);
-  if (match) {
-    _currentAdmin = {
-      email: match.email,
-      name: match.name,
-      isSuperAdmin: false,
-    };
-    _adminEmail = match.email;
-    doLoginSuccess();
-    return;
-  }
-  err.style.display = "block";
-  document.getElementById("login-password").value = "";
+// Admins sign in through the main site's single sign-in form, which stores
+// { email } in sessionStorage; here we resolve who that is.
+function resolveAdminSession() {
+  let email = "";
+  try {
+    email = (JSON.parse(sessionStorage.getItem("ich_admin_session")) || {}).email || "";
+  } catch {}
+  if (!email) return null;
+  if (email === SUPER_ADMIN_EMAIL)
+    return { email, name: "Super Admin", isSuperAdmin: true };
+  const m = loadAdmins().find((a) => a.email === email);
+  return m ? { email: m.email, name: m.name, isSuperAdmin: false } : null;
 }
 
+function bootAdmin() {
+  const admin = resolveAdminSession();
+  if (!admin) {
+    sessionStorage.removeItem("ich_admin_session");
+    window.location.replace("../index.html");
+    return;
+  }
+  _currentAdmin = admin;
+  _adminEmail = admin.email;
+  doLoginSuccess();
+}
+document.addEventListener("DOMContentLoaded", bootAdmin);
+
 function doLoginSuccess() {
-  document.getElementById("login-overlay").style.display = "none";
   document.getElementById("app").classList.add("visible");
   initApp();
   applyRoleRestrictions();
@@ -252,6 +212,31 @@ function applyRoleRestrictions() {
   const roleEl = document.getElementById("topbar-admin-role");
   if (nameEl) nameEl.textContent = _currentAdmin ? _currentAdmin.name : "";
   if (roleEl) roleEl.textContent = isSA ? "Super Admin" : "Admin";
+  updateMyReviewsLink();
+}
+
+// Admins who are in the reviewer registry get a shortcut to the public
+// Reviewer Dashboard (they are signed in there with the same email).
+function updateMyReviewsLink() {
+  const btn = document.getElementById("nav-my-reviews");
+  if (!btn || !_currentAdmin) return;
+  const email = _currentAdmin.email.toLowerCase();
+  const isRev = loadReviewers().some((r) => String(r.email).toLowerCase() === email);
+  btn.style.display = isRev ? "" : "none";
+}
+function openMyReviews() {
+  if (!_currentAdmin) return;
+  const parts = String(_currentAdmin.name || "").trim().split(/\s+/);
+  sessionStorage.setItem(
+    "ich_current_user",
+    JSON.stringify({
+      email: _currentAdmin.email,
+      firstName: parts[0] || "Reviewer",
+      lastName: parts.slice(1).join(" "),
+      isAdminReviewer: true,
+    })
+  );
+  window.location.href = "../index.html#reviewer";
 }
 
 function logout() {
@@ -261,10 +246,9 @@ function logout() {
     () => {
       _currentAdmin = null;
       _adminEmail = "admin";
-      document.getElementById("app").classList.remove("visible");
-      document.getElementById("login-overlay").style.display = "flex";
-      document.getElementById("login-email").value = "";
-      document.getElementById("login-password").value = "";
+      sessionStorage.removeItem("ich_admin_session");
+      sessionStorage.removeItem("ich_current_user");
+      window.location.replace("../index.html");
     },
     "Sign Out"
   );
@@ -273,7 +257,7 @@ function logout() {
 // ===== NAVIGATION =====
 function showPage(id) {
   if (
-    (id === "users" || id === "admins") &&
+    (id === "users" || id === "admins" || id === "invoices") &&
     (!_currentAdmin || !_currentAdmin.isSuperAdmin)
   )
     id = "dashboard";
@@ -299,6 +283,8 @@ function showPage(id) {
   if (id === "contacts") renderContacts();
   if (id === "users") renderUsers();
   if (id === "admins") renderAdmins();
+  if (id === "reviewers") renderReviewers();
+  if (id === "issues") renderIssues();
 }
 
 // ===== INIT =====
@@ -307,6 +293,7 @@ function initApp() {
   refreshAll();
   initSettingsForm();
   initPaymentSettingsForm();
+  if (typeof initSiteSettingsForm === "function") initSiteSettingsForm();
   setInterval(refreshAll, 5000);
 }
 
@@ -328,6 +315,9 @@ function refreshAll() {
   renderSubTable(subs);
   renderReports(subs);
   renderInvoicesTable();
+  renderReviewers();
+  renderIssues();
+  updateMyReviewsLink();
   document.getElementById("badge-submissions").textContent = subs.length;
   let usersArr = [];
   try {
@@ -357,10 +347,3 @@ function openSidebar() {
   if (sb) sb.classList.toggle("mobile-open");
 }
 
-// ===== KEY LISTENERS =====
-document.getElementById("login-email").addEventListener("keydown", (e) => {
-  if (e.key === "Enter") document.getElementById("login-password").focus();
-});
-document.getElementById("login-password").addEventListener("keydown", (e) => {
-  if (e.key === "Enter") attemptLogin();
-});

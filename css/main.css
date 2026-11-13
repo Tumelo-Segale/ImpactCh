@@ -240,6 +240,37 @@ svg {
 .mobile-link.active {
   color: var(--accent);
 }
+.mobile-user-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+}
+.mobile-user-name {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--accent);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mobile-signout {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.35rem 0.8rem;
+  transition: color var(--transition);
+}
+.mobile-signout:hover {
+  color: #fff;
+}
 
 /* ===== PAGES ===== */
 .page {
@@ -458,13 +489,7 @@ svg {
   max-width: 42rem;
 }
 
-/* ===== SERVICES ===== */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  padding-bottom: 6rem;
-}
+/* ===== GLASS CARD ===== */
 .glass-card {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
@@ -472,42 +497,6 @@ svg {
 }
 .glass-card:hover {
   border-color: rgba(193, 154, 107, 0.2);
-}
-.service-card {
-  padding: 3rem;
-}
-.service-icon {
-  color: rgba(193, 154, 107, 0.4);
-  margin-bottom: 2rem;
-}
-.service-category {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 1.5rem;
-}
-.service-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.875rem;
-}
-.service-list li {
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  font-weight: 300;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-.dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--accent);
-  flex-shrink: 0;
 }
 
 /* ===== JOURNALS ===== */
@@ -1119,6 +1108,89 @@ svg {
   color: rgba(255, 255, 255, 0.15);
 }
 
+.footer-policies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.75rem;
+  padding-bottom: 1.75rem;
+}
+.footer-policies button {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.45);
+  transition: color var(--transition);
+}
+.footer-policies button:hover {
+  color: var(--accent);
+}
+.footer-bottom .fb-line {
+  display: inline;
+}
+.footer-credit {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+.footer-credit a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 700;
+}
+.footer-credit a:hover {
+  text-decoration: underline;
+}
+
+/* ===== POLICY POPUP ===== */
+.policy-modal {
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  max-height: 88vh;
+  overflow: hidden;
+}
+.policy-body {
+  padding: 1.5rem 2rem;
+  overflow-y: auto;
+  flex: 1;
+  font-size: 0.85rem;
+  line-height: 1.75;
+  color: var(--text-dim);
+}
+.policy-body h4 {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--accent);
+  margin: 1.5rem 0 0.5rem;
+}
+.policy-body h4:first-child {
+  margin-top: 0;
+}
+.policy-body p {
+  margin-bottom: 0.75rem;
+}
+.policy-body ul {
+  margin: 0 0 0.75rem 1.25rem;
+  list-style: disc;
+}
+.policy-body li {
+  margin-bottom: 0.4rem;
+}
+.policy-body strong {
+  color: #fff;
+}
+@media (max-width: 600px) {
+  .policy-body {
+    padding: 1.25rem;
+  }
+}
+
 /* ===== MODALS ===== */
 .confirm-overlay {
   position: fixed;
@@ -1276,9 +1348,6 @@ svg {
   .publishing-icon-box {
     aspect-ratio: 16/7;
   }
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
   .journals-subnav {
     gap: 1rem;
     padding: 1.5rem 0 2rem;
@@ -1317,6 +1386,16 @@ svg {
 @media (max-width: 700px) {
   #nav-user-area {
     display: none !important;
+  }
+  /* footer: policies stacked, copyright on two lines */
+  .footer-policies {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+  }
+  .footer-bottom .fb-line {
+    display: block;
+    line-height: 1.9;
   }
 }
 @media (max-width: 600px) {

@@ -1,9 +1,11 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
 
 # Google Scholar crawler
 User-agent: Googlebot
 Allow: /
 Allow: /articles/
+Disallow: /admin/
 
 Sitemap: https://impactch.com/sitemap.xml

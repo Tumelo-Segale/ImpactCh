@@ -12,6 +12,7 @@ function handleFileChange(inputId, listId) {
   const files = Array.from(input.files);
   if (inputId === "manuscript-file") _stagedManuscript = files;
   if (inputId === "supp-files") _stagedSupp = files;
+  if (inputId === "revise-file") _stagedRevision = files;
   listEl.innerHTML = files
     .map(
       (f) => `
@@ -151,6 +152,26 @@ document
     );
   });
 
+// ===== PAID-INVOICE NOTICE DISMISSAL =====
+const LS_DISMISSED_NOTICES = "ich_dismissed_notices";
+function loadDismissedNotices() {
+  try {
+    return JSON.parse(localStorage.getItem(LS_DISMISSED_NOTICES)) || [];
+  } catch {
+    return [];
+  }
+}
+function isPaidNoticeDismissed(invoiceNum) {
+  return loadDismissedNotices().includes(invoiceNum);
+}
+function dismissPaidNotice(invoiceNum, btn) {
+  const list = loadDismissedNotices();
+  if (!list.includes(invoiceNum)) list.push(invoiceNum);
+  localStorage.setItem(LS_DISMISSED_NOTICES, JSON.stringify(list));
+  const box = btn && btn.closest(".paid-notice");
+  if (box) box.remove();
+}
+
 // ===== DASHBOARD =====
 function renderDashboard() {
   const user = getCurrentUser();
@@ -170,12 +191,16 @@ function renderDashboard() {
     return;
   }
   el.innerHTML = `<div class="submissions-list">${subs
-    .map((sub, idx) => buildSubmissionCard(sub, idx))
+    .map((sub) => buildSubmissionCard(sub))
     .join("")}</div>`;
 }
 
-function buildSubmissionCard(sub, idx) {
+function buildSubmissionCard(sub) {
   const canDownload = sub.status === "Published";
+  const stageLabel =
+    sub.status === "Declined"
+      ? "Declined"
+      : (OJS_STAGES.find((s) => s.id === (sub.stage || "submission")) || {}).label;
   const fileInfo =
     sub.manuscriptFiles && sub.manuscriptFiles.length > 0
       ? `<div style="font-size:0.75rem;color:var(--text-muted);margin-top:0.4rem;">📎 ${sub.manuscriptFiles
@@ -188,6 +213,14 @@ function buildSubmissionCard(sub, idx) {
       const invs = JSON.parse(localStorage.getItem("ich_invoices") || "[]");
       const inv = invs.find((i) => i.subId === sub.id);
       if (!inv) return "";
+      if (inv.paid) {
+        if (isPaidNoticeDismissed(inv.invoiceNum)) return "";
+        return `<div class="paid-notice" style="position:relative;margin-top:0.875rem;border:1px solid rgba(34,197,94,0.35);background:rgba(34,197,94,0.07);padding:0.875rem 2.75rem 0.875rem 1rem;font-size:0.8rem;color:#4ade80;">Payment received for invoice ${escapeHtml(
+          inv.invoiceNum
+        )}. Thank you.<button type="button" aria-label="Dismiss notification" title="Dismiss" onclick="dismissPaidNotice('${escapeHtml(
+          inv.invoiceNum
+        )}', this)" style="position:absolute;top:50%;right:0.6rem;transform:translateY(-50%);width:1.75rem;height:1.75rem;display:flex;align-items:center;justify-content:center;background:transparent;border:0;color:#4ade80;font-size:1.25rem;line-height:1;cursor:pointer;opacity:0.7;">&times;</button></div>`;
+      }
       const dueDate = new Date(
         new Date(inv.issuedAt).getTime() + 14 * 86400000
       );
@@ -244,31 +277,31 @@ function buildSubmissionCard(sub, idx) {
             </div>
             <div class="submission-id">ID: ${sub.id}</div>
         </div>
+        ${buildOjsPanel(sub)}
         ${invoiceNotice}
         <div class="submission-actions">
             <div class="action-links">
-                <button class="action-btn" onclick="openContactEditor(${idx})">
+                <button class="action-btn" onclick="openContactEditor('${sub.id}')">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                     Contact Editor
                 </button>
             </div>
             ${
               canDownload
-                ? `<button class="btn-primary" onclick="generateGalley(${idx})" style="font-size:10px;padding:0.75rem 1.5rem;gap:0.5rem;">
+                ? `<button class="btn-primary" onclick="downloadGalley('${sub.id}')" style="font-size:10px;padding:0.75rem 1.5rem;gap:0.5rem;">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                     Download Galley PDF</button>`
                 : `<div class="galley-pending">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    Awaiting Editorial Approval</div>`
+                    ${escapeHtml(stageLabel)} stage</div>`
             }
         </div>
     </div>`;
 }
 
 // ===== CONTACT EDITOR =====
-function openContactEditor(idx) {
-  const subs = loadSubmissions();
-  const sub = subs[idx];
+function openContactEditor(id) {
+  const sub = loadSubmissions().find((s) => s.id === id);
   if (!sub) return;
   document.getElementById("ce-title").textContent = sub.title;
   document.getElementById("ce-subject").value = "";
@@ -310,6 +343,19 @@ function sendEditorMessage() {
     existing.unshift(inquiry);
     localStorage.setItem("ich_contacts", JSON.stringify(existing));
   } catch {}
+  if (sub) {
+    // Keep the message in the manuscript's discussion thread as well
+    pubMutate(sub.id, (s) => {
+      s.discussions.push({
+        id: pubId("msg"),
+        role: "author",
+        by: inquiry.name,
+        at: inquiry.date,
+        stage: s.stage,
+        text: subject + "\n" + message,
+      });
+    });
+  }
   closeModal("modal-contact-editor");
   showSuccess(
     "Message Sent",
@@ -318,9 +364,8 @@ function sendEditorMessage() {
 }
 
 // ===== GALLEY PDF =====
-function generateGalley(idx) {
-  const subs = loadSubmissions();
-  const sub = subs[idx];
+function generateGalley(id) {
+  const sub = loadSubmissions().find((s) => s.id === id);
   if (!sub) return;
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
@@ -344,7 +389,7 @@ function generateGalley(idx) {
   doc.setTextColor(80, 80, 80);
   doc.text(`Authors: ${sub.authors}`, 10, titleEnd + 8);
   doc.setFontSize(10);
-  const d = new Date();
+  const d = sub.publishedAt ? new Date(sub.publishedAt) : new Date();
   doc.text(
     `Published On: ${d.toLocaleDateString("en-GB", {
       day: "2-digit",

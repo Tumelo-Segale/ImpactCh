@@ -4,23 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Impact Compass Holdings | Professional Academic & Consulting Platform</title>
+    <title>Impact Compass Holdings | Academic Publishing & Peer-Reviewed Journals</title>
     <meta name="description"
-        content="Impact Compass Holdings (PTY) LTD is a multi-disciplinary South African hub providing expert consulting, academic publishing, and peer-reviewed journals for a global audience.">
+        content="Impact Compass Holdings (PTY) LTD is a South African academic publishing house providing peer-reviewed journals and scholarly publishing services for a global audience.">
     <meta name="keywords"
-        content="Impact Compass Holdings, academic publishing, peer-reviewed journals, consulting, South Africa, research, AJIESS, IJHRGJS, IJPAHS, IJTMLS, AJGGPS, AJISAR">
+        content="Impact Compass Holdings, academic publishing, peer-reviewed journals, open journal systems, South Africa, research, AJIESS, IJHRGJS, IJPAHS, AJTLGGS, AJISAR">
     <meta name="author" content="Impact Compass Holdings (PTY) LTD">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Impact Compass Holdings | Academic & Consulting Platform">
+    <meta property="og:title" content="Impact Compass Holdings | Academic Publishing Platform">
     <meta property="og:description"
-        content="Expert consulting, academic publishing, and peer-reviewed journals for a global audience.">
+        content="Academic publishing and peer-reviewed journals for a global audience.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://impactch.com">
     <meta property="og:image" content="https://impactch.com/assets/Logo.png">
     <meta property="og:site_name" content="Impact Compass Holdings">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Impact Compass Holdings">
-    <meta name="twitter:description" content="Expert consulting, academic publishing, and peer-reviewed journals.">
+    <meta name="twitter:description" content="Academic publishing and peer-reviewed journals.">
     <meta name="twitter:image" content="https://impactch.com/assets/Logo.png">
     <script type="application/ld+json">
     {
@@ -44,6 +44,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/ojs.css">
 </head>
 
 <body>
@@ -98,6 +99,76 @@
             <div class="modal-footer">
                 <button class="btn-cancel" onclick="closeModal('modal-contact-editor')">Cancel</button>
                 <button class="btn-confirm" onclick="sendEditorMessage()">Send Message</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-revise">
+        <div class="modal-box">
+            <div class="modal-head">
+                <h3>Submit Revisions</h3>
+                <button class="modal-close-btn" onclick="closeModal('modal-revise')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg></button>
+            </div>
+            <div class="modal-body">
+                <p style="font-size:0.875rem;color:var(--text-muted);margin-bottom:1.5rem;">Upload the revised manuscript for <strong id="revise-title" style="color:#fff;"></strong>.</p>
+                <div class="form-fields">
+                    <div class="field"><label class="field-label">Revised Manuscript</label>
+                        <div class="file-upload-area">
+                            <input type="file" id="revise-file" accept=".pdf,.doc,.docx,.odt,.rtf" multiple onchange="handleFileChange('revise-file','revise-file-list')">
+                            <div class="file-upload-text"><strong>Click to upload</strong><br><span style="font-size:0.72rem;">PDF, DOC, DOCX, ODT, RTF</span></div>
+                            <div class="file-list" id="revise-file-list"></div>
+                        </div></div>
+                    <div class="field"><label class="field-label">Response to Reviewers / Summary of Changes</label><textarea rows="5" class="field-textarea" id="revise-note" placeholder="Describe how you addressed each comment…"></textarea></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeModal('modal-revise')">Cancel</button>
+                <button class="btn-confirm" onclick="submitRevision()">Submit Revisions</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-copyedit">
+        <div class="modal-box">
+            <div class="modal-head">
+                <h3>Request Copyedit Changes</h3>
+                <button class="modal-close-btn" onclick="closeModal('modal-copyedit')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-fields"><div class="field"><label class="field-label">What needs to change?</label><textarea rows="5" class="field-textarea" id="copyedit-note" placeholder="List the corrections you need…"></textarea></div></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeModal('modal-copyedit')">Cancel</button>
+                <button class="btn-confirm" onclick="submitCopyeditChanges()">Send to Editor</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-review">
+        <div class="modal-box">
+            <div class="modal-head">
+                <h3>Submit Review</h3>
+                <button class="modal-close-btn" onclick="closeModal('modal-review')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg></button>
+            </div>
+            <div class="modal-body">
+                <p style="font-size:0.875rem;color:var(--text-muted);margin-bottom:1.5rem;">Review of <strong id="review-title" style="color:#fff;"></strong></p>
+                <div class="form-fields">
+                    <div class="field"><label class="field-label">Recommendation</label>
+                        <select class="field-select" id="review-rec">
+                            <option value="">Select…</option>
+                            <option value="accept">Accept Submission</option>
+                            <option value="minor">Revisions Required (Minor)</option>
+                            <option value="major">Revisions Required (Major)</option>
+                            <option value="resubmit">Resubmit for Review</option>
+                            <option value="decline">Decline Submission</option>
+                        </select></div>
+                    <div class="field"><label class="field-label">Comments to Author</label><textarea rows="6" class="field-textarea" id="review-author" placeholder="Constructive feedback the author will see (anonymous)…"></textarea></div>
+                    <div class="field"><label class="field-label">Comments to Editor (confidential)</label><textarea rows="3" class="field-textarea" id="review-editor"></textarea></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeModal('modal-review')">Cancel</button>
+                <button class="btn-confirm" onclick="submitReview()">Submit Review</button>
             </div>
         </div>
     </div>
@@ -168,13 +239,10 @@
             </div>
             <div class="nav-links">
                 <button class="nav-link active" data-page="home" onclick="navigate('home')">Home</button>
-                <button class="nav-link" data-page="consulting" onclick="navigate('consulting')">Services</button>
                 <button class="nav-link" data-page="journals" onclick="navigate('journals')">Journals</button>
                 <button class="nav-link" data-page="publishing" onclick="navigate('publishing')">Publishing</button>
                 <button class="nav-link" data-page="about" onclick="navigate('about')">About</button>
                 <button class="nav-link" data-page="contact" onclick="navigate('contact')">Contact</button>
-                <a href="admin/index.html" class="nav-link"
-                    style="border:1px solid rgba(193,154,107,0.3);padding:0.4rem 1rem;color:var(--accent);">Admin</a>
                 <div id="nav-user-area" style="display:flex;align-items:center;gap:0.75rem;"></div>
             </div>
             <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
@@ -194,8 +262,6 @@
         <div id="mobile-menu">
             <button class="mobile-link active" data-page="home"
                 onclick="navigate('home');toggleMobileMenu()">Home</button>
-            <button class="mobile-link" data-page="consulting"
-                onclick="navigate('consulting');toggleMobileMenu()">Services</button>
             <button class="mobile-link" data-page="journals"
                 onclick="navigate('journals');toggleMobileMenu()">Journals</button>
             <button class="mobile-link" data-page="publishing"
@@ -203,7 +269,6 @@
             <button class="mobile-link" data-page="about" onclick="navigate('about');toggleMobileMenu()">About</button>
             <button class="mobile-link" data-page="contact"
                 onclick="navigate('contact');toggleMobileMenu()">Contact</button>
-            <a href="admin/index.html" class="mobile-link" style="color:var(--accent);">Admin Portal</a>
             <div id="mobile-user-area"
                 style="padding-top:0.5rem;border-top:1px solid rgba(255,255,255,0.06);margin-top:0.25rem;"></div>
         </div>
@@ -217,10 +282,10 @@
                     <h1 class="hero-title">Driving Growth Through<br><span class="text-accent">Knowledge &
                             Strategy.</span></h1>
                     <p class="hero-sub">Impact Compass Holdings (PTY) LTD is a multi-disciplinary South African hub
-                        providing expert consulting, academic publishing, and curated resources for a global audience.
+                        providing peer-reviewed academic journals, scholarly publishing, and curated resources for a global audience.
                     </p>
                     <div class="hero-actions">
-                        <button class="btn-primary" onclick="navigate('consulting')">Our Services</button>
+                        <button class="btn-primary" onclick="navigate('journals')">Explore Journals</button>
                         <button class="btn-ghost" onclick="navigate('about')">Learn More</button>
                     </div>
                 </div>
@@ -229,32 +294,20 @@
         <section>
             <div class="container" style="padding:0;">
                 <div class="divisions-grid">
-                    <div class="division-card" onclick="navigate('consulting')">
-                        <div class="division-label">Division 01</div>
-                        <div class="division-title">Impact Consultants</div>
-                        <div class="division-desc">Specialized research protocols, organizational development, and
-                            capacity building for institutions.</div>
-                        <ul class="division-links">
-                            <li><span>Research Services</span><span class="division-arrow">→</span></li>
-                            <li><span>Strategy & Planning</span><span class="division-arrow">→</span></li>
-                            <li><span>M&E Frameworks</span><span class="division-arrow">→</span></li>
-                            <li><span>Data Analysis</span><span class="division-arrow">→</span></li>
-                        </ul>
-                    </div>
                     <div class="division-card" onclick="navigate('journals')">
-                        <div class="division-label">Division 02</div>
+                        <div class="division-label">Division 01</div>
                         <div class="division-title">Academic Journals</div>
-                        <div class="division-desc">6 Peer-reviewed journals covering African impact, human rights, and
-                            implementation science.</div>
+                        <div class="division-desc">5 Peer-reviewed journals covering African impact, human rights, health,
+                            technology, governance, and implementation science.</div>
                         <ul class="division-links">
                             <li><span>AJIESS (Economics)</span><span class="division-arrow">→</span></li>
                             <li><span>IJHRGJS (Rights)</span><span class="division-arrow">→</span></li>
                             <li><span>IJPAHS (Health)</span><span class="division-arrow">→</span></li>
-                            <li><span>AJGGPS (Governance)</span><span class="division-arrow">→</span></li>
+                            <li><span>AJTLGGS (Technology &amp; Governance)</span><span class="division-arrow">→</span></li>
                         </ul>
                     </div>
                     <div class="division-card" onclick="navigate('publishing')">
-                        <div class="division-label">Division 03</div>
+                        <div class="division-label">Division 02</div>
                         <div class="division-title">Impact Publishing</div>
                         <div class="division-desc">Bringing powerful stories to life through academic books, technical
                             reports, and digital content.</div>
@@ -276,68 +329,6 @@
         </section>
     </div>
 
-    <!-- CONSULTING PAGE -->
-    <div id="page-consulting" class="page">
-        <div style="background:var(--brand-900);min-height:100vh;padding-bottom:6rem;">
-            <div class="container">
-                <div class="page-header">
-                    <span class="label-tag">Impact Consultants</span>
-                    <h1 class="page-title">Strategic Advisory<br>& <span class="text-accent">Expert Research</span></h1>
-                    <p class="page-desc">We provide deep analytical insights and transformative organizational
-                        strategies to help governments, NGOs, and corporations achieve sustainable excellence.</p>
-                </div>
-                <div class="services-grid">
-                    <div class="glass-card service-card">
-                        <div class="service-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.5">
-                                <ellipse cx="12" cy="12" rx="10" ry="10" />
-                                <path d="M12 2v20M2 12h20" />
-                                <path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z" />
-                            </svg></div>
-                        <div class="service-category">Research</div>
-                        <ul class="service-list">
-                            <li><span class="dot"></span>Protocol & Proposal Development</li>
-                            <li><span class="dot"></span>Fieldwork & Data Collection</li>
-                            <li><span class="dot"></span>Data Analysis (STATA, SPSS, Tableau)</li>
-                            <li><span class="dot"></span>Statistical Analysis Training</li>
-                            <li><span class="dot"></span>Academic Mentoring & Report Writing</li>
-                        </ul>
-                    </div>
-                    <div class="glass-card service-card">
-                        <div class="service-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.5">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                                <circle cx="9" cy="7" r="4" />
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-                            </svg></div>
-                        <div class="service-category">Training & Capacity Building</div>
-                        <ul class="service-list">
-                            <li><span class="dot"></span>Organizational Capacity Assessments</li>
-                            <li><span class="dot"></span>Training Needs Assessments</li>
-                            <li><span class="dot"></span>Project Management Training</li>
-                            <li><span class="dot"></span>Monitoring & Evaluation (M&E) Plans</li>
-                            <li><span class="dot"></span>Report Writing Workshops</li>
-                        </ul>
-                    </div>
-                    <div class="glass-card service-card">
-                        <div class="service-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.5">
-                                <rect x="2" y="7" width="20" height="14" rx="2" />
-                                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M12 12v4M10 14h4" />
-                            </svg></div>
-                        <div class="service-category">Organizational Development</div>
-                        <ul class="service-list">
-                            <li><span class="dot"></span>Strategic Planning & Execution</li>
-                            <li><span class="dot"></span>Change Management Strategy</li>
-                            <li><span class="dot"></span>Performance Improvement Plans</li>
-                            <li><span class="dot"></span>Risk Assessment & Management</li>
-                            <li><span class="dot"></span>Business Planning & Projections</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- JOURNALS PAGE -->
     <div id="page-journals" class="page">
@@ -346,7 +337,10 @@
                 <div class="journals-subnav">
                     <button class="subnav-btn active" id="tab-browse" onclick="switchJournalView('browse')">Browse
                         Journals</button>
+                    <button class="subnav-btn" id="tab-archive" onclick="switchJournalView('archive')">Archive</button>
                     <button class="subnav-btn" id="tab-dashboard" onclick="switchJournalView('dashboard')">Author
+                        Dashboard</button>
+                    <button class="subnav-btn" id="tab-reviewer" onclick="switchJournalView('reviewer')">Reviewer
                         Dashboard</button>
                     <button class="btn-accent-sm" onclick="switchJournalView('submit')">Submit Manuscript</button>
                 </div>
@@ -361,6 +355,26 @@
                     </div>
                     <div class="journals-grid" id="journals-grid"></div>
                 </div>
+                <!-- ARCHIVE -->
+                <div id="view-archive" class="hidden">
+                    <div class="dashboard-wrapper">
+                        <h2>Journal Archive</h2>
+                        <p class="sub-desc">Browse published issues and articles.</p>
+                        <div class="archive-filters">
+                            <select id="archive-journal" class="field-select" onchange="onArchiveFilter()"></select>
+                            <input id="archive-search" class="field-input" type="search" placeholder="Search title, author, keyword…" oninput="onArchiveFilter()">
+                        </div>
+                        <div id="archive-content"></div>
+                    </div>
+                </div>
+                <!-- REVIEWER DASHBOARD -->
+                <div id="view-reviewer" class="hidden">
+                    <div class="dashboard-wrapper">
+                        <h2>Reviewer Dashboard</h2>
+                        <p class="sub-desc">Review invitations and peer review assignments for your account.</p>
+                        <div id="reviewer-content"></div>
+                    </div>
+                </div>
                 <!-- DASHBOARD -->
                 <div id="view-dashboard" class="hidden">
                     <div class="dashboard-wrapper">
@@ -373,7 +387,7 @@
                 <div id="view-submit" class="hidden">
                     <div class="submit-wrapper">
                         <h2>Manuscript Submission</h2>
-                        <p class="sub-desc">Follow the OJS-standard protocol for scholarly submission.</p>
+                        <p class="sub-desc">Submit your manuscript for editorial review, peer review, copyediting and publication.</p>
                         <div class="glass-card form-card">
                             <form id="submission-form" class="form-fields">
                                 <div class="field">
@@ -517,11 +531,11 @@
                         <p>Impact Compass Holdings (PTY) LTD, established as Segale Incorporated and later rebranded,
                             was founded with a singular vision: to create a multifaceted platform that addresses the
                             complex needs of modern development in Africa and beyond.</p>
-                        <p>Under the leadership of Dr. Jacob Segale, we have expanded from a boutique consultancy into a
-                            comprehensive powerhouse of knowledge and trade, operating through four specialized
-                            divisions.</p>
-                        <p>Our mission is to provide expert consulting, influential publishing, high-impact academic
-                            journals, and quality products that foster growth, innovation, and positive societal change.
+                        <p>Under the leadership of Dr. Jacob Segale, we have grown into a dedicated academic
+                            publishing house, operating through two specialized divisions: Impact Journals and
+                            Impact Publishing.</p>
+                        <p>Our mission is to provide influential publishing and high-impact, peer-reviewed academic
+                            journals that foster growth, innovation, and positive societal change.
                         </p>
                     </div>
                     <div class="about-img-wrap">
@@ -549,7 +563,7 @@
                                 <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
                             </svg></div>
                         <div class="value-title">Rigorous Quality</div>
-                        <p class="value-text">From peer-reviewed research to professional consulting, quality is our
+                        <p class="value-text">From peer-reviewed research to professional publishing, quality is our
                             bedrock.</p>
                     </div>
                     <div class="value-card">
@@ -574,7 +588,7 @@
                 <div class="page-header">
                     <span class="label-tag">Connect With Us</span>
                     <h1 class="page-title">Let's start the <span style="font-style:italic;">conversation.</span></h1>
-                    <p class="page-desc">Whether you have a consulting inquiry, a scholarly submission, or just want to
+                    <p class="page-desc">Whether you have a publishing inquiry, a scholarly submission, or just want to
                         browse our collection, we're here to help.</p>
                 </div>
                 <div class="contact-grid">
@@ -589,7 +603,6 @@
                                     </svg></div>
                                 <div>
                                     <h4>Email Inquiries</h4>
-                                    <p>Consulting: consultencies@impactch.com</p>
                                     <p>Journals: journals@impactch.com</p>
                                 </div>
                             </div>
@@ -619,7 +632,7 @@
                             <div class="field"><label class="field-label">Subject</label>
                                 <select name="subject" class="field-select">
                                     <option>General Inquiry</option>
-                                    <option>Consulting Request</option>
+                                    <option>Publishing Inquiry</option>
                                     <option>Journal Submission</option>
                                 </select>
                             </div>
@@ -641,14 +654,27 @@
                 <div class="footer-col"><b>Contact</b> +27 650 731 450 | info@impactch.com</div>
                 <div class="footer-col"><b>Operating Hours</b> Mon – Fri: 08:00 – 17:00 | Sat: 09:00 – 13:00</div>
             </div>
-            <div class="footer-bottom">© 2026 Impact Compass Holdings (PTY) LTD. All Rights Reserved.</div>
+            <nav class="footer-policies" aria-label="Journal policies">
+                <button type="button" onclick="openPolicy('peer-review')">Peer Review Policy</button>
+                <button type="button" onclick="openPolicy('ethics')">Ethics Policy</button>
+                <button type="button" onclick="openPolicy('coi')">Conflict of Interest Policy</button>
+                <button type="button" onclick="openPolicy('retraction')">Retraction Policy</button>
+                <button type="button" onclick="openPolicy('open-access')">Open Access Policy</button>
+                <button type="button" onclick="openPolicy('indexing')">Indexing</button>
+            </nav>
+            <div class="footer-bottom"><span class="fb-line">© 2026 Impact Compass Holdings (PTY) LTD.</span> <span class="fb-line">All Rights Reserved.</span></div>
+            <div class="footer-credit">Developed and Designed by <a href="https://tumelo-segale.vercel.app"
+                    target="_blank" rel="noopener noreferrer">Tumelo Segale</a></div>
         </div>
     </footer>
 
     <!-- JS: load order matters - app.js must load before auth and submissions -->
+    <script src="js/policies.js"></script>
+    <script src="js/journals.js"></script>
     <script src="js/app.js"></script>
     <script src="js/user-auth.js"></script>
     <script src="js/submissions.js"></script>
+    <script src="js/ojs.js"></script>
 </body>
 
 </html>

@@ -12,60 +12,113 @@ if (typeof LOGO_DATA_URI === "undefined") {
 // ===== APPROVE MODAL =====
 let _approvalSubId = null;
 
-function openApproveModal(subId) {
-  const subs = loadSubs();
-  const sub = subs.find((s) => s.id === subId);
+let _approvalInvoiceOnly = false;
+let _approvalNeedsFee = true;
+
+// invoiceOnly: Super Admin issuing the fee invoice for an already-accepted manuscript
+function openApproveModal(subId, invoiceOnly) {
+  const sub = loadSubs().find((s) => s.id === subId);
   if (!sub) return;
   const existing = loadInvoices().find((i) => i.subId === subId);
-  if (existing) {
-    showConfirm(
-      "Invoice Already Exists",
-      `Invoice ${existing.invoiceNum} was already issued. View it in the Invoices tab.`,
-      () => showPage("invoices"),
-      "Go to Invoices"
-    );
+  if (invoiceOnly && existing) {
+    showToast("Invoice " + existing.invoiceNum + " was already issued.");
     return;
   }
   _approvalSubId = subId;
+  _approvalInvoiceOnly = !!invoiceOnly;
+  // Only Super Admins handle fees/invoices; others accept without a fee.
+  _approvalNeedsFee = ojsIsSuper() && !existing;
+  const show = (id, on) => (document.getElementById(id).style.display = on ? "" : "none");
+  show("approve-fee-field", _approvalNeedsFee);
+  show("approve-fee-warning", _approvalNeedsFee);
+  show("approve-note-field", !invoiceOnly);
+  show("approve-share-row", !invoiceOnly);
+  document.getElementById("approve-modal-title").textContent = invoiceOnly
+    ? "Issue Fee Invoice"
+    : "Accept Manuscript";
+  document.getElementById("approve-confirm-btn").textContent = invoiceOnly
+    ? "Issue Invoice"
+    : _approvalNeedsFee
+    ? "Set Fee & Accept"
+    : "Accept";
   document.getElementById("approve-sub-title").textContent =
     sub.title.length > 60 ? sub.title.slice(0, 60) + "…" : sub.title;
   document.getElementById("approve-sub-author").textContent =
     sub.submittedByEmail || sub.authors || "";
   document.getElementById("approve-amount").value = "";
+  document.getElementById("approve-note").value = "";
+  document.getElementById("approve-share").checked = true;
   document.getElementById("approve-amount-error").style.display = "none";
   document.getElementById("modal-approve").classList.add("open");
 }
 
 function confirmApproveModal() {
-  const amtRaw = document.getElementById("approve-amount").value.trim();
-  const amt = parseFloat(amtRaw);
-  const errEl = document.getElementById("approve-amount-error");
-  if (!amtRaw || isNaN(amt) || amt <= 0) {
-    errEl.textContent = "Please enter a valid amount greater than 0.";
-    errEl.style.display = "block";
-    return;
+  let amt = null;
+  if (_approvalNeedsFee) {
+    const amtRaw = document.getElementById("approve-amount").value.trim();
+    amt = parseFloat(amtRaw);
+    const errEl = document.getElementById("approve-amount-error");
+    if (!amtRaw || isNaN(amt) || amt <= 0) {
+      errEl.textContent = "Please enter a valid amount greater than 0.";
+      errEl.style.display = "block";
+      return;
+    }
+    errEl.style.display = "none";
   }
-  errEl.style.display = "none";
+  const meta = {
+    note: document.getElementById("approve-note").value.trim(),
+    share: document.getElementById("approve-share").checked,
+    invoiceOnly: _approvalInvoiceOnly,
+  };
   closeModal("modal-approve");
-  doApproveAndInvoice(_approvalSubId, amt);
-  _approvalSubId = null;
+  doApproveAndInvoice(_approvalSubId, amt, meta);
 }
 
-function doApproveAndInvoice(subId, amount) {
+function doApproveAndInvoice(subId, amount, meta) {
+  meta = meta || {};
   const subs = loadSubs();
   const sub = subs.find((s) => s.id === subId);
   if (!sub) return;
-  const updated = subs.map((s) =>
-    s.id === subId
-      ? {
-          ...s,
-          status: "Published",
-          approvedAt: new Date().toISOString(),
-          approvedBy: _currentAdmin ? _currentAdmin.name : "Admin",
-        }
-      : s
-  );
-  saveSubs(updated);
+  // OJS: acceptance moves the manuscript to Copyediting; it is only
+  // "Published" once it is published from the Production stage.
+  if (!meta.invoiceOnly)
+  ojsMutate(subId, (s) => {
+    const shared = meta.share
+      ? ojsRoundAssignments(s)
+          .filter((a) => a.status === "completed")
+          .map((a) => a.id)
+      : [];
+    s.status = "Accepted";
+    s.stage = "copyediting";
+    s.awaitingRevision = false;
+    s.approvedAt = ojsNow();
+    s.approvedBy = ojsActor();
+    s.decisions.push({
+      id: ojsId("dec"),
+      type: "accept",
+      label: "Submission accepted",
+      note: meta.note || "",
+      by: ojsActor(),
+      at: ojsNow(),
+      round: s.round,
+      sharedReviewIds: shared,
+    });
+    ojsEvent(
+      s,
+      amount == null
+        ? "Submission accepted - moved to Copyediting (fee invoice pending)"
+        : "Submission accepted - fee invoice issued, moved to Copyediting"
+    );
+  });
+  if (amount == null) {
+    refreshAll();
+    if (_wf && _wf.id === subId) {
+      _wf.tab = "copyediting";
+      renderWorkflow();
+    }
+    showToast("Accepted - moved to Copyediting");
+    return;
+  }
   const invs = loadInvoices();
   const invoiceNum = "ICH-INV-" + String(invs.length + 1).padStart(4, "0");
   const ps = loadPaySettings();
@@ -82,8 +135,6 @@ function doApproveAndInvoice(subId, amount) {
     amount,
     currency: "ZAR",
     ref,
-    payLink: ps.payLink || "",
-    payLabel: ps.payLabel || "Pay Online",
     bankName: ps.bankName || "",
     accName: ps.accName || "",
     accNum: ps.accNum || "",
@@ -94,7 +145,12 @@ function doApproveAndInvoice(subId, amount) {
   saveInvoices(invs);
   refreshAll();
   renderInvoicesTable();
-  showToast("Approved - Invoice " + invoiceNum + " generated");
+  if (_wf && _wf.id === subId) {
+    _wf.tab = "copyediting";
+    renderWorkflow();
+  }
+  ojsMutate(subId, (s) => ojsEvent(s, "Fee invoice " + invoiceNum + " issued"));
+  showToast((meta.invoiceOnly ? "Invoice " : "Accepted - Invoice ") + invoiceNum + " generated");
   setTimeout(() => {
     const toEmail = inv.authorEmail || "";
     const issueDate = new Date(inv.issuedAt).toLocaleDateString("en-ZA", {
@@ -145,7 +201,6 @@ function doApproveAndInvoice(subId, amount) {
             (ps.accType ? "Account Type: " + ps.accType + "\r\n" : "") +
             "\r\n"
           : "") +
-        (ps.payLink ? "Pay Online: " + ps.payLink + "\r\n\r\n" : "") +
         "\u26a0 IMPORTANT: Payment must be received within 14 days (" +
         dueDate +
         "). " +
@@ -188,7 +243,7 @@ function renderInvoicesTable() {
   if (badge) badge.textContent = invs.length;
   if (!invs.length) {
     tbody.innerHTML =
-      '<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:2rem;">No invoices yet. Approve a manuscript to generate the first invoice.</td></tr>';
+      '<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:2rem;">No invoices yet. Accept a manuscript to generate the first invoice.</td></tr>';
     return;
   }
   tbody.innerHTML = invs
@@ -207,7 +262,11 @@ function renderInvoicesTable() {
         )}</td>
         <td style="font-weight:700;color:#fff;">R ${Number(
           inv.amount || 0
-        ).toFixed(2)}</td>
+        ).toFixed(2)}<div style="margin-top:0.3rem;">${
+          inv.paid
+            ? '<span class="badge badge-published"><span class="badge-dot"></span>Paid</span>'
+            : '<span class="badge badge-invoiced"><span class="badge-dot"></span>Unpaid</span>'
+        }</div></td>
         <td style="font-size:0.75rem;color:var(--text-muted);">${fmtDate(
           inv.issuedAt
         )}</td>
@@ -218,10 +277,25 @@ function renderInvoicesTable() {
             <button class="btn-sm btn-ghost"  style="padding:0.35rem 0.75rem;font-size:8px;" onclick="viewInvoiceModal('${
               inv.id
             }')">View</button>
+            <button class="btn-sm btn-ghost"  style="padding:0.35rem 0.75rem;font-size:8px;" onclick="toggleInvoicePaid('${
+              inv.id
+            }')">${inv.paid ? "Mark Unpaid" : "Mark Paid"}</button>
         </td>
     </tr>`
     )
     .join("");
+}
+
+function toggleInvoicePaid(invId) {
+  const invs = loadInvoices();
+  const inv = invs.find((i) => i.id === invId);
+  if (!inv) return;
+  inv.paid = !inv.paid;
+  inv.paidAt = inv.paid ? new Date().toISOString() : null;
+  saveInvoices(invs);
+  renderInvoicesTable();
+  refreshAll();
+  showToast(inv.paid ? "Invoice marked as paid" : "Invoice marked as unpaid");
 }
 
 function viewInvoiceModal(invId) {
@@ -256,8 +330,6 @@ function buildInvoiceHTML(inv, forModal) {
   const accNum = inv.accNum || ps.accNum || "";
   const branch = inv.branch || ps.branch || "";
   const accType = inv.accType || ps.accType || "";
-  const payLink = inv.payLink || ps.payLink || "";
-  const payLabel = inv.payLabel || ps.payLabel || "Pay Online";
   const ref = inv.authorEmail || inv.ref || "";
   const logo =
     typeof LOGO_DATA_URI !== "undefined" && LOGO_DATA_URI
@@ -322,17 +394,6 @@ function buildInvoiceHTML(inv, forModal) {
   </table>
   <div style="border:1px solid #e8e0d4;padding:1.25rem;margin-bottom:1rem;">
     <div style="font-size:9px;letter-spacing:0.25em;text-transform:uppercase;font-weight:700;color:#c19a6b;margin-bottom:0.875rem;">Payment Options</div>
-    ${
-      payLink
-        ? `<div style="margin-bottom:1rem;"><div style="font-size:0.78rem;font-weight:700;color:#333;margin-bottom:4px;">Online Payment</div><a href="${escHtml(
-            payLink
-          )}" style="display:inline-block;background:#c19a6b;color:#fff;padding:0.5rem 1.25rem;font-size:0.8rem;font-weight:700;text-decoration:none;">${escHtml(
-            payLabel
-          )}</a><div style="font-size:0.72rem;color:#888;margin-top:4px;">${escHtml(
-            payLink
-          )}</div></div>`
-        : ""
-    }
     ${
       bankName
         ? `<div><div style="font-size:0.78rem;font-weight:700;color:#333;margin-bottom:6px;">EFT / Bank Transfer</div><table style="font-size:0.78rem;color:#444;border-collapse:collapse;width:100%;"><tr><td style="padding:3px 1.25rem 3px 0;color:#888;width:130px;">Bank:</td><td style="font-weight:600;">${escHtml(
@@ -403,8 +464,6 @@ function downloadInvoicePDF(invId) {
   const accNum = inv.accNum || ps.accNum || "";
   const branch = inv.branch || ps.branch || "";
   const accType = inv.accType || ps.accType || "";
-  const payLink = inv.payLink || ps.payLink || "";
-  const payLabel = inv.payLabel || ps.payLabel || "Pay Online";
   const ref = inv.authorEmail || inv.ref || "";
   const amtStr =
     "R " +
@@ -552,16 +611,6 @@ function downloadInvoicePDF(invId) {
   doc.setLineWidth(0.3);
   doc.line(M, y, W - M, y);
   y += 4;
-  if (payLink) {
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(8);
-    doc.setTextColor(...dark);
-    doc.text("Online Payment:", M, y);
-    doc.setFont("helvetica", "normal");
-    doc.setTextColor(30, 100, 200);
-    doc.text(payLink, M + 32, y);
-    y += 7;
-  }
   if (bankName) {
     doc.setFont("helvetica", "bold");
     doc.setFontSize(8);

@@ -3,44 +3,12 @@
    ============================================================ */
 
 // ===== CONSTANTS =====
-const JOURNALS = [
-  {
-    abbr: "AJIESS",
-    name: "African Journal on Impact Economic and Social Studies",
-    desc: "Focusing on transformative economic policies and social development across the continent.",
-  },
-  {
-    abbr: "IJHRGJS",
-    name: "Int. Journal on Human Rights and Gender Justice Studies",
-    desc: "A platform for critical research in justice, equity, and human rights frameworks globally.",
-  },
-  {
-    abbr: "IJPAHS",
-    name: "Int. Journal of Public and Allied Health Sciences",
-    desc: "Advancing public health research and innovative healthcare practices.",
-  },
-  {
-    abbr: "IJTMLS",
-    name: "Int. Journal of Technology and Managerial Leadership Studies",
-    desc: "Bridging the gap between technological innovation and effective leadership.",
-  },
-  {
-    abbr: "AJGGPS",
-    name: "African Journal on Good Governance and Geopolitical Science",
-    desc: "Exploring political structures, governance models, and geopolitical strategies.",
-  },
-  {
-    abbr: "AJISAR",
-    name: "African Journal of Implementation Science and Applied Research",
-    desc: "Dedicated to the methodology of bridging theory and practice in various fields.",
-  },
-];
 const LS_KEY = "ich_submissions";
 
 // ===== UTILS =====
 function escapeHtml(str) {
   return String(str || "")
-    .replace(/&/g, "&")
+    .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
@@ -129,6 +97,7 @@ function renderJournalGrid() {
             <div class="journal-abbr">${j.abbr}</div>
             <div class="journal-name">${j.name}</div>
             <p class="journal-desc">${j.desc}</p>
+            <div class="ojs-journal-links"><span>ISSN ${journalIssn(j.abbr) || "-"}</span><button class="link-btn" onclick="openJournalArchive('${j.abbr}')">View Articles →</button></div>
             <div class="journal-footer"><span>Indexed in:</span><span class="journal-indexed">Google Scholar · Crossref · ResearchBib · Neliti</span></div>
         </div>`
   ).join("");
@@ -144,19 +113,24 @@ function renderJournalGrid() {
 }
 
 function switchJournalView(view) {
-  if ((view === "submit" || view === "dashboard") && !getCurrentUser()) {
+  if (
+    (view === "submit" || view === "dashboard" || view === "reviewer") &&
+    !getCurrentUser()
+  ) {
     _pendingJournalView = view;
     openUserAuthModal();
     return;
   }
   _pendingJournalView = null;
-  ["browse", "dashboard", "submit"].forEach((v) => {
+  ["browse", "dashboard", "submit", "reviewer", "archive"].forEach((v) => {
     document.getElementById("view-" + v).classList.toggle("hidden", v !== view);
   });
   document.querySelectorAll(".subnav-btn").forEach((btn) => {
     btn.classList.toggle("active", btn.id === "tab-" + view);
   });
   if (view === "dashboard") renderDashboard();
+  if (view === "reviewer") renderReviewerDashboard();
+  if (view === "archive") renderArchive();
 }
 
 // ===== INIT =====
@@ -164,4 +138,8 @@ function switchJournalView(view) {
 window.addEventListener("load", function () {
   renderJournalGrid();
   if (typeof initUserAuth === "function") initUserAuth();
+  if (location.hash === "#reviewer" && getCurrentUser()) {
+    navigate("journals");
+    switchJournalView("reviewer");
+  }
 });

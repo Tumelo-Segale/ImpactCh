@@ -40,6 +40,8 @@ function renderSubTable(subs) {
                 s.title.length > 42 ? s.title.slice(0, 42) + "…" : s.title
               )}</div><div class="td-journal">${escHtml(
         getJournalAbbr(s.journal)
+      )}</div><div style="margin-top:0.4rem;">${ojsStatusBadge(
+        ojsNorm(s)
       )}</div></td>
               <td style="color:var(--text-muted);font-size:0.78rem;">${escHtml(
                 s.authors
@@ -52,10 +54,11 @@ function renderSubTable(subs) {
               )}</td>
               <td style="display:flex;gap:0.4rem;align-items:center;flex-wrap:wrap;">
                   ${filesBtnHtml}
+                  <button class="btn-sm btn-read" style="padding:0.35rem 0.75rem;font-size:8px;" onclick="openWorkflow('${s.id}')">Workflow</button>
                   ${
-                    !hasInvoice
-                      ? `<button class="btn-sm btn-read" style="padding:0.35rem 0.75rem;font-size:8px;" onclick="openApproveModal('${s.id}')">✓ Approve</button>`
-                      : `<button class="btn-sm btn-ghost" style="padding:0.35rem 0.75rem;font-size:8px;border-color:rgba(193,154,107,0.3);color:var(--accent);" onclick="viewInvoice('${s.id}')">Invoice</button>`
+                    hasInvoice && ojsIsSuper()
+                      ? `<button class="btn-sm btn-ghost" style="padding:0.35rem 0.75rem;font-size:8px;border-color:rgba(193,154,107,0.3);color:var(--accent);" onclick="viewInvoice('${s.id}')">Invoice</button>`
+                      : ""
                   }
                   <button class="btn-sm btn-danger" style="padding:0.35rem 0.75rem;font-size:8px;" onclick="confirmDeleteSub('${
                     s.id
@@ -98,13 +101,14 @@ function confirmDeleteSub(id) {
 function exportCSV() {
   const subs = loadSubs();
   const rows = [
-    ["ID", "Title", "Authors", "Journal", "Status", "Submitted"],
+    ["ID", "Title", "Authors", "Journal", "Status", "Stage", "Submitted"],
     ...subs.map((s) => [
       s.id,
       '"' + s.title.replace(/"/g, '""') + '"',
       s.authors,
       getJournalAbbr(s.journal),
       s.status,
+      ojsStageLabel(ojsNorm(s)),
       fmtDate(s.submittedAt),
     ]),
   ];

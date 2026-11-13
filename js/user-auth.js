@@ -50,10 +50,10 @@ function updateNavUserArea() {
   }
   if (mEl) {
     if (user) {
-      mEl.innerHTML = `<span style="font-family:var(--font-serif);font-size:1rem;color:var(--accent);">Signed in as ${escapeHtml(
+      mEl.innerHTML = `<div class="mobile-user-row"><span class="mobile-user-name">${escapeHtml(
         user.firstName
       )} ${escapeHtml(user.lastName)}</span>
-                   <button onclick="userLogout();toggleMobileMenu();" class="mobile-link" style="color:rgba(255,255,255,0.4);">Sign Out</button>`;
+                   <button onclick="userLogout();toggleMobileMenu();" class="mobile-signout">Sign Out</button></div>`;
     } else {
       mEl.innerHTML = `<button onclick="openUserAuthModal();toggleMobileMenu();" class="mobile-link" style="color:var(--accent);">Sign In / Sign Up</button>`;
     }
@@ -79,6 +79,32 @@ function switchUserAuthTab(tab) {
   su.classList.toggle("active", tab === "signup");
 }
 
+// ===== ADMIN ACCOUNTS (single sign-in) =====
+// The same form signs in authors/reviewers and administrators. We check who
+// the credentials belong to and send admins to the portal.
+const SUPER_ADMIN_EMAIL = "admin@impact.com";
+const SUPER_ADMIN_PWD = "password";
+function findAdminAccount(email, pwd) {
+  if (email === SUPER_ADMIN_EMAIL && pwd === SUPER_ADMIN_PWD)
+    return { email, name: "Super Admin", isSuperAdmin: true };
+  try {
+    const admins = JSON.parse(localStorage.getItem("ich_admins") || "[]");
+    const m = admins.find((a) => a.email === email && a.password === pwd);
+    if (m) return { email: m.email, name: m.name, isSuperAdmin: false };
+  } catch {}
+  return null;
+}
+function isAdminEmail(email) {
+  if (email === SUPER_ADMIN_EMAIL) return true;
+  try {
+    return JSON.parse(localStorage.getItem("ich_admins") || "[]").some(
+      (a) => a.email === email
+    );
+  } catch {
+    return false;
+  }
+}
+
 function attemptUserLogin() {
   const email = document
     .getElementById("u-login-email")
@@ -92,6 +118,11 @@ function attemptUserLogin() {
     errEl.style.display = "block";
     return;
   }
+  const admin = findAdminAccount(email, pwd);
+  if (admin) {
+    document.getElementById("u-login-password").value = "";
+    return completeLogin({ kind: "admin", email: admin.email, admin });
+  }
   const users = loadUsers();
   const user = users.find((u) => u.email === email && u.password === pwd);
   if (!user) {
@@ -100,6 +131,20 @@ function attemptUserLogin() {
     document.getElementById("u-login-password").value = "";
     return;
   }
+  document.getElementById("u-login-password").value = "";
+  completeLogin({ kind: "user", email: user.email, user });
+}
+
+function completeLogin(ctx) {
+  if (ctx.kind === "admin") {
+    sessionStorage.setItem("ich_admin_session", JSON.stringify({ email: ctx.admin.email }));
+    clearCurrentUser();
+    window.location.href = "admin/index.html";
+    return;
+  }
+  completeUserLogin(ctx.user);
+}
+function completeUserLogin(user) {
   setCurrentUser(user);
   closeUserAuthModal();
   updateNavUserArea();
@@ -142,6 +187,11 @@ function attemptUserRegister() {
   }
   if (pwd !== conf) {
     errEl.textContent = "Passwords do not match.";
+    errEl.style.display = "block";
+    return;
+  }
+  if (isAdminEmail(email)) {
+    errEl.textContent = "This email address is reserved. Please use a different one.";
     errEl.style.display = "block";
     return;
   }

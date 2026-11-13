@@ -1057,3 +1057,330 @@ svg {
     border-color: var(--accent);
   }
 }
+
+/* ============================================================
+   OJS - Editorial workflow
+   ============================================================ */
+.badge-declined {
+  background: var(--red-light);
+  color: #f87171;
+}
+.badge-declined .badge-dot {
+  background: #f87171;
+}
+.badge-revision {
+  background: var(--amber-light);
+  color: #fbbf24;
+}
+.badge-revision .badge-dot {
+  background: #fbbf24;
+}
+.badge-stage {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+.badge-stage .badge-dot {
+  background: var(--accent);
+}
+
+/* dialogs opened from inside the workflow modal must sit above it */
+#modal-approve,
+#modal-decision,
+#modal-record-review,
+#modal-docs {
+  z-index: 260;
+}
+#modal-issue-manage {
+  z-index: 220;
+}
+#modal-issue {
+  z-index: 230;
+}
+
+.wf-head {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.wf-head-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.wf-journal {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.wf-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 0.3rem;
+}
+.wf-muted {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.wf-stepper {
+  display: flex;
+  align-items: center;
+  margin-top: 1.25rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+.wf-step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.wf-step-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+.wf-step.current {
+  color: var(--accent);
+}
+.wf-step.current .wf-step-dot {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+.wf-step.done {
+  color: var(--green);
+}
+.wf-step.done .wf-step-dot {
+  border-color: var(--green);
+  background: var(--green-light);
+}
+.wf-step-line {
+  flex: 1;
+  min-width: 18px;
+  height: 1px;
+  background: var(--border);
+  margin: 0 0.6rem;
+}
+.wf-tabs {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+.wf-tab {
+  padding: 0.9rem 1rem;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+.wf-tab:hover {
+  color: #fff;
+}
+.wf-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+.wf-content {
+  padding: 1.5rem;
+}
+.wf-section {
+  margin-bottom: 1.75rem;
+}
+.wf-section-title {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.875rem;
+}
+.wf-kv {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.82rem;
+  padding: 0.35rem 0;
+}
+.wf-kv b {
+  min-width: 130px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.wf-kv span {
+  color: #fff;
+  flex: 1;
+  word-break: break-word;
+}
+.wf-abstract {
+  margin-top: 0.75rem;
+  padding: 1rem;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--text-dim);
+  white-space: pre-wrap;
+}
+.wf-file {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 0.875rem;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  margin-bottom: 0.4rem;
+}
+.wf-file-name {
+  font-size: 0.82rem;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.wf-file-name span {
+  margin-left: 0.6rem;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+.wf-file a.btn-sm {
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.wf-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.wf-note {
+  padding: 0.75rem 1rem;
+  background: var(--accent-light);
+  border-left: 3px solid var(--accent);
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+.wf-note.ok {
+  background: var(--green-light);
+  border-left-color: var(--green);
+}
+.wf-note.warn {
+  background: var(--amber-light);
+  border-left-color: var(--amber);
+}
+.wf-quote {
+  margin-top: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  border-left: 2px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  white-space: pre-wrap;
+}
+.wf-assign {
+  padding: 0.875rem 1rem;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  margin-bottom: 0.5rem;
+}
+.wf-assign-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  font-size: 0.85rem;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+.wf-details {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}
+.wf-details summary {
+  cursor: pointer;
+  color: var(--accent);
+}
+.wf-decision {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.wf-form-row {
+  display: grid;
+  grid-template-columns: 1fr 170px auto;
+  gap: 0.75rem;
+  align-items: center;
+}
+.wf-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.wf-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-right: 1rem;
+  cursor: pointer;
+}
+.wf-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0;
+}
+.wf-msg {
+  padding: 0.75rem 1rem;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  white-space: pre-wrap;
+}
+.wf-msg.editor {
+  border-left: 3px solid var(--accent);
+}
+.wf-log {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.link-inline {
+  color: var(--accent);
+  text-decoration: underline;
+  font-size: inherit;
+}
+.btn-sm:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+@media (max-width: 640px) {
+  .wf-form-row {
+    grid-template-columns: 1fr;
+  }
+  .wf-kv {
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+}
