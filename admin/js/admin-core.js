@@ -9,7 +9,7 @@ const LS_INVOICES = "ich_invoices";
 const LS_ADMINS = "ich_admins";
 const LS_USERS = "ich_users";
 const LS_PAY = "ich_payment_settings";
-const SUPER_ADMIN_EMAIL = "admin@impact.com";
+const SUPER_ADMIN_EMAIL = "admin@impactch.com";
 
 const PAGE_TITLES = {
   dashboard: "Dashboard",
@@ -175,7 +175,9 @@ function closeModal(id) {
 function resolveAdminSession() {
   let email = "";
   try {
-    email = (JSON.parse(sessionStorage.getItem("ich_admin_session")) || {}).email || "";
+    email =
+      (JSON.parse(sessionStorage.getItem("ich_admin_session")) || {}).email ||
+      "";
   } catch {}
   if (!email) return null;
   if (email === SUPER_ADMIN_EMAIL)
@@ -221,12 +223,16 @@ function updateMyReviewsLink() {
   const btn = document.getElementById("nav-my-reviews");
   if (!btn || !_currentAdmin) return;
   const email = _currentAdmin.email.toLowerCase();
-  const isRev = loadReviewers().some((r) => String(r.email).toLowerCase() === email);
+  const isRev = loadReviewers().some(
+    (r) => String(r.email).toLowerCase() === email
+  );
   btn.style.display = isRev ? "" : "none";
 }
 function openMyReviews() {
   if (!_currentAdmin) return;
-  const parts = String(_currentAdmin.name || "").trim().split(/\s+/);
+  const parts = String(_currentAdmin.name || "")
+    .trim()
+    .split(/\s+/);
   sessionStorage.setItem(
     "ich_current_user",
     JSON.stringify({
@@ -346,4 +352,3 @@ function openSidebar() {
   const sb = document.getElementById("sidebar");
   if (sb) sb.classList.toggle("mobile-open");
 }
-
